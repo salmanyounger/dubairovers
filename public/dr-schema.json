@@ -1,0 +1,451 @@
+{
+  "schemas": [
+    {
+      "type": "FAQPage",
+      "page": "/desert-safari-dubai",
+      "schema": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is included in Desert Safari?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Desert Safari includes hotel pickup and drop-off, professional English-speaking guide, all equipment, refreshments, and a 24/7 WhatsApp support line."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does Desert Safari last?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The standard Desert Safari duration is 3–6 hours depending on the package selected. Overnight packages are also available."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Desert Safari safe for children?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Desert Safari is family-friendly. Children aged 4 and above are welcome. Our guides are trained in first aid and safety protocols."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What should I wear for Desert Safari?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Comfortable clothing and closed-toe shoes are recommended. Sunscreen and sunglasses are advised for daytime tours."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I book Desert Safari?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can book Desert Safari directly on our website or via WhatsApp at +971544735060. Instant confirmation is provided for all bookings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I cancel or reschedule my Desert Safari booking?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Free cancellation is available up to 24 hours before the tour start time. Rescheduling is available up to 12 hours before departure."
+            }
+          }
+        ]
+      },
+      "addedAt": "2026-03-11T11:41:17.056Z"
+    },
+    {
+      "type": "FAQPage",
+      "page": "/hot-air-balloon-dubai",
+      "schema": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is included in Hot Air Balloon?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hot Air Balloon includes hotel pickup and drop-off, professional English-speaking guide, all equipment, refreshments, and a 24/7 WhatsApp support line."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does Hot Air Balloon last?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The standard Hot Air Balloon duration is 3–6 hours depending on the package selected. Overnight packages are also available."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Hot Air Balloon safe for children?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Hot Air Balloon is family-friendly. Children aged 4 and above are welcome. Our guides are trained in first aid and safety protocols."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What should I wear for Hot Air Balloon?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Comfortable clothing and closed-toe shoes are recommended. Sunscreen and sunglasses are advised for daytime tours."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I book Hot Air Balloon?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can book Hot Air Balloon directly on our website or via WhatsApp at +971544735060. Instant confirmation is provided for all bookings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I cancel or reschedule my Hot Air Balloon booking?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Free cancellation is available up to 24 hours before the tour start time. Rescheduling is available up to 12 hours before departure."
+            }
+          }
+        ]
+      },
+      "addedAt": "2026-03-11T11:41:17.056Z"
+    },
+    {
+      "type": "FAQPage",
+      "page": "/dhow-cruise-dubai",
+      "schema": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is included in Dhow Cruise?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dhow Cruise includes hotel pickup and drop-off, professional English-speaking guide, all equipment, refreshments, and a 24/7 WhatsApp support line."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does Dhow Cruise last?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The standard Dhow Cruise duration is 3–6 hours depending on the package selected. Overnight packages are also available."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Dhow Cruise safe for children?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Dhow Cruise is family-friendly. Children aged 4 and above are welcome. Our guides are trained in first aid and safety protocols."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What should I wear for Dhow Cruise?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Comfortable clothing and closed-toe shoes are recommended. Sunscreen and sunglasses are advised for daytime tours."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I book Dhow Cruise?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can book Dhow Cruise directly on our website or via WhatsApp at +971544735060. Instant confirmation is provided for all bookings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I cancel or reschedule my Dhow Cruise booking?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Free cancellation is available up to 24 hours before the tour start time. Rescheduling is available up to 12 hours before departure."
+            }
+          }
+        ]
+      },
+      "addedAt": "2026-03-11T11:41:17.056Z"
+    },
+    {
+      "type": "FAQPage",
+      "page": "/quad-bike-dubai",
+      "schema": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is included in Quad Bike?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Quad Bike includes hotel pickup and drop-off, professional English-speaking guide, all equipment, refreshments, and a 24/7 WhatsApp support line."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does Quad Bike last?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The standard Quad Bike duration is 3–6 hours depending on the package selected. Overnight packages are also available."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Quad Bike safe for children?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Quad Bike is family-friendly. Children aged 4 and above are welcome. Our guides are trained in first aid and safety protocols."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What should I wear for Quad Bike?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Comfortable clothing and closed-toe shoes are recommended. Sunscreen and sunglasses are advised for daytime tours."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I book Quad Bike?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can book Quad Bike directly on our website or via WhatsApp at +971544735060. Instant confirmation is provided for all bookings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I cancel or reschedule my Quad Bike booking?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Free cancellation is available up to 24 hours before the tour start time. Rescheduling is available up to 12 hours before departure."
+            }
+          }
+        ]
+      },
+      "addedAt": "2026-03-11T11:41:17.056Z"
+    },
+    {
+      "type": "FAQPage",
+      "page": "/camel-riding-dubai",
+      "schema": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is included in Camel Riding?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Camel Riding includes hotel pickup and drop-off, professional English-speaking guide, all equipment, refreshments, and a 24/7 WhatsApp support line."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does Camel Riding last?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The standard Camel Riding duration is 3–6 hours depending on the package selected. Overnight packages are also available."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Camel Riding safe for children?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Camel Riding is family-friendly. Children aged 4 and above are welcome. Our guides are trained in first aid and safety protocols."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What should I wear for Camel Riding?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Comfortable clothing and closed-toe shoes are recommended. Sunscreen and sunglasses are advised for daytime tours."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I book Camel Riding?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can book Camel Riding directly on our website or via WhatsApp at +971544735060. Instant confirmation is provided for all bookings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I cancel or reschedule my Camel Riding booking?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Free cancellation is available up to 24 hours before the tour start time. Rescheduling is available up to 12 hours before departure."
+            }
+          }
+        ]
+      },
+      "addedAt": "2026-03-11T11:41:17.056Z"
+    },
+    {
+      "type": "FAQPage",
+      "page": "/private-city-tour-dubai",
+      "schema": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is included in City Tour?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "City Tour includes hotel pickup and drop-off, professional English-speaking guide, all equipment, refreshments, and a 24/7 WhatsApp support line."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does City Tour last?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The standard City Tour duration is 3–6 hours depending on the package selected. Overnight packages are also available."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is City Tour safe for children?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, City Tour is family-friendly. Children aged 4 and above are welcome. Our guides are trained in first aid and safety protocols."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What should I wear for City Tour?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Comfortable clothing and closed-toe shoes are recommended. Sunscreen and sunglasses are advised for daytime tours."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I book City Tour?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can book City Tour directly on our website or via WhatsApp at +971544735060. Instant confirmation is provided for all bookings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I cancel or reschedule my City Tour booking?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Free cancellation is available up to 24 hours before the tour start time. Rescheduling is available up to 12 hours before departure."
+            }
+          }
+        ]
+      },
+      "addedAt": "2026-03-11T11:41:17.056Z"
+    },
+    {
+      "type": "Article",
+      "page": "/blog/desert-safari-dubai-honest-guide",
+      "schema": {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Desert Safari Dubai: The Honest Guide",
+        "image": "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=1200&q=80",
+        "author": {
+          "@type": "Organization",
+          "name": "Dubai Rovers",
+          "url": "https://dubairovers.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Dubai Rovers",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://dubairovers.com/logo.png"
+          }
+        },
+        "datePublished": "2025-02-14",
+        "dateModified": "2026-03-11",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://dubairovers.com/blog/desert-safari-dubai-honest-guide"
+        },
+        "description": "Desert Safari Dubai: The Honest Guide — expert guide by Dubai Rovers. Tips, prices, and everything you need to know."
+      },
+      "addedAt": "2026-03-11T11:41:19.754Z"
+    },
+    {
+      "type": "Article",
+      "page": "/blog/hot-air-balloon-dubai-worth-it",
+      "schema": {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Is Hot Air Balloon Dubai Worth It?",
+        "image": "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=1200&q=80",
+        "author": {
+          "@type": "Organization",
+          "name": "Dubai Rovers",
+          "url": "https://dubairovers.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Dubai Rovers",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://dubairovers.com/logo.png"
+          }
+        },
+        "datePublished": "2025-01-28",
+        "dateModified": "2026-03-11",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://dubairovers.com/blog/hot-air-balloon-dubai-worth-it"
+        },
+        "description": "Is Hot Air Balloon Dubai Worth It? — expert guide by Dubai Rovers. Tips, prices, and everything you need to know."
+      },
+      "addedAt": "2026-03-11T11:41:19.754Z"
+    },
+    {
+      "type": "Article",
+      "page": "/blog/dhow-cruise-dubai-what-to-expect",
+      "schema": {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Dhow Cruise Dubai: What to Actually Expect",
+        "image": "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=1200&q=80",
+        "author": {
+          "@type": "Organization",
+          "name": "Dubai Rovers",
+          "url": "https://dubairovers.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Dubai Rovers",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://dubairovers.com/logo.png"
+          }
+        },
+        "datePublished": "2025-01-15",
+        "dateModified": "2026-03-11",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://dubairovers.com/blog/dhow-cruise-dubai-what-to-expect"
+        },
+        "description": "Dhow Cruise Dubai: What to Actually Expect — expert guide by Dubai Rovers. Tips, prices, and everything you need to know."
+      },
+      "addedAt": "2026-03-11T11:41:19.755Z"
+    }
+  ]
+}

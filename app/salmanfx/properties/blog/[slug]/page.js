@@ -1,0 +1,745 @@
+"use client";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+
+const SITE = "https://dubairovers.com";
+
+const POSTS = {
+  "dubai-property-market-2026":{emoji:"📊",tag:"Market Update",title:"Dubai Property Market 2026: Full Report for Buyers and Investors",isoDate:"2026-03-10",date:"March 10, 2026",mins:8,reads:"8.4K",keywords:"Dubai property market 2026, Dubai real estate investment, Dubai property prices",desc:"Transaction volumes, price trends, top-performing areas, and the data every Dubai property buyer needs before making a decision in 2026.",content:`Dubai's property market delivered its fourth consecutive record-breaking year in 2025. Going into 2026, the fundamental drivers remain intact — but the opportunity landscape has shifted. Here is the complete picture.
+
+**Transaction Volume: The Record Context**
+
+Dubai Land Department recorded 180,000+ transactions in 2025, the highest in the emirate's history. Q1 2026 is running 22% above Q1 2025 by volume. The sustained growth is not speculative — it reflects genuine end-user demand from the 400,000+ high-net-worth individuals who relocated to the UAE since 2022.
+
+**Price Performance by Area (Q1 2026)**
+
+Downtown Dubai: AED 2,900/sqft (+16% YoY). Dubai Marina: AED 2,150/sqft (+11%). Palm Jumeirah: AED 4,200/sqft average (+19%). JVC: AED 1,020/sqft (+9%). Business Bay: AED 1,780/sqft (+13%). The across-the-board appreciation reflects insufficient supply versus demand, particularly in prime areas.
+
+**Off-Plan vs Ready: The 2026 Dynamic**
+
+Off-plan continues at 63% of all transactions. Developer payment plans have become remarkably aggressive — 40/60, 50/50, and even 30/70 post-handover structures are now common. This has expanded the buyer pool significantly; buyers who cannot fund a full purchase can now own Dubai property with 20–30% entry cost. Ready property commands a 15–25% premium for immediate rental income.
+
+**Golden Visa's Ongoing Effect**
+
+The AED 2 million threshold for the 10-year Golden Visa continues to create a price floor in the AED 1.9M–2.2M bracket — properties in this range sell within days, often above asking. For more on Golden Visa, see our [complete guide](/properties/blog/golden-visa-property-guide).
+
+**Outlook for Q2-Q4 2026**
+
+Supply-demand analysis suggests continued appreciation in prime areas (5–8% for 2026) with moderating growth in secondary locations where new supply is catching up with demand. The strongest risk-adjusted opportunity in 2026: Business Bay 1BR and 2BR ready units yielding 7–8.5% with active rental markets. Use our [properties platform](/properties) to compare current listings with ROI analysis.`},
+
+  "golden-visa-property-guide":{emoji:"🏅",tag:"Golden Visa",title:"UAE Golden Visa via Property: Complete 2026 Guide",isoDate:"2026-02-20",date:"February 20, 2026",mins:10,reads:"9.8K",keywords:"UAE Golden Visa property 2026, Dubai residency investment, 10 year visa Dubai",desc:"AED 2M threshold, eligible property types, the application process, and which Dubai areas give you the fastest approval.",content:`The UAE 10-year Golden Visa through property investment is among the most straightforward residency programs globally. For Dubai property buyers, it has become a primary purchase motivation. Here is the complete, accurate guide for 2026.
+
+**The Two Investment Thresholds**
+
+AED 750,000 (minimum assessed value, fully paid): Qualifies for a 2-year investor visa — renewable every 2 years, no residency requirement, covers spouse and minor children.
+
+AED 2,000,000 (minimum assessed value, including mortgaged properties): Qualifies for the 10-year Golden Visa — renewable indefinitely, no minimum days in UAE required, covers spouse, children under 25, and you can sponsor parents. This is the visa most serious investors target.
+
+**Property Assessment vs Purchase Price**
+
+Critical distinction: Golden Visa eligibility is based on the Dubai Land Department (DLD) assessed value, not the purchase price. A property purchased at AED 1.8M may have a DLD assessed value of AED 2.1M — and therefore qualify for the Golden Visa. Conversely, a property purchased at AED 2.3M in an area with low DLD valuations may not qualify. Always verify DLD valuation before purchase if the Golden Visa is a primary objective.
+
+**Off-Plan Eligibility**
+
+Off-plan properties qualify for Golden Visa once 50% of the total purchase price has been paid to the developer. For a AED 2.5M off-plan unit, once AED 1.25M is paid (regardless of handover date), you may apply. The visa is granted and the remaining payment plan continues.
+
+**The Application Process**
+
+Step 1: Obtain title deed (ready) or Oqood registration certificate (off-plan). Step 2: Apply via the ICA (Federal Authority for Identity and Citizenship) portal — ica.gov.ae — or at a GDRFA service centre in Dubai. Required documents: title deed, passport, medical fitness test, health insurance (DHA-approved). Step 3: Emirates ID and visa sticker issued. Processing time: 3–5 weeks.
+
+**Best Areas for Golden Visa Investment**
+
+Properties that combine Golden Visa eligibility with strong rental yield: Business Bay 2BR (AED 1.9–2.4M, 7.5–8.5% yield), Downtown Dubai 1BR premium (AED 2.1–2.8M, 6.5–7.5%), JVC villa (AED 2–2.8M, 8–9%), Dubai Hills Estate 3BR (AED 2.2–3M, 6–7%). Browse qualifying properties on our [Dubai Properties platform](/properties).`},
+
+  "best-roi-areas-dubai":{emoji:"📈",tag:"Investment",title:"Dubai's 8 Highest ROI Property Areas in 2026: Ranked by Yield",isoDate:"2026-02-15",date:"February 15, 2026",mins:7,reads:"11.2K",keywords:"best ROI Dubai property 2026, highest rental yield Dubai, Dubai investment areas",desc:"JVC leads at 9.2%, Marina follows at 7.8% — complete yield data from Dubai Land Department transactions for the top 8 investment areas.",content:`Rental yield in Dubai varies dramatically by area, property type, and even which floor and tower you choose. Here is the complete 2026 ranking based on DLD transaction and rental data.
+
+**#1: JVC (Jumeirah Village Circle) — 9.2% Average Gross Yield**
+
+Studio: AED 42,000–55,000/year rent. 1BR: AED 65,000–85,000/year. Average purchase price: AED 750–1,100 per sqft. Best yield: studios in newer buildings with gym and pool. Risk: oversupply — research your specific building carefully before buying. See the [JVC investment guide](/properties/blog/jvc-vs-jlt-investment) for building-specific analysis.
+
+**#2: JVT (Jumeirah Village Triangle) — 8.8%**
+
+Less saturated than JVC with newer average stock. Slightly better tenant quality (fewer studio units proportionally). Average price: AED 820–1,050/sqft. Strong rental demand from professionals and small families.
+
+**#3: Dubai Silicon Oasis — 8.5%**
+
+Technology hub with stable corporate tenant demand. Lower price points (AED 650–900/sqft) create excellent yield math. Less glamorous but consistently strong yields for buy-and-hold investors.
+
+**#4: International City — 8.1%**
+
+Very high yield but significant caveats: older buildings, lower tenant quality, limited appreciation prospects. Best suited to investors who want maximum yield and are not holding for capital growth.
+
+**#5: Business Bay — 7.8% (Studios and 1BR)**
+
+Best combination of yield, liquidity, and appreciation potential in the market. AED 1,500–1,900/sqft for ready units. Proximity to Downtown creates strong rental demand. Corporate and professional tenants.
+
+**#6: Dubai Marina — 7.5%**
+
+Most liquid market in Dubai — easy to rent, easy to sell. Lower yield than peripheral areas but zero vacancy risk. AED 1,900–2,400/sqft for 1BR units. Recommended for investors who prioritise capital preservation and ease of management.
+
+**#7: Palm Jumeirah Apartments — 6.8%**
+
+Apartments significantly outperform villas on yield. FIVE Palm and Atlantis The Royal hotels' rental ecosystems boost short-term rental performance. AED 2,800–4,000/sqft.
+
+**#8: Downtown Dubai — 6.5%**
+
+Premium yields despite premium prices because Burj Khalifa view properties never sit vacant. AED 2,600–3,200/sqft. Best for capital preservation + strong appreciation + adequate yield combination.
+
+Browse all areas with live yield estimates on our [Dubai Properties platform](/properties). If you are building a villa for investment in Pakistan, compare returns on [ARCHAI's investment section](/archai/blog/dha-lahore-plot-guide).`},
+
+  "expat-mortgage-guide":{emoji:"🏦",tag:"Finance",title:"Mortgage Guide for UAE Expats 2026: All Major Banks Compared",isoDate:"2026-02-10",date:"February 10, 2026",mins:12,reads:"7.2K",keywords:"UAE mortgage expats 2026, Dubai home loan guide, ADCB ENBD mortgage comparison",desc:"ADIB, ADCB, ENBD, FAB, Mashreq, DIB, RAKBANK — rates, LTV limits, required documents, and which bank approves fastest for expats.",content:`Getting a mortgage as an expat in Dubai is straightforward if you know the rules. In 2026, seven major banks offer competitive mortgage products to non-UAE nationals. Here is the complete comparison.
+
+**Key Eligibility Rules (All Banks)**
+
+Minimum income: AED 15,000/month (most banks). Some banks go to AED 12,000 for properties under AED 1.5M. Employment: minimum 6 months in current job (salaried), minimum 2 years in business (self-employed). Age: mortgage must be fully repaid by your 65th birthday (65 for salaried, 70 for UAE nationals). Maximum LTV: 75% for properties under AED 5M, 65% for above AED 5M. First-time buyers: additional 5% equity requirement.
+
+**Bank-by-Bank Comparison (Q1 2026 Rates)**
+
+ADCB (Abu Dhabi Commercial Bank): Variable rate 4.29% (3-month EIBOR + 1.75%). Fixed for 1-3 years available. Strong for salaried expats with salary transfer to ADCB. Fastest pre-approval: 24–48 hours for salaried employees.
+
+ENBD (Emirates NBD): Variable 4.45% (EIBOR + 1.89%). Best for property under AED 2M. Good for ENBD salary account holders. 3-day pre-approval for standard applications.
+
+FAB (First Abu Dhabi Bank): Variable 4.19% — currently the most competitive rate. Fixed 3-year options at 5.1%. Best for high-value properties (AED 3M+). Slightly slower approval (5–7 days).
+
+ADIB (Abu Dhabi Islamic Bank): Ijara (Islamic mortgage) — profit rate equivalent to 4.55%. Sharia-compliant structure. No pre-payment penalty after 3 years. Good for buyers who prefer Islamic finance.
+
+Mashreq Bank: Variable 4.38%. Competitive on processing speed (3–4 days). Good for self-employed applicants with clean financials.
+
+DIB (Dubai Islamic Bank): Islamic finance, profit rate equivalent to 4.60%. Strong for ready properties. Significant early settlement fee if repaid within 3 years.
+
+RAKBANK: Most flexible on income requirements (from AED 10,000/month). Higher rates (4.8–5.2%) reflecting higher risk tolerance. Good for borderline income applicants.
+
+**Required Documents**
+
+Passport + residence visa (minimum 6 months remaining). Emirates ID. Last 3 months bank statements showing salary credit. Salary certificate on company letterhead (salaried). Last 2 years audited accounts (self-employed). Property purchase agreement or title deed. Credit bureau report (AECB) — banks pull this directly.
+
+**The True Cost of a Dubai Mortgage**
+
+On a AED 1.5M property with 25% down payment (AED 375,000): Mortgage amount AED 1.125M. At 4.29% over 25 years: monthly repayment approximately AED 6,100. DLD fee (4%): AED 60,000. Agent commission (2%): AED 30,000. Mortgage registration (0.25% + AED 290): AED 3,115. Bank arrangement fee (typically 1%): AED 11,250. Total upfront: AED 479,365 — approximately 32% of purchase price.
+
+Use the mortgage calculator on our [Dubai Properties platform](/properties) for your specific purchase price and down payment scenario.`},
+
+  "jvc-vs-jlt-investment":{emoji:"⚖️",tag:"Area Guide",title:"JVC vs JLT for Investment in 2026: A Data-Driven Comparison",isoDate:"2026-01-28",date:"January 28, 2026",mins:9,reads:"6.4K",keywords:"JVC vs JLT Dubai investment, Jumeirah Village Circle vs JLT, Dubai apartment investment comparison",desc:"Two of Dubai's most popular mid-market residential areas — price per sqft, rental yield, tenant demand, future development, and which wins.",content:`JVC (Jumeirah Village Circle) and JLT (Jumeirah Lakes Towers) are both major mid-market investment areas in Dubai. They attract different tenants, deliver different yields, and have different future trajectories. Here is the honest comparison.
+
+**Price Per Sqft (Q1 2026)**
+
+JVC: AED 920–1,080/sqft for ready apartments. Significant variation between older and newer buildings. JLT: AED 1,250–1,600/sqft. Premium driven by Metro access (Red Line), waterfront views (lake-facing units), and proximity to Dubai Marina.
+
+**Rental Yield Comparison**
+
+JVC: 8.8–9.4% gross yield. Strong because prices remain low relative to rentals. JLT: 7.2–8.1% gross yield. Lower yield but much stronger capital appreciation historically (+45% over 5 years vs JVC's +38%).
+
+**Tenant Profile**
+
+JVC attracts: mid-income professionals (AED 8,000–18,000/month salary), small families who cannot afford Marina or JLT, remote workers who prioritise space per dirham. JLT attracts: corporate professionals (AED 20,000+/month), young professionals who want Metro access, DMCC free zone business owners (DMCC is headquartered in JLT). JLT tenant quality is materially higher — less late-payment risk, lower vacancy periods.
+
+**Vacancy Risk**
+
+JVC vacancy (mid-2025 data): 8–12% on average. Some buildings significantly higher (15–20%) due to oversupply. JLT vacancy: 3–6%. The Metro access and Dubai Marina proximity mean JLT rarely has tenant shortage.
+
+**Future Development**
+
+JVC: Several hundred new units coming in 2026–2028 from multiple developers. This will sustain supply pressure and limit appreciation. JLT: Limited new supply (constrained site availability), ongoing infrastructure improvement, and the Al Furjan/Expo extension of the Metro bringing more connectivity.
+
+**The Verdict**
+
+For maximum current yield: JVC — but choose your building carefully. Avoid older stock (pre-2015) and focus on buildings with gym, pool, and parking that attract longer-tenancy tenants. For yield + appreciation + tenant quality combination: JLT wins. The higher entry price is justified by lower management headache and stronger 5-year total return.
+
+Browse both areas with current listings on our [Dubai Properties platform](/properties).`},
+
+  "buying-costs-dubai-2026":{emoji:"💰",tag:"Finance",title:"The True Cost of Buying Property in Dubai in 2026: Every Fee Explained",isoDate:"2026-01-15",date:"January 15, 2026",mins:6,reads:"8.9K",keywords:"buying costs Dubai property 2026, DLD transfer fee, Dubai property fees total",desc:"AED 4% DLD, 2% agent, 0.25% mortgage registration — the complete fee breakdown so there are no surprises on transfer day.",content:`Dubai property advertisements show the purchase price but rarely the total cost of acquisition. The difference between the advertised price and your actual out-of-pocket can be 7–9% for mortgaged purchases. Here is every fee, explained.
+
+**Dubai Land Department (DLD) Transfer Fee: 4%**
+
+This is the largest additional cost. Calculated on the purchase price or DLD valuation (whichever is higher). Paid on transfer day at the trustee office. For a AED 2,000,000 property: AED 80,000. There is no exemption for first-time buyers, expats, or property type.
+
+**Agent Commission: 2%**
+
+In Dubai, the buyer pays the agent's commission (unlike many countries where the seller pays). On a AED 2M property: AED 40,000. Some developers (for new off-plan) absorb this — but for resale, budget 2% from day one.
+
+**Trustee/Conveyancing Fee: AED 2,000–4,000**
+
+The DLD trustee office charges a fee to process the transfer. Currently AED 4,200 for properties above AED 500,000 and AED 2,100 below. This is fixed regardless of purchase price.
+
+**Mortgage Registration Fee: 0.25% + AED 290**
+
+If you are mortgaging, the mortgage must be registered with DLD. On a AED 1.5M mortgage: AED 3,750 + AED 290 = AED 4,040. If the mortgage is repaid early and a new one raised, you pay again.
+
+**Bank Arrangement Fee: 1% (typical)**
+
+Most banks charge 1% of the mortgage amount as an arrangement fee for processing the loan. Some offer zero-arrangement-fee promotions periodically. On a AED 1.5M mortgage: AED 15,000.
+
+**Valuation Fee: AED 2,500–3,500**
+
+Banks require an independent RICS-certified valuation before approving the mortgage. The buyer pays this. Not refundable if the mortgage falls through.
+
+**Off-Plan: Oqood Registration**
+
+For off-plan purchases, instead of immediate DLD transfer, you register your purchase agreement in the Oqood system. Fee: AED 3,000 (relatively flat fee). The full 4% DLD transfer fee is paid when the property is completed and transferred.
+
+**No-Objection Certificate (NOC)**
+
+For resale apartments, the seller must obtain an NOC from the developer (confirming no outstanding service charges). Buyer typically pays: AED 0–5,000 depending on developer. EMAAR properties: AED 0. Some smaller developers: AED 3,000–5,000.
+
+**Total Acquisition Cost Summary (AED 2M ready property, mortgaged)**
+
+Purchase price: AED 2,000,000. DLD fee (4%): AED 80,000. Agent commission (2%): AED 40,000. Trustee fee: AED 4,200. Mortgage registration: AED 4,040. Bank arrangement (1%): AED 12,000 (on AED 1.2M mortgage). Valuation: AED 3,000. Total additional cost: AED 143,240 — approximately 7.2% above purchase price.
+
+Browse properties with total acquisition cost estimates on our [Dubai Properties platform](/properties).`},
+
+  "palm-jumeirah-roi":{emoji:"🌴",tag:"Area Guide",title:"Palm Jumeirah ROI Analysis 2026: Is the Premium Worth It?",isoDate:"2025-12-20",date:"December 20, 2025",mins:8,reads:"5.8K",keywords:"Palm Jumeirah investment 2026, Palm Jumeirah ROI, Dubai luxury property returns",desc:"Apartments, villas, and short-term rental performance on the Palm — an honest analysis of whether the brand premium delivers real returns.",content:`Palm Jumeirah is Dubai's most internationally recognised residential address. It commands the UAE's highest residential prices. But does the premium translate into investment return? The answer depends on what you buy — and how you use it.
+
+**The Two Palm Markets: Apartments vs Villas**
+
+Palm Jumeirah Apartments (Shoreline, The Crescent, Al Hamra — frondel buildings): Average AED 3,000–4,200/sqft. Rental yield: 5.5–7.5% for traditional leasing, 8–12% for properly managed short-term rental. These are genuinely attractive investment vehicles when the short-term rental opportunity is captured.
+
+Palm Jumeirah Villas (signature villas, garden homes): Average AED 4,500–9,000/sqft. These are capital preservation and lifestyle assets, not yield plays. Annual yield: 3.5–5.5% on traditional leasing. The investment case is pure capital appreciation — Palm villas have appreciated 85% over 5 years (2020–2025).
+
+**Short-Term Rental on the Palm**
+
+The Crescent and Shoreline apartments on the Palm are among Dubai's highest-performing short-term rental assets. Managed properly through a platform like Airbnb, Booking.com, or a local management company: occupancy rate 68–78%, Average Daily Rate AED 800–2,200/night depending on unit size and view, Annual gross revenue AED 180,000–480,000 for a 1–3BR Shoreline apartment. At a management fee of 20–25%, your net revenue after fees is still significantly above traditional rental.
+
+**Entry Points for Palm Investment in 2026**
+
+Most accessible: Shoreline 1BR studio (AED 1.6–2.2M) or Garden Home studio from AED 2.8M. The AED 2M Golden Visa threshold makes many Palm studio units attractive as a visa + investment combination. Use our [properties platform](/properties) to filter Palm listings with Golden Visa eligibility.
+
+**The Honest Caveat**
+
+Palm investment is not for buyers who need consistent, predictable rental income. Short-term rental income fluctuates seasonally (peak November–April). Traditional rental below AED 3.5M on the Palm gives you yield comparable to JVC but at 3× the price per sqft. The case for Palm investment is: brand value sustained by global tourism, strong capital appreciation, and short-term rental premium performance.`},
+
+  "off-plan-ready-comparison":{emoji:"🏗️",tag:"Buying Guide",title:"Off-Plan vs Ready Property in Dubai 2026: The Complete Guide",isoDate:"2025-12-10",date:"December 10, 2025",mins:7,reads:"7.1K",keywords:"off-plan vs ready property Dubai, Dubai off-plan investment 2026, should I buy off-plan Dubai",desc:"Payment plan flexibility vs immediate rental income — everything you need to decide between off-plan and ready property in 2026.",content:`The off-plan vs ready decision is the most fundamental choice for Dubai property buyers. Both strategies have worked well historically, but they serve very different investor profiles. Here is the complete analysis for 2026.
+
+**The Case for Off-Plan**
+
+Lower entry price: Off-plan properties typically launch at 10–15% below comparable ready market prices. This discount reflects construction risk and time delay. Payment plans: the ability to pay 20–30% now and 40–60% at or after handover dramatically reduces upfront capital requirement. Capital appreciation during construction: buyers who purchased off-plan in 2021–2022 saw 40–60% appreciation by the time of handover in 2024–2025. For a AED 1.5M off-plan purchase, that represents AED 600,000–900,000 of equity growth on a AED 300,000–450,000 initial outlay.
+
+**The Risks of Off-Plan**
+
+Construction delays are endemic in Dubai's market. The average delay in Dubai off-plan projects is 6–12 months. Some projects have delayed 2–3 years or been cancelled (rarer since the 2010 market correction, but still occurs). No rental income during construction period — you are carrying the cost of capital without return. Market timing risk: if Dubai's property market corrects during your construction period, you may be in negative equity at handover.
+
+**The Case for Ready Property**
+
+Immediate rental income from day one. What you buy is what you get — no uncertainty about finishes, layouts, or quality. Can be inspected and snagged before purchase. Mortgage available immediately (off-plan mortgages are more complex and not always available for all projects). No construction risk.
+
+**The Risks of Ready**
+
+Higher entry price (the ready premium). You miss the construction-period appreciation upside. Older stock may have maintenance issues and service charge surprises.
+
+**Who Should Buy What**
+
+Buy off-plan if: you have strong risk tolerance, a 3–5 year investment horizon, and you are buying in the payment plan to maximise capital efficiency. Buy ready if: you want immediate income, lower complexity, or you need mortgage financing from day one.
+
+Browse both off-plan and ready options with payment plan details on our [Dubai Properties platform](/properties).`},
+
+  "dubai-short-term-rental-guide":{emoji:"🛎️",tag:"Investment",title:"Dubai Short-Term Rental Guide 2026: Airbnb, Regulations, and Real Revenue",isoDate:"2026-02-25",date:"February 25, 2026",mins:10,reads:"6.3K",keywords:"Dubai Airbnb 2026, short-term rental Dubai, DTCM holiday home permit",desc:"DTCM permit, platform selection, management options, and realistic revenue projections for short-term rental in Dubai.",content:`Dubai is one of the world's most active short-term rental markets. Strong tourism (17.2 million visitors in 2025), limited long-stay hotel inventory in key areas, and favourable regulation make Dubai short-term rental genuinely lucrative — but it requires setup effort and ongoing management. Here is the complete guide.
+
+**The Legal Framework**
+
+All short-term rental properties in Dubai require a DTCM (Department of Tourism and Commerce Marketing) Holiday Home Permit. Without this permit, operating short-term rental is illegal and subject to fines. The permit costs: AED 3,160 for a studio/1BR, AED 5,520 for a 2BR, AED 8,670 for a villa, plus AED 1,000 tourism development levy per year. The permit is property-specific and must be renewed annually. Application through the DTCM portal takes 3–5 business days.
+
+**Top-Performing Areas for Short-Term Rental**
+
+Palm Jumeirah: Highest ADR (AED 900–3,500/night). Dubai Marina: Most consistent year-round demand (proximity to JBR Beach). Downtown Dubai: Burj Khalifa view units achieve premium rates especially during New Year, DSF, and major events. JBR (The Walk and Beach): Beach proximity drives strong summer performance (contrary to the usual seasonal pattern).
+
+**Realistic Revenue Projections (1BR, 65sqm, Marina, 2026)**
+
+January–April (peak): 82% occupancy, ADR AED 650/night. May–September (slower): 55% occupancy, ADR AED 480/night. October–December (peak): 78% occupancy, ADR AED 620/night. Annual gross revenue: approximately AED 175,000–210,000. After management fee (20%): AED 140,000–168,000 net. Annual service charges: AED 12,000–18,000. Net income: AED 122,000–150,000. On a AED 1.5M unit, this is 8.1–10.0% net yield — significantly above traditional rental.
+
+**DIY vs Management Company**
+
+DIY management (you manage listings, guest communication, key exchange, cleaning): saves 18–22% management fee. Requires significant time investment and local presence. Management company: 18–25% of gross revenue. They handle everything — listing optimisation, guest screening, key exchange, cleaning coordination, maintenance. For investors not based in Dubai, management is essential.
+
+**Key Management Companies in Dubai**
+
+Deluxe Holiday Homes, Vacation Homes Rental, Frank Porter — these three have strong reputations and tech-enabled management platforms. Always negotiate rate and request references from current clients.
+
+Browse Dubai properties suitable for short-term rental on our [Dubai Properties platform](/properties) — we tag each listing with short-term rental potential score and estimated ADR.`},
+
+  "business-bay-area-guide":{emoji:"🏙️",tag:"Area Guide",title:"Business Bay Property Guide 2026: Buy, Rent, or Invest?",isoDate:"2026-01-20",date:"January 20, 2026",mins:8,reads:"5.7K",keywords:"Business Bay Dubai property 2026, Business Bay investment, Dubai canal view apartments",desc:"Business Bay has matured from a business district into Dubai's most dynamic mixed-use residential area. Complete investment and lifestyle guide.",content:`Business Bay was built as Dubai's answer to New York's Midtown Manhattan — a high-density, mixed-use district adjacent to the old city. Today it has matured into one of Dubai's most dynamic residential areas and consistently one of the best-performing investment markets.
+
+**Why Business Bay Works as Residential**
+
+Downtown Dubai access: Business Bay shares a border with Downtown, putting residents within 5–10 minutes walk of the Dubai Mall, Burj Khalifa, and the Dubai Opera. The Dubai Canal runs through Business Bay, creating canal-view units that command significant premiums. Metro access: Business Bay Metro station (Red Line) connects residents to the full network. Walking distance to DIFC, the global financial centre — creating strong corporate rental demand.
+
+**Price by Property Type (Q1 2026)**
+
+Studio: AED 650,000–950,000 (non-canal). AED 900,000–1,400,000 (canal-facing). 1BR: AED 1,100,000–1,800,000. Canal view 1BR: AED 1,500,000–2,400,000. 2BR: AED 1,800,000–3,200,000. 3BR penthouse: AED 4,000,000–8,500,000.
+
+**Rental Yield by Unit Type**
+
+Studios: 8.2–9.1% (highest yield, strongest demand from single professionals). 1BR: 7.5–8.3%. 2BR: 6.8–7.6%. Canal-facing units: roughly 0.5–0.8% lower yield than equivalent non-canal due to purchase price premium, but significantly higher capital appreciation.
+
+**The Canal View Premium**
+
+Canal-view units in Business Bay command an AED 200–600/sqft premium versus equivalent non-canal units. This premium is justified by: visual appeal (constantly photographed and marketed), short-term rental performance (premium ADR), and sustained desirability (the canal is a permanent infrastructure asset).
+
+**Top Buildings for Investment**
+
+DAMAC Maison Royale: strong management infrastructure, popular with corporate tenants. The Sterling: premium positioning, good canal views. Tower 108: newer stock, modern amenities, competitive pricing. Aykon City: luxury tower with pool podium, good short-term rental track record.
+
+**Who Should Invest Here**
+
+Business Bay is ideal for: investors who want yield + appreciation in a prime location, corporate rental income from DIFC workers, short-term rental with premium ADR, and Golden Visa qualification (AED 2M+ units widely available). Browse Business Bay listings on our [Dubai Properties platform](/properties).`},
+
+  "understanding-dld-fees":{emoji:"📋",tag:"Finance",title:"Understanding DLD Fees in Dubai: Everything Buyers Need to Know",isoDate:"2026-01-10",date:"January 10, 2026",mins:6,reads:"6.8K",keywords:"DLD fees Dubai 2026, Dubai Land Department transfer fee, property registration Dubai",desc:"The 4% DLD fee, trustee fees, Oqood for off-plan, and every Dubai Land Department charge explained simply.",content:`The Dubai Land Department (DLD) is the government authority that registers all real estate transactions in Dubai. Understanding its fees is essential before budgeting any Dubai property purchase.
+
+**The 4% Transfer Fee: The Big One**
+
+The DLD transfer fee is 4% of the purchase price (or DLD's own assessed value, whichever is higher). This fee is non-negotiable, applies to all property types, and is paid on the day of transfer at a registered trustee office. In some off-plan transactions, developers offer to pay 50% of the DLD fee (making your cost 2%) — always ask about this.
+
+**Who Pays the Transfer Fee**
+
+By convention in Dubai: the buyer pays the full 4%. This is different from many other countries where the fee is split. Some resale negotiations involve the seller agreeing to absorb part of it — this is always a negotiation point.
+
+**Trustee Office Fees**
+
+The DLD has authorised private trustee offices to process transfers. The trustee fee (not DLD): AED 4,200 for properties above AED 500,000 (AED 2,100 for below). There is an additional AED 580 DLD admin fee. Total trustee visit cost: approximately AED 4,780.
+
+**Oqood for Off-Plan**
+
+When you buy off-plan, you do not receive a title deed immediately — you receive an Oqood registration (interim ownership registration). Oqood fee: AED 3,000 (flat). The full 4% DLD transfer fee is paid when construction completes and the property is formally transferred. Important: you still pay 4% at transfer — the Oqood fee does not replace it.
+
+**Mortgage Registration**
+
+If financing with a mortgage, the mortgage must be registered with DLD. Fee: 0.25% of the loan amount + AED 290. If you sell and the buyer takes a new mortgage, the old mortgage deregistration requires a NOC from your bank and a small DLD fee (AED 1,020).
+
+**Annual Service Charges (Not DLD but Essential to Know)**
+
+Service charges are collected by the developer/community management, not DLD. They range from AED 8–25/sqft/year depending on community. On a 750 sqft apartment in Business Bay: AED 6,000–18,750/year. Always request the exact service charge figure from the developer before purchase.
+
+Browse all Dubai properties with service charge information on our [Dubai Properties platform](/properties).`},
+
+  "best-developers-dubai-2026":{emoji:"🏆",tag:"Buying Guide",title:"Best Developers in Dubai 2026: Track Record, Quality, and Reliability",isoDate:"2026-02-05",date:"February 5, 2026",mins:8,reads:"7.4K",keywords:"best developers Dubai 2026, Emaar vs DAMAC, Dubai property developer ranking",desc:"Emaar, DAMAC, Meraas, Nakheel, Aldar — which Dubai developer has the best delivery record, build quality, and resale value in 2026.",content:`Developer selection is as important as area selection in Dubai. The same floor plan and view can produce very different investments depending on who built the building and how they manage it. Here is the honest 2026 developer ranking.
+
+**Tier 1: Emaar Properties**
+
+The gold standard. Emaar has never failed to deliver a project. Build quality is consistent and high, finishes are well-specified, and their community management (for master-planned communities like Downtown, Dubai Hills, Arabian Ranches) is professional. Emaar properties command a 10–20% premium over comparable DAMAC or smaller developers — this premium holds at resale. If you are buying for capital preservation and maximum resale liquidity, buy Emaar.
+
+**Tier 1: Meraas/Select Group**
+
+Meraas (government-linked) and its partners build the most architecturally interesting product in Dubai. Bluewaters, City Walk, Port de La Mer — these are destination communities with genuine lifestyle premium. Strong resale demand. Slightly less track record than Emaar but excellent delivery history.
+
+**Tier 2: DAMAC Properties**
+
+DAMAC builds a lot and markets aggressively. Build quality is acceptable to good (not Emaar standard). They have delivered most projects though some with delays. The investment case: DAMAC often launches at lower prices than comparable Emaar product in the same area. Their luxury branding (Cavalli, Versace, De Grisogono collaborations) creates prestige that can support rental rates. Caution: post-handover management quality varies significantly between DAMAC communities.
+
+**Tier 2: Nakheel**
+
+Government-linked developer responsible for Palm Jumeirah and multiple master communities. Strong delivery track record. Current focus on Palm Jebel Ali (major new development). Reliable but not cutting-edge in terms of design or specification.
+
+**Tier 3: Smaller and New Developers**
+
+Dubai has 300+ registered developers. Many of them deliver one or two projects competently. The risk is in developers with no track record — especially those offering extreme payment plan flexibility (60/40 post-handover) to compensate for brand uncertainty. Always check: escrow account registration (mandatory for off-plan in Dubai), developer's previous project delivery history, and whether the project has an Oqood registration (proof of genuine DLD registration).
+
+Browse properties by developer on our [Dubai Properties platform](/properties) — each listing shows developer tier and delivery track record.`},
+
+  "studio-vs-1br-dubai":{emoji:"🏠",tag:"Buying Guide",title:"Dubai Studio vs 1BR Apartment: Which is Better for Investment in 2026?",isoDate:"2026-01-25",date:"January 25, 2026",mins:7,reads:"5.9K",keywords:"studio vs 1br Dubai investment, Dubai apartment investment 2026, studio apartment yield Dubai",desc:"Studios yield more, 1BRs appreciate more — the complete data-driven comparison for investors in 2026.",content:`The studio vs 1BR debate is the most common question Dubai property investors ask. Both work, but they serve different investment strategies and appeal to different tenant profiles. Here is the complete analysis.
+
+**Yield: Studios Win**
+
+Studios in JVC, Business Bay, and Dubai Marina consistently outperform 1BR on gross yield. JVC studio: AED 420,000–680,000 purchase, AED 42,000–58,000/year rent = 7.5–9.8% yield. JVC 1BR: AED 750,000–1,100,000 purchase, AED 60,000–82,000/year rent = 6.5–8.0% yield. The yield gap exists because studios attract a larger pool of single tenants who have fewer alternatives at lower price points — reducing vacancy risk despite the higher inventory.
+
+**Capital Appreciation: 1BRs Win**
+
+1BR apartments historically appreciate faster than studios because the pool of buyers (investors + end-users) is larger. Studios are primarily bought by investors — limiting the buyer pool at resale. 1BRs are bought by investors, single professionals who want to own, young couples, and parents buying for student children. This wider buyer pool sustains pricing pressure.
+
+**Tenant Quality**
+
+1BR tenants typically earn more, stay longer (average 2–3 year tenancy vs 1–2 years for studios), and cause less damage. Studio tenants are often on shorter contracts, more transient, and higher turnover. For investors who want passive, low-management-effort investment, the 1BR is lower stress.
+
+**For Short-Term Rental**
+
+Studios are extremely popular for short-term rental — lower nightly rate but higher occupancy (business travellers, solo tourists). 1BRs generate higher ADR but slightly lower occupancy. Both work well; the choice depends on your target guest profile.
+
+**The Verdict by Investor Type**
+
+Maximum yield, don't mind turnover → JVC or Business Bay studio. Better sleep quality, longer tenancies, stronger resale → 1BR in Business Bay or Marina. Short-term rental focused → studio in Marina or JBR.
+
+Browse both studio and 1BR options with full yield analysis on our [Dubai Properties platform](/properties). For a comparison between Dubai and Pakistan property returns, see the [DHA Lahore investment analysis on ARCHAI](/archai/blog/dha-lahore-plot-guide).`},
+
+  "downtown-dubai-property-guide":{emoji:"🌆",tag:"Area Guide",title:"Downtown Dubai Property Guide 2026: Buying, Renting, and Investing",isoDate:"2026-02-28",date:"February 28, 2026",mins:8,reads:"7.3K",keywords:"Downtown Dubai property 2026, Burj Khalifa view apartment, Downtown Dubai investment",desc:"The world's most recognisable address — a complete guide to buying and investing in Downtown Dubai in 2026.",content:`Downtown Dubai is built around two of the world's most recognisable landmarks: the Burj Khalifa and the Dubai Mall. It is the most photographed residential district in the world and one of Dubai's most mature real estate markets. Here is the complete investment and lifestyle guide for 2026.
+
+**What Makes Downtown Different**
+
+Downtown is not primarily an investment market — it is an aspiration market. People buy here for lifestyle, prestige, and proximity to world-class entertainment. The investment case follows: because global demand for Burj Khalifa-view apartments is inexhaustible, Downtown properties have maintained value through every Dubai market cycle since 2010.
+
+**Price Ranges (Q1 2026)**
+
+Studio (46–55sqm): AED 1,100,000–1,600,000. 1BR (75–90sqm): AED 1,800,000–2,800,000. Burj Khalifa view 1BR: AED 2,400,000–3,500,000. 2BR: AED 3,000,000–5,000,000. 3BR penthouse: AED 6,000,000–15,000,000.
+
+**Rental Yields**
+
+Downtown yields (5.5–7.5%) are lower than peripheral areas but vacancy is effectively zero for Burj Khalifa view units. A Burj Khalifa view 1BR at AED 2.5M rents for AED 160,000–200,000/year — competitive yield despite the premium entry price.
+
+**Burj Khalifa View Premium**
+
+Not all Downtown buildings see the Burj Khalifa. Buildings with direct view: DIFC Gate (partial), South Ridge, Claren, Standpoint, and EMAAR-branded towers facing Fountain. The Burj view premium is approximately AED 300–600/sqft over non-view floors. This premium holds remarkably well at resale.
+
+**Fountain View Apartments**
+
+Apartments overlooking the Dubai Fountain (which performs nightly) command a further premium and are among the best short-term rental assets in Dubai. Occupancy during peak season reaches 90%+ and ADR exceeds AED 1,500/night for well-appointed 1BR units.
+
+**EMAAR Dominance**
+
+EMAAR owns and built 90%+ of Downtown. This is unusual and positive for investors: consistent management standards across the community, strong service charge utilisation (the Souk Al Bahar, Dubai Mall, and Fountains are maintained to a consistent standard), and EMAAR's customer service infrastructure for owners.
+
+Browse Downtown listings with Burj Khalifa view filters on our [Dubai Properties platform](/properties).`},
+
+  "property-handover-checklist":{emoji:"✅",tag:"Buying Guide",title:"Dubai Property Handover: Complete Snagging Checklist for Buyers",isoDate:"2026-01-05",date:"January 5, 2026",mins:8,reads:"5.4K",keywords:"property snagging Dubai, handover checklist Dubai apartment, Dubai property inspection list",desc:"What to check when collecting your keys — 87 snagging points for Dubai apartments and villas, from paint to plumbing.",content:`Handover day is the most important day in the off-plan property buying process. What you accept on handover day becomes your responsibility to fix at your cost. Anything you document during snagging is the developer's cost to repair. Here is the complete checklist.
+
+**Before Handover Day**
+
+Request the as-built drawings from the developer — these show what was actually constructed versus what was marketed. Compare your floor plan against the drawings — dimensions of rooms should match within 3%. Confirm your service charge registration and first-year fee. Confirm utility connections (DEWA account for electricity and water) are ready to be transferred.
+
+**External Inspection**
+
+Facade and balcony: Check for cracks in render, paint consistency, and water staining. Balcony tiling: ensure no hollow tiles (tap each tile — hollow tiles require replacement before water infiltration). Window frames: check sealing (run your hand around each frame in a windstorm — any air infiltration is a defect). External drain pipes and gutters: verify fall direction and connection to building drainage.
+
+**Wet Areas (Most Critical)**
+
+Run all showers, baths, and taps simultaneously for 10 minutes. Check under all sink cabinets for moisture during and after. Flush all toilets — verify cistern fills correctly and there is no running water. Check bathroom tile grout is complete and sealed. Check shower glass panels are plumb and seals are intact. Water pressure: must be consistent across all outlets simultaneously.
+
+**Electrical**
+
+Test every single socket with a phone charger. Test every light switch — each should operate the correct fixture. Test the main DB (distribution board): all MCBs should be correctly labelled. AC: run each split unit and verify cooling within 15 minutes. Ensure each AC's drain pipe is connected and not blocked.
+
+**Finishes**
+
+Paint: no runs, drips, or unpainted areas behind doors and in corners. Tile alignment: diagonal tiles should be perfectly aligned — use a long straight edge. Door hinges: all doors should close smoothly without force or rattling. Kitchen cabinets: all drawers and cabinet doors should align and close flush.
+
+**Snagging Report**
+
+Document every issue with photographs, dated. Submit to developer in writing (email to the handover team). Developers typically have 30 days to rectify snagging items. Do not sign the final acceptance form until all snagging items are resolved or formally acknowledged with repair dates.
+
+For professional snagging services in Dubai, certified snagging companies charge AED 800–2,000 per apartment — often worth the cost for high-value properties. Browse upcoming handover properties on our [Dubai Properties platform](/properties).`},
+
+  "dubai-freehold-areas-list":{emoji:"🗺️",tag:"Buying Guide",title:"Complete List of Freehold Areas in Dubai 2026: Where Expats Can Buy",isoDate:"2025-12-28",date:"December 28, 2025",mins:7,reads:"6.2K",keywords:"freehold areas Dubai 2026, where can expats buy Dubai property, Dubai freehold zones list",desc:"The full list of Dubai freehold zones where non-GCC nationals can own property — updated for 2026 with new areas added.",content:`Dubai allows foreigners to purchase and own property in designated freehold areas. This was originally restricted but has been progressively expanded — in 2023–2024, several new areas were added. Here is the complete, current list.
+
+**Major Established Freehold Areas**
+
+Downtown Dubai: Emaar master community. Full freehold ownership, strongest resale market. Dubai Marina: 200+ residential towers, most liquid resale market in Dubai. Palm Jumeirah: iconic island development, full ownership for all nationalities. JBR (Jumeirah Beach Residence): beachfront living, strong short-term rental market. Business Bay: 250+ towers, Dubai Canal, high-density mixed-use. JVC (Jumeirah Village Circle) and JVT: affordable mid-market, largest supply of investment apartments. Dubai Hills Estate: premium family community, villas and apartments. Arabian Ranches 1, 2, and 3: villa communities, strong family demand. DIFC (Dubai International Financial Centre): premium apartments, corporate demand.
+
+**New Freehold Areas Added 2023–2024**
+
+Jebel Ali Village: family villas, new master plan. Dubai Islands (formerly Deira Islands): seafront development, new launches. Nad Al Sheba Gardens: Emaar villa community, strong demand. Dubai South (near Expo site): affordable entry point, long-term value play. Wasl1: urban community near Dubai Creek.
+
+**Freehold vs Leasehold: The Distinction**
+
+Freehold means you own the property and the land it sits on forever. Leasehold means you own the right to occupy for a fixed term (typically 30–99 years). In Dubai, leasehold is much less common and generally avoided by investors. Confirm freehold status for any property you purchase — it should be specified in the title deed.
+
+**Important: No Freehold in Certain Areas**
+
+Deira, Bur Dubai, Al Barsha, Al Nahda, Mirdif, Jumeirah 1–3 (residential villa area), and most older Dubai districts are not in freehold zones. You can rent in these areas but not own as a non-GCC national. This does not affect the quality of the area — simply the ownership structure.
+
+All properties on our [Dubai Properties platform](/properties) are in designated freehold zones — safe to purchase as a foreign national.`},
+
+  "property-investment-mistakes-dubai":{emoji:"⚠️",tag:"Buying Guide",title:"7 Property Investment Mistakes Buyers Make in Dubai (And How to Avoid Them)",isoDate:"2026-03-08",date:"March 8, 2026",mins:7,reads:"9.1K",keywords:"Dubai property mistakes to avoid, Dubai property buying tips 2026, common mistakes Dubai real estate",desc:"Seven mistakes first-time and experienced buyers make in Dubai property — and exactly how to avoid each one.",content:`Dubai property investment has created enormous wealth for buyers who got it right. It has also destroyed savings for those who made avoidable mistakes. Here are the seven most common ones.
+
+**Mistake 1: Buying Based on Render, Not Reality**
+
+Off-plan marketing renders are aspirational — the pool is always full, the sun always shining, the view unobstructed. Always visit the site, understand what is being built nearby, and check the Dubai Master Plan (available at dubai.ae) for what can be built on surrounding plots. A beautiful marina view today can become a partial obstruction in 3 years if the adjacent plot has approved tower plans.
+
+**Mistake 2: Ignoring Service Charges**
+
+Service charges in Dubai range from AED 8 to AED 35+ per square foot per year. On a 1,000 sqft apartment in a premium community: that is AED 8,000 to AED 35,000 annually — before any other holding cost. High service charges destroy rental yield. Always obtain the exact RERA-approved service charge rate (not the developer's estimate) before purchase.
+
+**Mistake 3: Overleveraging on Off-Plan**
+
+The attraction of 20/80 payment plans (20% now, 80% at handover) is obvious. The risk: if you cannot fund the 80% at handover (because your mortgage does not come through, the property value dropped, or your financial situation changed), you may forfeit your deposit and the developer can cancel the contract. Never commit to an off-plan payment plan without clear visibility on how you fund the handover balance.
+
+**Mistake 4: Not Verifying Developer Escrow**
+
+UAE law requires all off-plan collections to be deposited in a DLD-registered escrow account, used only for construction. Some developers circumvent this. Verify your payment goes to an escrow account (ask for the escrow account number and bank confirmation) before transferring any money.
+
+**Mistake 5: Buying Without Snagging**
+
+Accepting handover without thorough snagging locks you into defects that you now own. See the complete [snagging checklist](/properties/blog/property-handover-checklist) — 87 inspection points to cover before signing acceptance.
+
+**Mistake 6: Assuming Rental Income = Cash Flow**
+
+Rental yield is gross. Net yield after service charges, maintenance, management fees, and vacancy periods is typically 1.5–2% lower. A 8% gross yield area may deliver 6–6.5% net. Model conservatively.
+
+**Mistake 7: Ignoring the Dubai Mortgage Rules**
+
+Expat LTV is capped at 75% for properties under AED 5M. If you buy at AED 2M assuming an 80% mortgage (common in your home country), you will be short AED 100,000 on day one. See the complete [mortgage guide](/properties/blog/expat-mortgage-guide) before finalising your purchase budget.
+
+Browse properties on our [Dubai Properties platform](/properties) with all relevant data to avoid these mistakes.`},
+
+  "rental-yield-by-area-2026":{emoji:"💹",tag:"Investment",title:"Dubai Rental Yield by Area 2026: Complete Data Table",isoDate:"2026-03-01",date:"March 1, 2026",mins:6,reads:"8.7K",keywords:"Dubai rental yield 2026, rental income Dubai apartments, best yield Dubai property",desc:"Gross and net yield for studios, 1BR, and 2BR across 15 Dubai areas — the most complete yield data table available for 2026.",content:`Rental yield is the foundation of any Dubai property investment decision. Here is the most complete, current yield data for 2026, covering 15 areas across studio, 1BR, and 2BR categories.
+
+**Reading This Data**
+
+Gross yield = annual rent ÷ purchase price × 100. Net yield = (annual rent − service charges − management fees − annual vacancy provision) ÷ purchase price × 100. Net yield is typically 1.5–2.5% below gross. All data reflects Q1 2026 DLD transactions and current rental listing prices.
+
+**Studio Apartments — Gross Yield by Area**
+
+JVC: 9.2%. JVT: 8.8%. Dubai Silicon Oasis: 8.6%. International City: 8.1%. Discovery Gardens: 7.9%. Business Bay: 8.2%. Dubai Sports City: 7.8%. Arjan: 8.4%. Al Furjan: 7.6%. Dubai Marina: 7.5%.
+
+**1BR Apartments — Gross Yield by Area**
+
+JVC: 8.5%. Business Bay: 7.9%. Dubai Marina: 7.6%. JLT: 7.4%. Meydan Avenue: 8.1%. Dubai Hills Estate: 6.8%. Downtown Dubai: 6.5%. Palm Jumeirah: 6.2%.
+
+**2BR Apartments — Gross Yield by Area**
+
+JVC: 7.8%. Business Bay: 7.3%. JLT: 7.0%. Dubai Marina: 6.9%. Downtown Dubai: 6.1%. Palm Jumeirah: 5.8%.
+
+**Villa Yields**
+
+JVC (villa-style townhouse): 6.5–7.2%. Arabian Ranches 3: 5.8–6.4%. Dubai Hills Estate: 5.4–6.0%. Mudon: 6.0–6.8%. Damac Hills: 6.5–7.1%.
+
+**The High-Yield Strategy**
+
+Investors targeting maximum yield should focus on JVC and Business Bay studios, where gross yields exceed 8% and vacancy periods are short due to strong tenant demand from mid-income professionals. Net yield after all costs: approximately 6.5–7.5%.
+
+Browse all areas with live yield data on our [Dubai Properties platform](/properties) — the investment tab shows gross and net yield estimate for every listing.`},
+
+  "arabian-ranches-damac-hills":{emoji:"🏡",tag:"Area Guide",title:"Arabian Ranches vs DAMAC Hills 2026: Which Villa Community to Buy",isoDate:"2026-02-12",date:"February 12, 2026",mins:8,reads:"4.9K",keywords:"Arabian Ranches vs Damac Hills Dubai, Dubai villa community comparison 2026, best villa community Dubai",desc:"Two of Dubai's most established villa communities compared — developer quality, facilities, rental demand, and which wins for investment.",content:`Arabian Ranches and DAMAC Hills are both mature, established villa communities in Dubai's suburban inland belt. Both offer golf courses, pools, parks, and school access. But they deliver very different investor and end-user experiences.
+
+**Developer: Emaar vs DAMAC**
+
+Arabian Ranches is an Emaar master community — the same developer behind Downtown Dubai, Dubai Marina, and Dubai Hills. Emaar's community management is consistently professional. Roads are maintained, facilities function, and service charges are well-utilised. The Emaar premium is real: Arabian Ranches villas command a 15–25% price premium over comparable DAMAC Hills villas.
+
+DAMAC Hills is DAMAC's answer to Arabian Ranches — a large master community built around the Trump International Golf Club Dubai. Quality of construction is generally acceptable, though specification is slightly below Emaar standard. Community management has improved significantly since 2022.
+
+**Price Comparison (3BR Villa, Q1 2026)**
+
+Arabian Ranches 1 (older stock, fully mature): AED 3.8–5.5M. Arabian Ranches 2: AED 4.2–6.0M. Arabian Ranches 3 (newest): AED 3.5–5.2M. DAMAC Hills (Akoya Oxygen): AED 2.8–4.2M. DAMAC Hills 2 (further from Dubai): AED 1.9–3.1M.
+
+**Rental Yields**
+
+Arabian Ranches 3BR: 5.8–6.5% gross yield. AED 200,000–280,000/year rent. DAMAC Hills 3BR: 6.5–7.5% gross yield. AED 160,000–240,000/year rent. DAMAC yields are higher because purchase prices are lower. Arabian Ranches yields are lower but service charge utilisation means lower hidden costs.
+
+**School Access**
+
+Arabian Ranches: GEMS Arabian Ranches Elementary, Jumeirah English Speaking School (Arabian Ranches). Both rated Good/Outstanding by KHDA. DAMAC Hills: Jebel Ali Village Nursery, GEMS Metropole (nearby). Slightly fewer options within the community but comparable driving distance.
+
+**Which to Buy**
+
+For maximum capital security and resale liquidity: Arabian Ranches (Emaar brand holds value through market cycles). For maximum yield and lower entry: DAMAC Hills 1 (closer to Dubai, better tenant demand than Hills 2). For young family lifestyle: Arabian Ranches 3 (newest facilities, best park infrastructure).
+
+Browse both communities on our [Dubai Properties platform](/properties) and compare listings side by side.`},
+
+  "property-management-dubai":{emoji:"🔑",tag:"Investment",title:"Property Management in Dubai: Complete Guide for Investors",isoDate:"2026-01-30",date:"January 30, 2026",mins:8,reads:"5.2K",keywords:"property management Dubai, rental management Dubai, Dubai property manager guide",desc:"Finding tenants, maintenance, RERA contracts, Ejari registration — what property management involves and whether to DIY or outsource.",content:`Owning a rental property in Dubai is simple in principle. In practice, managing it from overseas, across time zones, in a legal environment you may not be familiar with, is where many investors struggle. Here is the complete management guide.
+
+**The Legal Framework You Must Know**
+
+RERA (Real Estate Regulatory Authority) governs all rental relationships in Dubai. Key rules: rental contracts (Ejari) must be registered with DLD through the Ejari system. Without Ejari registration, neither landlord nor tenant has legal protection. Registration cost: AED 220 and can be done online or at RERA service centres. Security deposit: maximum 5% of annual rent for unfurnished units, 10% for furnished. Post-dated cheques are still the dominant payment method in Dubai — typically 1–4 cheques per year.
+
+**RERA Rent Index: Your Pricing Guide**
+
+Dubai has a free rent index calculator on the RERA website (apps.rera.gov.ae). This shows the maximum rent you can charge for your specific building, area, and unit size. Landlords cannot increase rent beyond RERA-approved percentages at renewal. If current rent is more than 10% below the RERA index, you can increase at renewal. If it is within 10%, you cannot increase at all. Know this calculator — it determines your rental strategy.
+
+**Finding Tenants**
+
+Primary listing platforms: Bayut, PropertyFinder, Dubizzle. List on all three — they have different user demographics. Quality photographs are essential: a professional photographer costs AED 200–500 and typically generates 40–60% more enquiries. Virtual tour (Matterport): AED 300–600, dramatically reduces time-wasting viewings.
+
+**DIY Management**
+
+If you live in Dubai, managing a single property yourself is feasible. Requirements: time for viewings and tenant enquiries (typically 2–8 hours before tenancy secured), maintenance coordination (plumber, AC company, electrician — build a network), annual Ejari registration, handling tenant disputes through RERA if they arise.
+
+**Outsourced Management: What to Expect**
+
+Property management companies in Dubai typically charge 5–8% of annual rent. For a AED 120,000/year rental property, that is AED 6,000–9,600/year. For this fee they handle: listing and tenant finding, lease negotiation and signing, Ejari registration, maintenance coordination, rent collection, and tenant relations. For investors outside the UAE, this is not optional — it is essential.
+
+Browse properties on our [Dubai Properties platform](/properties) and contact us via WhatsApp for recommended management company referrals in each area.`},
+
+  "property-market-forecast-2026":{emoji:"🔮",tag:"Market Update",title:"Dubai Property Market Forecast Q2–Q4 2026: What the Data Shows",isoDate:"2026-03-12",date:"March 12, 2026",mins:7,reads:"7.6K",keywords:"Dubai property forecast 2026, Dubai real estate outlook 2026, Dubai property price prediction",desc:"Supply analysis, demand drivers, macro factors, and price trajectory predictions for each Dubai market segment in the remaining months of 2026.",content:`Dubai property market forecasting is an inexact science — the market has consistently outperformed and surprised analysts since 2020. Here is what the data suggests for Q2–Q4 2026.
+
+**Supply Analysis: New Completions**
+
+Dubai's DLD reports approximately 55,000 units scheduled for completion in 2026 (apartments and villas combined). Historical completion rate versus scheduled: 60–70%. Realistic new completions: 33,000–38,500 units. Net population growth requiring new housing (at current rate): approximately 45,000 units. This supply-demand gap continues to support prices in all but the most heavily supplied individual locations.
+
+**Demand Drivers Remaining Intact**
+
+Four structural factors sustaining demand through 2026: (1) Continued high-net-worth and ultra-high-net-worth relocation from Russia, Europe, India, Pakistan, and the UK — motivated by tax efficiency, political stability, and UAE's neutral geopolitical positioning. (2) Golden Visa driving sub-AED 2.5M segment demand floor. (3) Expo 2020 legacy infrastructure (Metro extension, Al Maktoum Airport expansion) creating genuine long-term connectivity value in South Dubai. (4) Dubai's position as a global financial hub growing (DIFC now 4th largest financial centre globally) — sustaining corporate housing demand.
+
+**Price Trajectory by Segment**
+
+Prime (Downtown, Palm, DIFC): 6–10% appreciation projected for full 2026. Supply is structurally constrained. Mid-market (Business Bay, Marina, JLT): 4–7%. Solid demand, manageable new supply. Affordable (JVC, DSO, International City): 2–5%. Oversupply risk in JVC specifically as 8,000+ new units complete in 2026.
+
+**Risk Factors**
+
+US interest rate uncertainty: if rates rise significantly, global liquidity tightens and Dubai's cash-buyer-heavy market is partially insulated but not immune. Geopolitical escalation: Dubai has historically benefited from regional instability as a safe haven — counterintuitively, instability in the region tends to increase Dubai inflows. Oil price correction: UAE's fiscal position is strong at current oil levels; a sustained oil correction below $65/barrel would require budget adjustments but Dubai's non-oil GDP (80%+) provides significant buffer.
+
+**Our View**
+
+Dubai 2026 is not a speculative bubble — it is a supply-constrained market with genuine end-user and investor demand. Hold existing positions, consider selective additions in Business Bay and Arabian Ranches 3 for the best 2026 risk-adjusted opportunity.
+
+Browse the full property database on our [Dubai Properties platform](/properties).`},
+
+  "real-estate-agent-guide":{emoji:"🤝",tag:"Buying Guide",title:"How to Choose a Real Estate Agent in Dubai: The Complete Guide",isoDate:"2026-02-18",date:"February 18, 2026",mins:7,reads:"5.8K",keywords:"Dubai real estate agent 2026, RERA certified agent Dubai, how to find property agent Dubai",desc:"RERA certification, red flags, commission structure, and how to evaluate whether your agent is actually working for you.",content:`In Dubai's property market, every buyer pays their agent 2% commission. Yet not all agents deliver 2% worth of value. Here is how to find and evaluate a good one.
+
+**RERA Certification: Non-Negotiable**
+
+Every practising real estate agent in Dubai must have a valid RERA (Real Estate Regulatory Authority) certificate — also called a Broker ID card. You can verify any agent's registration at the RERA online portal. An unlicensed agent cannot legally facilitate property transactions. Always ask for and verify their RERA Broker ID before engaging.
+
+**Specialist vs Generalist**
+
+Dubai's market rewards specialisation. An agent who focuses exclusively on Business Bay apartments will know every building, have tenant relationships, understand service charge differentials between buildings, and know which floors have Burj Khalifa views. An agent who covers "all Dubai" knows no area deeply. Hire a specialist in the specific area and property type you are targeting.
+
+**Questions to Ask Any Agent**
+
+How many units did you sell in this building/area in the last 12 months? (A good area specialist has sold 8–20+ units in their focus area annually.) Can you show me the last 3 transactions you completed with the DLD title deed reference? Do you have buyers who are currently looking for properties like mine to sell? (A good agent has a buyer database — not just a listing database.) What is your average days-on-market for properties like this? (Good agents know this number.)
+
+**Red Flags**
+
+Agents who guarantee specific sale prices before seeing your property. Agents who pressure you to sign exclusively immediately. Agents who cannot explain the RERA rent index or service charges for the specific building. Agents who send you listings outside your stated budget, area, or requirements.
+
+**The Dual Agency Problem**
+
+In Dubai, the same agent legally representing both buyer and seller is common. This is a conflict of interest — the agent cannot simultaneously maximise the seller's price and minimise the buyer's cost. If your agent is also the seller's agent (dual agency), be aware: their loyalty is typically to the seller (who they have had a longer relationship with). Consider using a dedicated buyer's agent where possible.
+
+Browse properties directly with transparent pricing on our [Dubai Properties platform](/properties) — no agent pressure, just data.`},
+
+  "dubai-hills-estate-guide":{emoji:"⛳",tag:"Area Guide",title:"Dubai Hills Estate Property Guide 2026: The Premium Family Community",isoDate:"2026-01-12",date:"January 12, 2026",mins:7,reads:"6.1K",keywords:"Dubai Hills Estate property 2026, Dubai Hills investment, Emaar Dubai Hills apartments villas",desc:"Dubai Hills Estate — Emaar's most complete master community. Complete guide to apartments, villas, schools, and investment potential.",content:`Dubai Hills Estate is Emaar's largest and most ambitious master community after Downtown Dubai. Built around an 18-hole championship golf course, with a major mall, multiple international schools, and direct Al Khail Road access, it is rapidly becoming the family community of choice for Dubai's upper-middle market.
+
+**Why Dubai Hills Works**
+
+Location: Dubai Hills Estate sits at the intersection of Al Khail Road and Umm Suqeim Road — 15 minutes to Downtown, 20 minutes to DXB airport, 25 minutes to Dubai Marina. This central position is rare for a community of its scale. Scale: 2,700 hectares with over 4,000 villas, 22,000+ apartments planned. The mall (Dubai Hills Mall) is now fully operational and anchors the community commercially.
+
+**Schools**
+
+GEMS New Millennium School (Good, KHDA). Kings School Al Barsha (Outstanding, KHDA — 5 minutes). Gems Wellington Academy (Good, KHDA). Nord Anglia International School (15 minutes). The school offering within or adjacent to Dubai Hills is among the best in Dubai.
+
+**Property Types and Prices (Q1 2026)**
+
+Apartments: Studio from AED 680,000. 1BR AED 1,050,000–1,600,000. 2BR AED 1,800,000–2,800,000. 3BR AED 2,600,000–4,200,000. Villas: 3BR villa AED 3,200,000–5,000,000. 4BR villa AED 4,500,000–7,500,000. 5BR villa AED 6,500,000–12,000,000.
+
+**Rental Yield**
+
+Apartments: 6.2–7.4% gross yield. Villas: 5.4–6.5% gross yield. Lower than JVC but strong tenant quality — families on 2–3 year contracts, lower management headache. Strong demand from school proximity (parents often rent within walking distance of their children's schools).
+
+**Investment Case**
+
+Dubai Hills is an Emaar brand community in a genuinely strategic location. Capital appreciation has been strong (apartments: +38%, villas: +55% since 2021). It is not a maximum-yield play but it is a premium brand at a slightly more accessible price than Downtown, with stronger family lifestyle credentials.
+
+Browse Dubai Hills Estate listings on our [Dubai Properties platform](/properties).`},
+
+  "off-plan-payment-plans-explained":{emoji:"📅",tag:"Finance",title:"Dubai Off-Plan Payment Plans Explained: Structures, Risks, and What's Best",isoDate:"2026-02-22",date:"February 22, 2026",mins:7,reads:"6.5K",keywords:"Dubai off-plan payment plan 2026, off-plan payment structure Dubai, post-handover payment plan Dubai",desc:"40/60, 20/80, 1% monthly — what each payment plan structure means, which is best for different buyer types, and the risks to know.",content:`Dubai's off-plan payment plan landscape has become extraordinarily diverse. Developers now offer structures that were unimaginable in 2015. Here is how to evaluate each structure.
+
+**The Basic 30/70 Structure**
+
+30% during construction, 70% on handover. This is the traditional structure and still common for shorter construction periods (12–18 months to completion). You pay the 4% DLD fee upfront. The 30% is typically structured as: 10% on booking, 5% at 3 months, 5% at 6 months, 5% at 12 months, 5% at 18 months/near completion.
+
+**The 40/60 Post-Handover Structure**
+
+40% during construction, 60% after handover spread over 2–4 years. This has become the most popular structure in 2025–2026. Reason: buyers can collect rent from the property (post-handover) while continuing to pay the developer. In theory, rental income services the ongoing installments. Example: AED 1.5M apartment, 40% (AED 600K) during construction, 60% (AED 900K) post-handover at AED 45,000/quarter over 5 years. Monthly rental: AED 85,000/year = AED 21,250/quarter. Shortfall from rental: AED 23,750/quarter. You are still funding this gap from your own savings.
+
+**The 1%/Month Post-Handover**
+
+Several DAMAC, Azizi, and smaller developers offer "1% per month post-handover" plans. For a AED 1M property: you pay 20–30% during construction, then AED 10,000/month post-handover until paid. Simple and predictable. The risk: some of these plans run 7–10 years — you are carrying a substantial ongoing liability.
+
+**The SPA (Sale and Purchase Agreement) Critical Clauses**
+
+Always read: the force majeure clause (what happens to your payment plan if construction delays?), the cancellation clause (what percentage do you forfeit if you cannot complete?), and the completion date — is it binding or "anticipated"? In Dubai, completion dates in SPA are often aspirational. DLD law gives you protection but recovery takes time.
+
+**Which Structure Is Best**
+
+Shortest construction period + maximum appreciation potential → choose the highest front-loading structure you can fund. Limited upfront capital → post-handover plan allows entry with 20–30% now, but ensure you model the full payment stream. Overseas investor who cannot service debt from personal income → avoid post-handover plans unless you are confident rental income covers the installments.
+
+Browse off-plan properties with payment plan details on our [Dubai Properties platform](/properties).`},
+};
+
+const ALL_SLUGS = Object.keys(POSTS);
+
+export default function PropertiesBlogPost() {
+  const params  = useParams();
+  const slug    = params?.slug;
+  const [mounted,    setMounted]    = useState(false);
+  const [adminPosts, setAdminPosts] = useState([]);
+
+  useEffect(()=>{ setMounted(true); try{const s=JSON.parse(localStorage.getItem("prop_posts")||"[]"); setAdminPosts(s);}catch(_){} },[]);
+  useEffect(()=>{
+    if(!mounted) return;
+    const post = POSTS[slug]||adminPosts.find(p=>p.slug===slug);
+    if(!post) return;
+    const schema={"@context":"https://schema.org","@type":"BlogPosting","headline":post.title,"description":post.desc,"keywords":post.keywords||post.tag,"datePublished":post.isoDate||"2026-01-01","dateModified":post.isoDate||"2026-01-01","author":{"@type":"Person","name":"Salman Ali","url":`${SITE}/properties`},"publisher":{"@type":"Organization","name":"Dubai Properties by DubaiRovers","url":`${SITE}/properties`},"mainEntityOfPage":{"@type":"WebPage","@id":`${SITE}/properties/blog/${slug}`},"image":`${SITE}/og-properties.jpg`,"inLanguage":"en-US"};
+    const s=document.createElement("script"); s.type="application/ld+json"; s.id="blog-schema"; s.text=JSON.stringify(schema);
+    document.getElementById("blog-schema")?.remove(); document.head.appendChild(s);
+    return ()=>document.getElementById("blog-schema")?.remove();
+  },[mounted,slug,adminPosts]);
+
+  if (!mounted) return <div style={{minHeight:"100vh",background:"#060A14"}}/>;
+
+  const post = POSTS[slug]||adminPosts.find(p=>p.slug===slug);
+  if (!post) return (
+    <div style={{minHeight:"100vh",background:"#060A14",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Plus Jakarta Sans',sans-serif"}}>
+      <div style={{textAlign:"center"}}>
+        <div style={{fontSize:48,marginBottom:12}}>🔍</div>
+        <div style={{fontSize:20,fontWeight:700,color:"#fff",marginBottom:8}}>Article Not Found</div>
+        <Link href="/properties/blog" style={{padding:"10px 24px",background:"linear-gradient(135deg,#6366F1,#3B82F6)",borderRadius:20,color:"#fff",fontSize:13,fontWeight:700,textDecoration:"none"}}>← Back to Blog</Link>
+      </div>
+    </div>
+  );
+
+  const T={bg:"#060A14",border:"rgba(255,255,255,0.08)",text:"#E8ECF8",sub:"rgba(255,255,255,0.42)",blue:"#6366F1",sky:"#60A5FA"};
+  const related=ALL_SLUGS.filter(s=>s!==slug).sort(()=>Math.random()-0.5).slice(0,3).map(s=>({slug:s,...POSTS[s]}));
+
+  const fmt=(text)=>{
+    if(!text) return [];
+    return text.split("\n\n").map((para,i)=>{
+      if(para.startsWith("**")&&para.endsWith("**"))
+        return <h3 key={i} style={{fontSize:20,fontWeight:800,color:"#fff",margin:"26px 0 10px"}}>{para.replace(/\*\*/g,"")}</h3>;
+      const parts=para.split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*)/g).map((pt,j)=>{
+        if(pt.startsWith("[")&&pt.includes("](")){ const txt=pt.match(/\[([^\]]+)\]/)?.[1]; const url=pt.match(/\(([^)]+)\)/)?.[1]; const ext=url?.startsWith("http"); return ext?<a key={j} href={url} target="_blank" rel="noopener noreferrer" style={{color:T.sky,textDecoration:"underline",textUnderlineOffset:2}}>{txt}</a>:<Link key={j} href={url||"/"} style={{color:T.sky,textDecoration:"underline",textUnderlineOffset:2}}>{txt}</Link>; }
+        if(pt.startsWith("**")&&pt.endsWith("**")) return <strong key={j} style={{color:"#fff",fontWeight:700}}>{pt.replace(/\*\*/g,"")}</strong>;
+        return pt;
+      });
+      return <p key={i} style={{fontSize:15,color:T.text,lineHeight:1.9,marginBottom:18}}>{parts}</p>;
+    });
+  };
+
+  return (
+    <>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"/>
+      <div suppressHydrationWarning style={{minHeight:"100vh",background:T.bg,color:T.text,fontFamily:"'Plus Jakarta Sans',sans-serif"}}>
+        <style suppressHydrationWarning>{`*{box-sizing:border-box}.rcard:hover{transform:translateY(-3px)!important;border-color:rgba(99,102,241,0.35)!important}.rcard{transition:all .2s ease}`}</style>
+        <div style={{background:"rgba(0,0,0,0.4)",borderBottom:`1px solid ${T.border}`,padding:"14px 28px",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+          <div style={{fontSize:15,fontWeight:800,color:"#fff"}}>Dubai <span style={{color:T.sky}}>Properties</span></div>
+          <div style={{display:"flex",gap:10}}>
+            <Link href="/properties/blog" style={{color:T.sub,fontSize:12,textDecoration:"none",padding:"7px 14px"}}>← All Articles</Link>
+            <Link href="/properties" style={{padding:"7px 16px",background:"linear-gradient(135deg,#6366F1,#3B82F6)",borderRadius:20,color:"#fff",fontSize:12,fontWeight:700,textDecoration:"none"}}>Browse Properties →</Link>
+          </div>
+        </div>
+        <div style={{maxWidth:780,margin:"0 auto",padding:"50px 24px"}}>
+          <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:18}}>
+            <span style={{fontSize:9,color:T.blue,background:"rgba(99,102,241,0.08)",border:"1px solid rgba(99,102,241,0.25)",borderRadius:20,padding:"3px 11px",letterSpacing:"0.12em",textTransform:"uppercase",fontWeight:700}}>{post.tag}</span>
+            {post.keywords?.split(", ").slice(0,2).map(k=><span key={k} style={{fontSize:9,color:T.sub,background:"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.07)",borderRadius:20,padding:"3px 9px"}}>{k}</span>)}
+          </div>
+          <h1 style={{fontSize:"clamp(24px,4.5vw,46px)",fontWeight:900,lineHeight:1.1,color:"#fff",marginBottom:18}}>{post.emoji} {post.title}</h1>
+          <div style={{display:"flex",alignItems:"center",gap:14,marginBottom:36,paddingBottom:24,borderBottom:`1px solid ${T.border}`}}>
+            <div style={{width:38,height:38,borderRadius:"50%",background:"linear-gradient(135deg,#6366F1,#3B82F6)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:17}}>👤</div>
+            <div>
+              <div style={{fontSize:13,fontWeight:600,color:"#fff"}}>Salman Ali — Dubai Properties</div>
+              <div style={{fontSize:11,color:T.sub}}>📅 {post.date} · ⏱ {post.mins} min read · 👁 {post.reads} reads</div>
+            </div>
+            <a href={`https://wa.me/971544735060?text=Hi Salman, I read your article on Dubai Properties: ${post.title}`} target="_blank" rel="noopener noreferrer"
+              style={{marginLeft:"auto",padding:"7px 14px",background:"rgba(37,211,102,0.12)",border:"1px solid rgba(37,211,102,0.25)",borderRadius:20,color:"#25D366",fontSize:11,fontWeight:700,textDecoration:"none"}}>💬 Ask Salman</a>
+          </div>
+          <div>{fmt(post.content||post.desc||"")}</div>
+          <div style={{marginTop:48,background:"rgba(99,102,241,0.07)",border:"1px solid rgba(99,102,241,0.2)",borderRadius:16,padding:"24px 28px",textAlign:"center"}}>
+            <div style={{fontSize:18,fontWeight:800,color:"#fff",marginBottom:8}}>🏙️ Browse Dubai Properties</div>
+            <p style={{fontSize:13,color:T.sub,marginBottom:18}}>30+ properties · AI investment scores · Mortgage calculator · Market trends · Golden Visa eligible filter</p>
+            <Link href="/properties" style={{display:"inline-block",padding:"12px 30px",background:"linear-gradient(135deg,#6366F1,#3B82F6)",borderRadius:24,color:"#fff",fontSize:14,fontWeight:700,textDecoration:"none"}}>Browse Properties →</Link>
+          </div>
+        </div>
+        {related.length>0&&(
+          <div style={{maxWidth:960,margin:"0 auto",padding:"0 24px 64px"}}>
+            <div style={{fontSize:14,fontWeight:700,marginBottom:16,color:"#fff"}}>More Property Articles</div>
+            <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(270px,1fr))",gap:13}}>
+              {related.map(p=>(
+                <Link key={p.slug} href={`/properties/blog/${p.slug}`} className="rcard"
+                  style={{textDecoration:"none",background:"rgba(255,255,255,0.04)",border:`1px solid ${T.border}`,borderRadius:13,padding:"16px 18px",display:"block"}}>
+                  <div style={{fontSize:22,marginBottom:7}}>{p.emoji}</div>
+                  <div style={{fontSize:13,fontWeight:700,color:"#fff",marginBottom:4,lineHeight:1.3}}>{p.title}</div>
+                  <div style={{fontSize:11,color:T.sub}}>{p.tag} · ⏱ {p.mins} min · 👁 {p.reads}</div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </>
+  );
+}
