@@ -37,7 +37,7 @@ export default function PropertyDetail() {
     bg:"#080810", card:"rgba(255,255,255,0.04)", border:"rgba(255,255,255,0.08)",
     text:"#F1F5F9", sub:"rgba(255,255,255,0.45)", gold:"#F59E0B", blue:"#6366F1", green:"#10B981"
   };
-  const B = (ex={}) => ({ background:T.card, border:`1px solid ${T.border}`, borderRadius:14, padding:"18px 20px", ...ex });
+  const B = (ex={}) => ({ background:T.card, border:"1px solid "+T.border, borderRadius:14, padding:"18px 20px", ...ex });
 
   const images = [prop.image, prop.image+"&sat=-20", prop.image+"&sat=20", prop.image+"&brightness=90"];
 
@@ -81,7 +81,7 @@ export default function PropertyDetail() {
             </div>
 
             {/* Tabs */}
-            <div style={{ display:"flex", gap:4, marginBottom:20, background:T.card, border:`1px solid ${T.border}`, borderRadius:12, padding:4 }}>
+            <div style={{ display:"flex", gap:4, marginBottom:20, background:T.card, border:"1px solid "+T.border, borderRadius:12, padding:4 }}>
               {["overview","units","amenities","nearby","roi"].map(t=>(
                 <button key={t} onClick={()=>setTab(t)} className="prop-tab"
                   style={{ flex:1, padding:"8px", borderRadius:9, border:"none", background:tab===t?"#6366F1":"transparent", color:tab===t?"#fff":T.sub, fontSize:12, fontWeight:tab===t?700:400, cursor:"pointer", fontFamily:"Inter,sans-serif", textTransform:"capitalize", transition:"all 0.18s" }}>
@@ -227,7 +227,7 @@ export default function PropertyDetail() {
                     { label:"Service Charge", val:"AED "+prop.serviceCharge+"/sqft", color:T.sub },
                     { label:"10yr ROI", val:prop.roi10yr+"%", color:T.gold },
                   ].map(s=>(
-                    <div key={s.label} style={{ background:"rgba(255,255,255,0.03)", border:`1px solid ${T.border}`, borderRadius:8, padding:"10px 12px" }}>
+                    <div key={s.label} style={{ background:"rgba(255,255,255,0.03)", border:"1px solid "+T.border, borderRadius:8, padding:"10px 12px" }}>
                       <div style={{ fontSize:10, color:T.sub }}>{s.label}</div>
                       <div style={{ fontSize:14, fontWeight:700, color:s.color }}>{s.val}</div>
                     </div>
