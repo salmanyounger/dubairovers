@@ -43,13 +43,7 @@ export default function PropertyDetail() {
 
   return (
     <div style={{ minHeight:"100vh", background:T.bg, color:T.text, fontFamily:"'Inter',sans-serif" }}>
-      <style suppressHydrationWarning>{"
-        *{box-sizing:border-box;} ::-webkit-scrollbar{width:5px} ::-webkit-scrollbar-thumb{background:rgba(99,102,241,0.3);border-radius:10px}
-        .prop-tab:hover{background:rgba(255,255,255,0.06)!important}
-        .near-item:hover{background:rgba(99,102,241,0.08)!important;transform:translateX(3px)}
-        @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-        .fade{animation:fadeUp 0.4s ease}
-      "}</style>
+      <style suppressHydrationWarning>{`*{box-sizing:border-box;} ::-webkit-scrollbar{width:5px} ::-webkit-scrollbar-thumb{background:rgba(99,102,241,0.3);border-radius:10px} .prop-tab:hover{background:rgba(255,255,255,0.06)!important} .near-item:hover{background:rgba(99,102,241,0.08)!important;transform:translateX(3px)} @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}} .fade{animation:fadeUp 0.4s ease}`}</style>
 
       {/* Breadcrumb */}
       <div style={{ background:"rgba(0,0,0,0.4)", borderBottom:"1px solid ${T.border}", padding:"12px 24px" }}>
