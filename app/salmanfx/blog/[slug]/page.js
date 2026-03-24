@@ -6,491 +6,53 @@ import { useParams } from "next/navigation";
 const SITE = "https://dubairovers.com";
 
 const POSTS = {
-  "mm-flip-codepro-review":{emoji:"🤖",tag:"EA Review",title:"MM FLIP CODEPRO: Full Review 2026",isoDate:"2026-03-10",date:"March 10, 2026",mins:8,reads:"6.2K",keywords:"MM FLIP CODEPRO EA review, Parabolic SAR Expert Advisor, forex EA MT4 2026",desc:"Complete breakdown of MM FLIP CODEPRO — strategy, settings, live results, and who it works for.",content:"MM FLIP CODEPRO is the flagship Expert Advisor from SalmanFX. Built on the Parabolic SAR indicator with an advanced money management layer, it has been running on live accounts since 2022.
+  "mm-flip-codepro-review":{emoji:"🤖",tag:"EA Review",title:"MM FLIP CODEPRO: Full Review 2026",isoDate:"2026-03-10",date:"March 10, 2026",mins:8,reads:"6.2K",keywords:"MM FLIP CODEPRO EA review, Parabolic SAR Expert Advisor, forex EA MT4 2026",desc:"Complete breakdown of MM FLIP CODEPRO — strategy, settings, live results, and who it works for.",content:"MM FLIP CODEPRO is the flagship Expert Advisor from SalmanFX. Built on the Parabolic SAR indicator with an advanced money management layer, it has been running on live accounts since 2022.\n\n**The Core Strategy**\n\nMM FLIP CODEPRO uses the Parabolic SAR as its primary signal source — it enters long when the SAR flips below price and short when it flips above. This is a trend-following approach that performs best in directional markets. The \"MM\" refers to the custom money management layer: a 10-trade configurable lot progression system that allows controlled position building while keeping drawdown within defined limits.\n\n**Key Settings**\n\nStep (default 0.02): The SAR acceleration factor. Lower values (0.01) create wider, slower signals — fewer trades, larger per-trade potential. For trending pairs like XAU/USD and EUR/USD on H1: 0.02 is optimal. Maximum (default 0.2): The maximum acceleration. The ON/OFF toggle panel allows manual intervention at any time without removing the EA.\n\n**Live Performance (2025)**\n\nOn EUR/USD H1 with Pepperstone (raw spread account): Win rate 52.3%, average RR 1.42:1, monthly return range -4.8% to +18.4%, best month August 2025 (+18.4%). These are real figures from a monitored account.\n\n**Pricing and Licensing**\n\nStarter (AED 299): Single account, EUR/USD and GBP/USD only. Pro (AED 699): 3 accounts, all major pairs including XAU/USD. VIP (AED 1,499): 5 accounts, full pair access, WhatsApp support. See [SalmanFX pricing](/salmanfx) for current plans.\n\nLearn how the Parabolic SAR signal works in the [full indicator guide](/salmanfx/blog/parabolic-sar-mt4-guide). See the [best broker recommendations](/salmanfx/blog/best-brokers-ea-trading-2026) for running this EA. For VPS setup, read the [Contabo VPS guide](/salmanfx/blog/vps-mt4-contabo-setup).`"},
 
-**The Core Strategy**
+  "parabolic-sar-mt4-guide":{emoji:"📊",tag:"Strategy",title:"Parabolic SAR on MT4: Complete Settings Guide 2026",isoDate:"2026-02-18",date:"February 18, 2026",mins:9,reads:"7.8K",keywords:"Parabolic SAR MT4 settings, SAR indicator strategy, SAR forex guide",desc:"Step, maximum, and how they interact — optimising the Parabolic SAR for different pairs and timeframes.",content:"The Parabolic SAR (Stop and Reverse) was designed by J. Welles Wilder in 1978. It remains highly relevant for automated trading in 2026 because its signals are unambiguous and directly programmable.\n\n**What the Parabolic SAR Does**\n\nSAR plots dots above price in a downtrend and below price in an uptrend. When price crosses the SAR dot, the indicator flips — this flip is the signal. It follows price rather than leading it, so entry always happens after the trend has started.\n\n**The Two Settings That Matter**\n\nStep (Acceleration Factor — default 0.02): Controls how quickly the SAR accelerates toward price. At 0.01 (half default): SAR moves slowly, generates fewer signals, catches larger moves with later entry. At 0.04 (double): More signals, more false signals, faster reaction.\n\nMaximum (default 0.2): The upper limit of acceleration. Once reached (after 9 new price extremes), acceleration stops — preventing SAR from tracking so tightly it exits strong trends prematurely.\n\n**Optimal Settings by Pair (2026 Testing)**\n\nEUR/USD H1: Step 0.02, Maximum 0.2 — balanced signal quality. XAU/USD H1: Step 0.015, Maximum 0.15 — gold needs wider parameters for higher volatility. GBP/JPY H4: Step 0.02, Maximum 0.2 — longer timeframe tolerates default settings well. EUR/USD M15: Step 0.025, Maximum 0.25 — slightly tighter for faster signals.\n\n**SAR in MQL4**\n\nThe current SAR value: \'iSAR(NULL, 0, Step, Maximum, 0)\'. A bullish flip occurs when: \'sar_current < Close[0] AND sar_prev > Close[1]\'. This two-condition check is the foundation of the [MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review) signal logic.\n\n**Combining SAR with a Trend Filter**\n\nSAR works best with a 200 EMA direction filter: take long signals only when price is above the 200 EMA. This eliminates approximately 35% of signals but removes a disproportionate number of losing trades. See [money management guide](/salmanfx/blog/money-management-forex) for position sizing to go with this strategy.`"},
 
-MM FLIP CODEPRO uses the Parabolic SAR as its primary signal source — it enters long when the SAR flips below price and short when it flips above. This is a trend-following approach that performs best in directional markets. The \"MM\" refers to the custom money management layer: a 10-trade configurable lot progression system that allows controlled position building while keeping drawdown within defined limits.
+  "best-forex-pairs-ea-2026":{emoji:"💱",tag:"Trading",title:"Best Forex Pairs for EAs in 2026: Spread and Volatility Analysis",isoDate:"2026-02-05",date:"February 5, 2026",mins:7,reads:"5.4K",keywords:"best forex pairs EA trading 2026, EUR/USD EA pair, XAU/USD automated trading",desc:"EUR/USD, GBP/JPY, XAU/USD — which pairs give EAs the best conditions in 2026.",content:"Not all pairs are equal for automated trading. Spread, volatility, liquidity, and trending behaviour vary enormously — and these factors directly determine profitability.\n\n**The Cost-per-Trade Reality**\n\nOn a raw spread account: EUR/USD averages 0.1 pip spread. GBP/JPY averages 0.8 pip spread. On the same 20-pip trade, that is 0.5% cost vs 4% cost. An EA that is marginally profitable on EUR/USD may be unprofitable on GBP/JPY purely from spread differential.\n\n**Top 5 Pairs for Trend EAs in 2026**\n\nEUR/USD: Lowest spreads (0.0–0.3 pip on ECN), highest liquidity, strong trending during London and New York sessions. Default pair for [MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review).\n\nXAU/USD (Gold): Highest daily range ($15–30/day in 2026). Wider spread (1.5–4 pips) but range more than compensates. Best for EAs with 20+ pip targets. See the [gold EA strategy guide](/salmanfx/blog/gold-xauusd-ea-strategy).\n\nGBP/USD: Similar liquidity to EUR/USD but more volatility during London session. Spread: 0.3–0.8 pip on ECN. Best for scalping EAs targeting 5–15 pip moves.\n\nUSD/JPY: Strong trending with Asian session liquidity. Spreads: 0.2–0.6 pip. Best for Tokyo session EAs.\n\nEUR/JPY: Higher spread (0.8–1.5 pip) but genuinely directional during trend phases. Good for swing EAs with 30+ pip targets.\n\n**Pairs to Avoid**\n\nExotic pairs (USD/TRY, USD/ZAR): Spreads of 10–40 pips make automation unviable. Any pair with weekend gap risk above 50 pips regularly. Check [broker comparison](/salmanfx/blog/best-brokers-ea-trading-2026) for spread data by broker.`"},
 
-**Key Settings**
+  "vps-mt4-contabo-setup":{emoji:"🖥️",tag:"Technical",title:"VPS for MT4: Complete Contabo Setup Guide 2026",isoDate:"2026-01-22",date:"January 22, 2026",mins:10,reads:"9.1K",keywords:"VPS MT4 forex 2026, Contabo VPS setup, MetaTrader VPS guide",desc:"Cheap, reliable VPS for forex EAs — complete Contabo setup from account creation to MT4 running 24/7.",content:"Running an EA on your home computer means trades stop if your computer turns off or the internet drops. A VPS keeps your EA running 24/7 regardless of your local setup.\n\n**Why Contabo**\n\nContabo (contabo.com) is the most popular budget VPS for forex traders globally. Price: EUR 5.99/month for 4 cores, 4GB RAM, 100GB SSD — enough for 5–10 MT4 instances. Location options: Europe, US, and Asia — choose nearest to your broker's server. Uptime: 99.9%+.\n\n**Step 1: Order the VPS**\n\nGo to contabo.com > CLOUD VPS S. Select Windows Server 2019 (not Linux — MT4 requires Windows). Choose the data centre nearest to your broker's servers. You receive login credentials within 15–30 minutes.\n\n**Step 2: Connect via Remote Desktop**\n\nOn your PC: open Remote Desktop Connection (search \"mstsc\"). Enter the VPS IP address and login credentials. You are now controlling the VPS desktop remotely.\n\n**Step 3: Install MT4**\n\nWithin the VPS remote desktop: download your broker's MT4 installer from their website. Install and log in to your trading account. Verify live prices are showing.\n\n**Step 4: Install and Enable Your EA**\n\nCopy the .ex4 file to the VPS. In MT4: File > Open Data Folder > MQL4 > Experts. Paste the EA file. Restart MT4. Drag the EA onto your chosen chart. Enter your license key for licensed EAs like [MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review). Enable AutoTrading. Verify the smiley face icon in the chart's top-right corner.\n\n**Step 5: Verify and Monitor**\n\nThe VPS runs continuously. Check every 2–3 days via Remote Desktop. Set up MT4 email alerts (Tools > Options > Email) for trade notifications without opening the VPS. Full setup assistance included with [VIP plan](/salmanfx).`"},
 
-Step (default 0.02): The SAR acceleration factor. Lower values (0.01) create wider, slower signals — fewer trades, larger per-trade potential. For trending pairs like XAU/USD and EUR/USD on H1: 0.02 is optimal. Maximum (default 0.2): The maximum acceleration. The ON/OFF toggle panel allows manual intervention at any time without removing the EA.
+  "win-rate-vs-risk-reward":{emoji:"📐",tag:"Strategy",title:"Win Rate vs Risk:Reward — What Actually Determines EA Profit",isoDate:"2026-01-15",date:"January 15, 2026",mins:6,reads:"4.8K",keywords:"win rate risk reward forex, EA profitability formula, expectancy forex EA",desc:"A 45% win rate EA can outperform a 75% win rate system. Here's the mathematics.",content:"Most beginners fixate on win rate. The correct question is: what is the expected value per trade?\n\n**The Expectancy Formula**\n\nExpected value = (Win rate × Average win) − (Loss rate × Average loss).\n\nExample A: 75% win rate, 1:0.5 RR. E = (0.75 × 50) − (0.25 × 100) = +12.50 per trade.\nExample B: 40% win rate, 1:3 RR. E = (0.40 × 300) − (0.60 × 100) = +60 per trade.\nExample B makes 4.8× more despite losing 60% of the time.\n\n**The High Win Rate Trap**\n\nHigh win rate EAs (above 70%) typically achieve this with large stops or no stops combined with small take profits. This creates a smooth equity curve — followed by catastrophic losses when the large stop finally hits. This is the \"picking up pennies in front of a steamroller\" pattern.\n\n**What Good EA Statistics Look Like**\n\nPositive expectancy at realistic spread and commission. Win rate: 35–75% can all be profitable — what matters is the RR ratio. Maximum consecutive losses: a 40% win rate can statistically see 10+ consecutive losses. Your position sizing must survive this. See [money management guide](/salmanfx/blog/money-management-forex).\n\n**MM FLIP CODEPRO Approach**\n\n[MM FLIP CODEPRO](/salmanfx) targets 1:1.2 to 1:1.5 RR per trade. At a historical 52% win rate, this gives positive expectancy of approximately +17–28 per trade unit. Contact [Salman](https://wa.me/971544735060) for full historical trade data before purchasing.`"},
 
-**Live Performance (2025)**
+  "money-management-forex":{emoji:"💰",tag:"Strategy",title:"Money Management for Forex EAs: Lot Sizing and Drawdown Rules",isoDate:"2026-01-05",date:"January 5, 2026",mins:9,reads:"6.7K",keywords:"money management forex EA, lot sizing automated trading, drawdown rules EA",desc:"Fixed lots, risk per trade, martingale risk — how to protect your account while giving your EA room to perform.",content:"Money management is the difference between an EA that survives long enough to show its edge and one that blows up before the strategy proves itself.\n\n**The Fundamental Rule: Risk Per Trade**\n\nNever risk more than 1–2% of account equity per trade. On a USD 5,000 account: maximum risk per trade is USD 50–100. A 10-loss run at 1% risk costs 10% of account. At 5% risk per trade, the same sequence costs 50% — from which recovery requires a 100% gain.\n\n**Fixed Lot vs Percentage Risk**\n\nFixed lot: Simple but does not scale. Percentage risk: Automatically scales with account size — as account grows, position size grows; as drawdown reduces equity, position size reduces proportionally. Professional standard for serious EA deployment.\n\n**Drawdown Limits**\n\nDefine before starting: maximum daily drawdown (e.g., 5%) and maximum total drawdown (e.g., 20%) at which you pause the EA and review. Pre-defining these rules prevents emotional decision-making during drawdown. See the [drawdown management guide](/salmanfx/blog/drawdown-management-forex).\n\n**Martingale and Averaging Risk**\n\nSome EAs double lot size after losses. The appearance of high win rate is real — but one sufficiently long adverse move destroys the account entirely. If your EA multiplies lots after losses, your maximum risk is your entire account.\n\n**MM FLIP CODEPRO Approach**\n\n[MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review) uses a configurable 10-step lot progression that adds to winning positions in the direction of the trend — not into losing counter-trend positions. Worst case per sequence is the initial risk, not runaway loss. Contact [SalmanFX](https://wa.me/971544735060) for the complete money management guide included with every purchase.`"},
 
-On EUR/USD H1 with Pepperstone (raw spread account): Win rate 52.3%, average RR 1.42:1, monthly return range -4.8% to +18.4%, best month August 2025 (+18.4%). These are real figures from a monitored account.
+  "mt4-vs-mt5-2026":{emoji:"⚔️",tag:"Platform",title:"MT4 vs MT5 in 2026: Which Platform for EA Trading?",isoDate:"2026-02-28",date:"February 28, 2026",mins:7,reads:"8.3K",keywords:"MT4 vs MT5 2026, MetaTrader 4 vs 5, which platform for EA",desc:"MT4 has more EAs and brokers. MT5 has better execution. Which is right for automated trading in 2026.",content:"MetaTrader 4 launched in 2005. MetaTrader 5 in 2010. Both are still actively used in 2026, with MT4 holding the majority of automated retail trading volume.\n\n**Why MT4 Still Dominates**\n\nEA library: MT4 Code Base has 4,000+ free EAs and indicators. MT5 has far fewer. Broker support: IC Markets, Pepperstone, FP Markets all maintain MT4. Stability: MT4's simpler architecture means fewer crashes on VPS. Community: 15 years of answered MQL4 questions and code examples.\n\n**Where MT5 is Better**\n\nExecution model: more closely matches institutional practice. Multi-asset: MT5 natively handles stocks, futures, and options. Strategy Tester: MT5 runs on real tick data by default and can backtest multiple currencies simultaneously. MQL5 programming: more capable for complex EAs.\n\n**2026 Broker Landscape**\n\nStill offering MT4: IC Markets, Pepperstone, Exness, FP Markets, Tickmill. MT4 is not dying — it remains the dominant retail EA platform despite being 20 years old.\n\n**SalmanFX Position**\n\nAll [SalmanFX EAs](/salmanfx) are available for both MT4 and MT5. MT4 recommended for stability and broker compatibility. MT5 available for platforms that have dropped MT4. Both versions included at no extra cost. See [SalmanFX pricing](/salmanfx) for full plan details.`"},
 
-**Pricing and Licensing**
+  "backtesting-ea-guide":{emoji:"🔬",tag:"Technical",title:"How to Backtest a Forex EA Properly: Strategy Tester Guide",isoDate:"2026-02-12",date:"February 12, 2026",mins:11,reads:"7.2K",keywords:"backtest forex EA MT4, strategy tester guide, accurate backtesting 2026",desc:"Modelling quality, spread, tick data — why most backtests are wrong and how to get trustworthy results.",content:"Most EA backtests are misleading. Here is how to run tests that actually predict live performance.\n\n**The Modelling Quality Problem**\n\nMT4's Strategy Tester shows \"Modelling Quality\" as a percentage. Tests below 90% quality use interpolated data — the tester guesses where price was between candles, introducing systematic bias that makes EAs look better than they are. Requirement: Always run at 99% quality using real tick data from Dukascopy (free) loaded via the Tick Data Suite plugin.\n\n**Setting Realistic Spread**\n\nThe tester defaults to 0 spread. Always set spread to your live broker average: raw account EUR/USD: 0.5–1.0 pip. Standard account: 1.5–2.0 pips. Using 0 spread when live spread averages 2 pip overstates profitability by 20–40%.\n\n**What Good Backtest Results Look Like**\n\nGood signs: Profit factor above 1.3, maximum drawdown below 25%, consistent equity curve across multiple years, expectancy positive across 2019–2025. Warning signs: Profit factor above 3.0 (usually overfitting), drawdown below 5% (unrealistic), performance concentrated in one year. See the [overfitting guide](/salmanfx/blog/ea-optimisation-overfitting) for the in/out-of-sample test methodology.\n\n**Forward Test Before Going Live**\n\nAfter a passing backtest, run the EA in demo for 60–90 days of live market exposure. See the [forward testing guide](/salmanfx/blog/ea-forward-test-guide) for the full protocol. All [SalmanFX EAs](/salmanfx) include verified 99%-quality backtest reports — request via WhatsApp before purchasing.`"},
 
-Starter (AED 299): Single account, EUR/USD and GBP/USD only. Pro (AED 699): 3 accounts, all major pairs including XAU/USD. VIP (AED 1,499): 5 accounts, full pair access, WhatsApp support. See [SalmanFX pricing](/salmanfx) for current plans.
+  "drawdown-management-forex":{emoji:"📉",tag:"Risk",title:"Managing Drawdown on Live Forex EA Accounts",isoDate:"2026-01-30",date:"January 30, 2026",mins:7,reads:"4.9K",keywords:"forex EA drawdown management, drawdown rules automated trading",desc:"How much drawdown is acceptable, when to pause an EA, and long-term equity curve thinking.",content:"Drawdown is inevitable. Every profitable EA experiences it. The difference between successful and unsuccessful EA traders is almost entirely in how they respond to drawdown.\n\n**What Normal Drawdown Looks Like**\n\nA well-designed trend-following EA should have: maximum historical drawdown of 10–25%, average drawdown duration of 2–8 weeks, recovery ratio of 3:1 or better. If maximum historical drawdown is below 5%, the EA is almost certainly overfitted or hiding risk through averaging. Real trading systems draw down.\n\n**The Three Drawdown Response Errors**\n\nError 1 — Stopping during normal drawdown: You remove the EA after a 12% drawdown. It immediately has its best month. This is the most common and costly mistake. Error 2 — Ignoring serious drawdown: A 35% drawdown may signal that the EA's edge no longer exists. Error 3 — Increasing size to recover faster: Amplifies losses, not recoveries.\n\n**Pre-Defined Rules**\n\nBefore starting any live EA, write down: (1) Maximum acceptable drawdown before pausing: e.g., 20%. (2) Maximum daily loss before stopping for the day: e.g., 5%. (3) Maximum calendar days in consecutive drawdown before reviewing: e.g., 90. Commit to these rules — do not override them emotionally.\n\n**Position Sizing and Psychology**\n\nSize the EA so that the maximum expected drawdown does not affect your life or emotional state. If you cannot comfortably lose 20% of the EA account balance, the position size is too large. See [money management guide](/salmanfx/blog/money-management-forex). Contact [SalmanFX](https://wa.me/971544735060) for live account drawdown support with VIP plan.`"},
 
-Learn how the Parabolic SAR signal works in the [full indicator guide](/salmanfx/blog/parabolic-sar-mt4-guide). See the [best broker recommendations](/salmanfx/blog/best-brokers-ea-trading-2026) for running this EA. For VPS setup, read the [Contabo VPS guide](/salmanfx/blog/vps-mt4-contabo-setup).`"},
+  "best-brokers-ea-trading-2026":{emoji:"🏦",tag:"Brokers",title:"Best Forex Brokers for EA Trading in 2026",isoDate:"2026-01-20",date:"January 20, 2026",mins:8,reads:"8.9K",keywords:"best forex broker EA 2026, IC Markets EA broker, Pepperstone MT4 broker review",desc:"IC Markets, Pepperstone, Exness, FP Markets — which brokers give EAs the best execution environment.",content:"Your broker matters as much as your EA. Poor execution can turn a profitable strategy into a losing one.\n\n**What to Look For**\n\nRaw spread or ECN account (starting at 0.0 pip). Fast execution (under 50ms). No restrictions on EA type. MT4 support. Regulated by ASIC, FCA, or CySEC. Commission below USD 7 per standard lot round trip.\n\n**#1 IC Markets**\n\nLowest average spreads (EUR/USD averages 0.02 pip). Execution average 37ms. Data centres in New York and London. Regulated ASIC and CySEC. Commission USD 3.50 per side. No EA restrictions. Default recommendation for all [SalmanFX EAs](/salmanfx).\n\n**#2 Pepperstone**\n\nSimilar spreads to IC Markets. Stronger FCA regulation. Razor account on MT4. Commission USD 3.50 per side. Excellent for traders who prioritise regulatory protection.\n\n**#3 Exness**\n\nNo minimum deposit. Accepts local payment methods globally. Best for traders starting with under USD 500. Competitive spreads and regulated by FCA and CySEC.\n\n**#4 FP Markets**\n\nBest educational resources and customer support. Commission USD 3.00 per side. Slightly slower execution than IC Markets in peak conditions.\n\n**Brokers to Avoid**\n\nMarket makers that requote. Brokers with \"no scalping\" terms. Any broker not regulated by a Tier 1 authority. All SalmanFX EAs tested on IC Markets and Pepperstone raw accounts. See [VPS setup guide](/salmanfx/blog/vps-mt4-contabo-setup) to pair with the right broker location.`"},
 
-  "parabolic-sar-mt4-guide":{emoji:"📊",tag:"Strategy",title:"Parabolic SAR on MT4: Complete Settings Guide 2026",isoDate:"2026-02-18",date:"February 18, 2026",mins:9,reads:"7.8K",keywords:"Parabolic SAR MT4 settings, SAR indicator strategy, SAR forex guide",desc:"Step, maximum, and how they interact — optimising the Parabolic SAR for different pairs and timeframes.",content:"The Parabolic SAR (Stop and Reverse) was designed by J. Welles Wilder in 1978. It remains highly relevant for automated trading in 2026 because its signals are unambiguous and directly programmable.
+  "gold-xauusd-ea-strategy":{emoji:"🥇",tag:"Strategy",title:"Trading Gold (XAU/USD) with EAs: Full Strategy Guide 2026",isoDate:"2026-03-05",date:"March 5, 2026",mins:8,reads:"6.5K",keywords:"XAU/USD EA strategy 2026, gold forex EA, trading gold MT4 automated",desc:"XAU/USD is the most popular EA instrument in 2026. Settings, session timing, and risk rules.",content:"Gold (XAU/USD) has become the most popular EA instrument in 2026. Its high daily range and strong trending make it ideal for automated strategies — but it needs different settings than major forex pairs.\n\n**Why Gold Works for EAs**\n\nRange: Gold typically moves USD 15–35 per day (2026 average: USD 24). This allows meaningful profit potential even with wider spread. Trending: Strong macro drivers (inflation, USD weakness, geopolitical risk) create sustained directional moves of 50–200+ pip equivalent. Volume: Most heavily traded commodity globally — genuine price discovery, limited manipulation.\n\n**Session Timing**\n\nLondon open (08:00–10:00 GMT): High volatility, significant directional moves. New York open (13:00–15:00 GMT): Highest volatility of the day. Late Asia (01:00–06:00 GMT): Lower volume, more fake-outs. Restrict gold EAs to London and New York sessions for best performance.\n\n**Settings for Parabolic SAR on Gold H1**\n\nStep: 0.015 (slower than EUR/USD default, needed for gold's volatility). Maximum: 0.15. Stop loss minimum: 30–50 pips — tighter stops are hit by normal intraday noise. Take profit: 60–150 pips or trailing SAR exit. Risk per trade: 0.5–1% of account (lower than major pairs due to higher per-pip value).\n\n**The Spread Challenge**\n\nGold spread on raw accounts: 1.5–3.5 pip equivalent. Scalping strategies targeting 5–10 pips are unviable at this spread cost. Gold works for strategies with average trade size of 30+ pips.\n\n[MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review) Pro and VIP plans include XAU/USD access with gold-optimised parameters. See [SalmanFX pricing](/salmanfx) for plan details.`"},
 
-**What the Parabolic SAR Does**
+  "forex-ea-license-protection":{emoji:"🔐",tag:"Technical",title:"License Key Protection for Forex EAs: MQL4 Implementation Guide",isoDate:"2026-02-25",date:"February 25, 2026",mins:7,reads:"3.8K",keywords:"EA license key protection MQL4, protect forex EA piracy, MQL4 license",desc:"Account number hash, expiry checks, server-side validation — protecting your EA from piracy.",content:"If you sell EAs, protecting them from copying is essential. The .ex4 compilation provides minimal protection — decompilers exist. License key validation adds a meaningful protection layer.\n\n**Method 1: Account Number Lock (Basic)**\n\nThe simplest protection: the EA only runs on a specific account number. Check \'AccountNumber()\' at the start of OnTick() — if it does not match the licensed number, stop. The buyer receives the .ex4 compiled for their account number only. No one else can use it.\n\n**Method 2: Hash-Based License Key**\n\nMore sophisticated: the EA generates a hash from the account number and compares it to the license key provided. The hash function used in [MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review): base string value 5381, hash = (hash × 33) XOR each character, result modulo 99999999. You keep the key generator private. The buyer enters the key — if it does not match their account number hash, the EA stops.\n\n**Method 3: Expiry Date Check**\n\nThe EA compares current date against an embedded expiry. Once expired, it stops and displays a renewal message. This enables subscription licensing — sell 1-year licenses that automatically expire. Renewal generates a new key with updated expiry date.\n\n**Method 4: Server-Side Validation**\n\nMost robust: the EA makes a WebRequest to your validation server on startup. No server response = no trading. Prevents the EA from working if disconnected from your server. Requires a server-side script and reliable hosting.\n\nFor EA developers: contact [SalmanFX](https://wa.me/971544735060) for custom license implementation on your MQL4 EA. For buyers wanting a licensed, protected EA: all SalmanFX EAs use account-number-lock + hash key protection as standard.`"},
 
-SAR plots dots above price in a downtrend and below price in an uptrend. When price crosses the SAR dot, the indicator flips — this flip is the signal. It follows price rather than leading it, so entry always happens after the trend has started.
+  "prop-firm-ea-guide":{emoji:"🎯",tag:"Trading",title:"Prop Firm Trading with EAs: FTMO and Rules to Know",isoDate:"2026-02-08",date:"February 8, 2026",mins:9,reads:"7.6K",keywords:"prop firm EA trading 2026, FTMO EA rules, passing prop firm challenge with EA",desc:"Using EAs on prop firm challenges — which rules matter, which EAs pass, and what to avoid.",content:"Prop firms offer funded accounts to traders who pass a challenge. EAs can be used — but with important caveats specific to each firm's rules.\n\n**FTMO Challenge Structure**\n\nPhase 1: Reach 10% profit, stay under 5% daily drawdown, 10% maximum drawdown. Phase 2 (Verification): Reach 5% profit, same drawdown limits. Once funded: 80–90% profit share on USD 10,000 to USD 200,000 accounts.\n\n**EA Rules at Major Prop Firms**\n\nFTMO: EAs permitted. No HFT (over 10 trades per second), no latency arbitrage, no tick scalping exploiting price feed delays. Standard trend-following and intraday EAs are fully permitted. MyForexFunds: EAs permitted, similar restrictions — avoid more than 5 trades per minute. The5%ers: EAs permitted, focus on trading consistency.\n\n**Which Strategies Pass Prop Challenges**\n\nBest: Trend-following with defined SL and TP on every trade. The EA must never have an uncapped loss — prop firms terminate accounts where a single trade causes the daily drawdown limit breach. Good: Swing EAs holding hours or days — fewer trades, less commission drag on the 10% profit target. Avoid: Martingale and averaging — cannot comply with maximum drawdown rules by design.\n\n**Risk Settings for Prop Accounts**\n\nFor USD 10,000 with 5% daily drawdown limit: maximum risk per trade = 1% = USD 100 stop. With a 20-pip stop, that is 0.5 lot on EUR/USD. Conservative and appropriate for the challenge phase — the goal is passing, not maximising.\n\nMultiple [SalmanFX](/salmanfx) customers have passed FTMO Phase 1 and 2 using MM FLIP CODEPRO. Contact [Salman](https://wa.me/971544735060?text=Hi Salman, I want to use MM FLIP CODEPRO for a prop firm) for challenge-specific configuration included with VIP plan.`"},
 
-**The Two Settings That Matter**
+  "averaging-down-strategy-ea":{emoji:"🔄",tag:"Strategy",title:"Averaging Down with EAs: When It Works and When It Blows Accounts",isoDate:"2026-01-25",date:"January 25, 2026",mins:8,reads:"5.3K",keywords:"averaging down EA forex, martingale EA risk, grid EA dangers 2026",desc:"A systematic analysis of when averaging down adds genuine edge versus when it multiplies risk to account destruction.",content:"Averaging down — adding to a losing position to reduce average entry — is the engine behind some of the most consistently profitable-looking EAs and also the cause of most account blowups.\n\n**The Case For (When It Works)**\n\nIf price must eventually return to your entry level (mean reversion), averaging down reduces your average entry and requires only partial recovery to profit. In genuine ranging markets where price oscillates around a mean, this works enough of the time to produce consistent small profits.\n\n**The Case Against (The Fatal Flaw)**\n\nThe assumption fails when price trends. If EUR/USD trends 500 pips against your entry, the averaging EA adds at 50, 100, 200, 350, 500 pips loss — each time multiplying position size. The final position loss is several times the account balance. Margin call terminates the account. This is not an edge case — it is a mathematically inevitable outcome given sufficient time.\n\n**When Averaging Is Part of a Legitimate Strategy**\n\nAdding to winning positions (pyramiding) in the direction of the trend: this is the opposite of averaging down and is a legitimate component of trend systems, including [MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review). Mean-reversion with hard maximum position count and a hard stop on the total: viable only with strictly defined total risk.\n\n**SalmanFX Position**\n\nSalmanFX EAs do not use martingale or uncapped averaging-down sequences. The lot progression in [MM FLIP CODEPRO](/salmanfx) adds to positions in the direction of confirmed trend signals — not into losing counter-trend positions. Contact [Salman](https://wa.me/971544735060) for detailed risk documentation on any EA before purchasing.`"},
 
-Step (Acceleration Factor — default 0.02): Controls how quickly the SAR accelerates toward price. At 0.01 (half default): SAR moves slowly, generates fewer signals, catches larger moves with later entry. At 0.04 (double): More signals, more false signals, faster reaction.
+  "ea-optimisation-overfitting":{emoji:"🧪",tag:"Technical",title:"EA Optimisation vs Overfitting: How to Tell the Difference",isoDate:"2026-01-10",date:"January 10, 2026",mins:7,reads:"4.7K",keywords:"EA overfitting forex, curve fitting backtest, optimisation vs overfitting MT4",desc:"Most optimised EAs fail on live accounts because they are overfit. Here's how to identify genuine edge.",content:"Optimisation is finding the best historical parameters. Overfitting is finding parameters that happened to work on a specific dataset with no reason they will work forward. The two look identical — until you deploy live.\n\n**The In-Sample / Out-of-Sample Test**\n\nDivide historical data into two non-overlapping periods. Optimise only on the first (in-sample). Run optimised parameters on the second (out-of-sample) without changes. If performance is comparable: genuine robustness. If performance collapses: the parameters are overfit.\n\nRule of thumb: if profit factor drops below 1.2 on out-of-sample after being 2.0+ in-sample, the EA is overfit.\n\n**Warning Signs in Backtest Results**\n\nProfit factor above 4.0: almost always overfitting. No losing months in a 5-year test: impossible for a real strategy. Performance dramatically better in one year: strategy only works in one market regime. Very tight SL/TP (3 pip stop, 6 pip TP): eliminates any execution variance — fragile to live conditions.\n\n**Robust Optimisation Practices**\n\nLimit parameter search: optimise 2–3 parameters simultaneously (more creates combinatorial overfitting). Use larger steps: test stop loss in steps of 10, not 1. Prefer plateaus over peaks: a parameter value surrounded by similarly good values is more robust than an isolated maximum. See the [backtesting guide](/salmanfx/blog/backtesting-ea-guide) for the full methodology.\n\nAll [SalmanFX EAs](/salmanfx) validated using strict in/out-of-sample methodology. Backtest reports available on request — WhatsApp [+971 544 735 060](https://wa.me/971544735060).`"},
 
-Maximum (default 0.2): The upper limit of acceleration. Once reached (after 9 new price extremes), acceleration stops — preventing SAR from tracking so tightly it exits strong trends prematurely.
+  "swing-trading-ea-mt4":{emoji:"📈",tag:"Strategy",title:"Swing Trading EA for MT4: Holding Positions Overnight",isoDate:"2026-03-12",date:"March 12, 2026",mins:8,reads:"4.1K",keywords:"swing trading EA MT4 2026, overnight position EA, H4 swing automated strategy",desc:"Swing EAs hold trades for hours or days — advantages over scalpers and how to configure them for 2026.",content:"Swing trading EAs hold positions for hours to days, capturing larger moves than scalpers. In 2026, swing EAs are outperforming scalpers on most major pairs due to the directional macro environment.\n\n**Advantages Over Scalpers**\n\nSpread impact: 1-pip spread on a 100-pip target is 1%. The same spread on a 5-pip scalping target is 20%. Swing EAs are inherently more spread-resistant. Execution sensitivity: swing EAs tolerate 100–200ms latency — broker selection is less critical. Prop firm compliance: fully compatible with all major prop firm rules.\n\n**Timeframe Selection**\n\nH4 (4-hour chart): Default swing timeframe. Each trade typically holds 12–72 hours. Genuine directional information without lower-timeframe noise. Daily chart: Position trading EAs, holds days to weeks. Lower frequency, larger targets. H1: Borderline intraday/swing — used for swing approaches on strongly trending pairs.\n\n**Setting Stop Loss and Take Profit**\n\nOn H4, EUR/USD daily range is 50–80 pips. A 30-pip stop is triggered by normal intraday noise. Minimum stop for H4 swing EA: 50 pips. Take profit: 100–200 pips or trailing stop.\n\n**Overnight and Weekend Risk**\n\nSwing EAs hold overnight — exposure to gap risk. Gaps at Monday open can be 10–50+ pips. Risk management: reduce position size on Friday after 18:00 GMT if holding over the weekend. Some swing EAs close Friday close and reopen Monday — safest approach.\n\n[MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review) can be configured for H4 swing trading. Contact [SalmanFX](https://wa.me/971544735060) for swing configuration settings included with Pro and VIP plans.`"},
 
-**Optimal Settings by Pair (2026 Testing)**
+  "news-trading-ea-guide":{emoji:"📰",tag:"Strategy",title:"News Trading EAs: How to Handle High-Impact Forex Events",isoDate:"2026-02-22",date:"February 22, 2026",mins:6,reads:"3.9K",keywords:"news trading EA forex, NFP EA strategy, FOMC automated trading",desc:"NFP, CPI, FOMC — whether to pause your EA or exploit the volatility, with risk management rules.",content:"High-impact news (NFP, CPI, FOMC) causes the fastest price moves in forex. These spikes can be profitable or catastrophically loss-making for automated systems.\n\n**The Two Approaches**\n\nPause during news: Many EAs stop trading 15–30 minutes before and after high-impact releases. MQL4 implementation: a news filter checks whether current time is within a \"no-trade window\" around scheduled events. Prevents the EA entering a trade just before a spike that hits the stop instantly.\n\nTrade the news: Some EAs place opposing stop orders before releases, triggering whichever direction the spike takes. Requires under 20ms execution, a broker that does not widen spreads during news, and immediate cancellation of the losing pending order.\n\n**Which Approach for Which EA Type**\n\nTrend-following EAs (like [MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review)): Pause during news. The initial spike direction is often reversed within minutes, generating a false signal. Missing signals around news costs far less than being stopped out on the spike. Scalping EAs: Pause during news — spread widens dramatically. News-specific EAs: Trade the news, but only with a broker that can execute within 15ms and does not widen spreads.\n\n**Simple MQL4 News Filter**\n\n\'if (Hour() == newsHour && Minute() >= newsMinute - 30 && Minute() <= newsMinute + 30) return;\' Pauses the EA for 30 minutes before and after any defined news event. A full implementation with automatic economic calendar is included in [VIP plan](/salmanfx).`"},
 
-EUR/USD H1: Step 0.02, Maximum 0.2 — balanced signal quality. XAU/USD H1: Step 0.015, Maximum 0.15 — gold needs wider parameters for higher volatility. GBP/JPY H4: Step 0.02, Maximum 0.2 — longer timeframe tolerates default settings well. EUR/USD M15: Step 0.025, Maximum 0.25 — slightly tighter for faster signals.
+  "mql4-programming-basics":{emoji:"💻",tag:"Technical",title:"MQL4 Programming for Beginners: Build Your First MT4 EA",isoDate:"2026-02-15",date:"February 15, 2026",mins:12,reads:"5.8K",keywords:"MQL4 beginner guide 2026, write first forex EA, MT4 programming tutorial",desc:"Variables, OrderSend, OnTick — a genuine beginner's guide to writing MQL4 code that actually trades.",content:"MQL4 is the programming language of MetaTrader 4. Based on C++ but significantly simplified. You do not need a programming background — but you do need to understand a few fundamental concepts.\n\n**The Basic EA Structure**\n\nEvery MT4 EA has three main functions: OnInit() — runs once when the EA starts. OnTick() — runs every time price updates — this is where your trading logic goes. OnDeinit() — runs when the EA is removed.\n\n**Variables and Data Types**\n\n\'double currentPrice = Ask;\' — decimal number (prices, indicators).\n\'int totalOrders = OrdersTotal();\' — whole number (counts).\n\'bool upTrend = Close[0] > iMA(NULL, 0, 50, 0, MODE_EMA, PRICE_CLOSE, 0);\' — true/false condition.\n\n**Reading Indicator Values**\n\nCurrent bar's SAR: \'double sar = iSAR(NULL, 0, 0.02, 0.2, 0);\'\nPrevious bar's SAR: \'double sarPrev = iSAR(NULL, 0, 0.02, 0.2, 1);\'\n50-period EMA: \'double ema50 = iMA(NULL, 0, 50, 0, MODE_EMA, PRICE_CLOSE, 0);\'\n\n**Placing a Trade**\n\n\'OrderSend(Symbol(), OP_BUY, 0.1, Ask, 3, Ask - 50*Point, Ask + 100*Point, \"EA Trade\", 0, 0, clrGreen);\'\nParameters: symbol, direction, lot size, price, slippage, stop loss, take profit, comment.\n\n**The Full SAR EA in 20 Lines**\n\nA basic Parabolic SAR EA — the core logic of [MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review) — can be written in under 20 lines of MQL4. Once you understand OrderSend and indicator calls, you can build and customise any strategy.\n\nFor custom EA development, contact [SalmanFX](https://wa.me/971544735060?text=Hi Salman, I need custom EA development). Custom EA modifications start from AED 299. Also see [Web Builder](/webbuilder) to build a website for your EA business.`"},
 
-**SAR in MQL4**
+  "scalping-ea-settings":{emoji:"⚡",tag:"Strategy",title:"Scalping EA Settings for MT4: Pairs, Sessions, Configuration",isoDate:"2026-03-08",date:"March 8, 2026",mins:7,reads:"5.2K",keywords:"scalping EA MT4 settings 2026, forex scalper configuration, best scalping pairs EA",desc:"Scalping EAs need low spreads and fast execution. How to configure and test a scalper in 2026.",content:"Scalping EAs target small profits (2–15 pips) on many trades daily. They require specific conditions that most traders underestimate.\n\n**The Spread Requirement**\n\nOn a 5-pip target trade, a 1.5-pip spread consumes 30% of the intended profit. For scalping EAs to be profitable, you need spread under 0.5 pip during trading hours. Only achievable on raw/ECN accounts (IC Markets, Pepperstone) during high-liquidity sessions. Standard account spreads of 1.5–2 pip make most scalping EAs unprofitable regardless of signal quality.\n\n**Sessions That Work for Scalping**\n\nLondon open (07:30–09:30 GMT): Highest liquidity, lowest spreads, strong directional moves on EUR/USD and GBP/USD. New York open overlap (13:00–15:00 GMT): Excellent liquidity, active institutional participation. Both sessions: spreads should be 0.0–0.3 pip. Avoid Asian session on EUR pairs — lower liquidity and wider spreads.\n\n**M1 vs M5 Scalping**\n\nM1: Maximum trade frequency, 2–5 pip targets, highest sensitivity to execution speed. Requires sub-30ms execution. M5: More robust to execution variance, 5–12 pip targets, fewer trades per day, better signal quality.\n\n**Execution Quality Test**\n\nBefore running any scalping EA live: manually place 20 market orders and immediately close them. Record slippage for each. Average slippage under 0.5 pip: acceptable for scalping. Over 1 pip: change broker or VPS location. See [broker comparison](/salmanfx/blog/best-brokers-ea-trading-2026) and [VPS guide](/salmanfx/blog/vps-mt4-contabo-setup).`"},
 
-The current SAR value: \'iSAR(NULL, 0, Step, Maximum, 0)\'. A bullish flip occurs when: \'sar_current < Close[0] AND sar_prev > Close[1]\'. This two-condition check is the foundation of the [MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review) signal logic.
+  "trailing-stop-ea-mt4":{emoji:"🎯",tag:"Technical",title:"Trailing Stop in Your MT4 EA: Full MQL4 Code Guide",isoDate:"2026-01-12",date:"January 12, 2026",mins:8,reads:"6.3K",keywords:"trailing stop MQL4 code, MT4 EA trailing stop, add trailing stop EA",desc:"Three trailing stop methods — fixed pip, ATR-based, and SAR trail — with working MQL4 code.",content:"A trailing stop automatically moves the stop loss in the direction of a profitable trade, locking in gains while allowing the trade to continue.\n\n**Method 1: Fixed Pip Trailing**\n\nIf the trade is profitable by more than X pips, move the stop loss to X pips below current price (for a buy) and trail it upward as price moves. Loop through open orders, check profit in pips, modify stop loss using OrderModify(). Typical trail distance for H1 trend EA: 20–40 pips. For H4: 50–100 pips.\n\n**Method 2: ATR-Based Trailing**\n\nUses Average True Range to set trail distance dynamically. High volatility = wider trail (room to breathe). Low volatility = tighter trail (locks in profit aggressively). Implementation: \'double atr = iATR(NULL, 0, 14, 1); double trailDistance = atr * 1.5;\' ATR multiplier of 1.5–2.0 works well for most trend EAs. This is the approach used in [MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review).\n\n**Method 3: SAR-Based Trailing**\n\nFor SAR-based EAs, use the SAR itself as the trailing stop — close when SAR flips. \'if (sarCurrent > Close[0] && sarPrev < Close[1]) { CloseAllBuyOrders(); }\' Creates a \"flip and reverse\" system always in the market. Best for strong trending conditions, generates whipsaws in ranges.\n\n**Which Method to Use**\n\nFixed pip: Simple, easy to optimise. ATR-based: Adaptive, recommended for volatile pairs (gold, GBP/JPY). SAR-based: Best for pure trend systems already using SAR for entry. Contact [SalmanFX](https://wa.me/971544735060?text=Hi Salman, I need trailing stop code) for custom trailing stop implementation.`"},
 
-**Combining SAR with a Trend Filter**
+  "forex-psychology-automated":{emoji:"🧠",tag:"Trading",title:"Forex Psychology When Trading with EAs: What Still Goes Wrong",isoDate:"2026-01-08",date:"January 8, 2026",mins:6,reads:"4.4K",keywords:"forex psychology EA trading, emotional trading EA, automated trading mistakes",desc:"Automation removes some emotional mistakes but introduces new ones. What traders still get wrong with EAs.",content:"The main selling point of EAs is emotion removal. But automation does not eliminate the human psychology problem — it just changes where that psychology creates damage.\n\n**The Four EA-Specific Psychological Failures**\n\nFailure 1 — Stopping during normal drawdown: The most common and most costly mistake. You see -12% and stop the EA. It immediately has its best month and you are not in it. Pre-define your maximum acceptable drawdown in writing — do not act unless that specific level is breached. See [drawdown management guide](/salmanfx/blog/drawdown-management-forex).\n\nFailure 2 — Over-optimising after losses: After a losing month, you change settings to avoid those specific losses. This is pattern-matching on noise. The market is stochastic — losses are expected events, not signals to change parameters.\n\nFailure 3 — Running too many correlated EAs: Six EUR pairs moving against you simultaneously = six losses at once, not six independent events. See [currency correlation guide](/salmanfx/blog/currency-correlation-ea).\n\nFailure 4 — Increasing size after winning streaks: After a good month, doubling lot size is the equivalent of doubling down at a casino after a win. The drawdown that follows the winning streak now hits a larger account balance.\n\n**The Written Rules Solution**\n\nWrite down your rules before starting: maximum drawdown limit, maximum consecutive losses before review, conditions for increasing size, conditions for stopping. Commit to them in writing. Follow the written rules — not the emotional response. [VIP plan](/salmanfx) includes a complete trading psychology framework guide.`"},
 
-SAR works best with a 200 EMA direction filter: take long signals only when price is above the 200 EMA. This eliminates approximately 35% of signals but removes a disproportionate number of losing trades. See [money management guide](/salmanfx/blog/money-management-forex) for position sizing to go with this strategy.`"},
+  "ea-forward-test-guide":{emoji:"📋",tag:"Technical",title:"Forward Testing Your EA: Validate Before Going Live",isoDate:"2026-02-02",date:"February 2, 2026",mins:7,reads:"3.6K",keywords:"forward test EA forex, EA demo testing guide, validate EA before live",desc:"Demo account forward test setup, duration requirements, and how to interpret results.",content:"A backtest shows historical performance. A forward test shows performance on unseen live data. The forward test is the bridge between a promising backtest and a live account.\n\n**Why Forward Testing Is Non-Negotiable**\n\nBacktests are run on known data. Live markets have different characteristics: spread variance, execution latency, broker-specific quotes, and regime changes after the backtest period. A forward test on a demo account exposes the EA to real-market factors that the tester cannot replicate.\n\n**Setting Up a Valid Forward Test**\n\nUse a demo account with the same broker you intend to trade live (not a generic demo). Use the same proportional lot size as intended live (if planning 0.1 lot on USD 1,000, use 0.1 lot on USD 1,000 demo). Enable on the same timeframe and pair. Run continuously for minimum 60 trading days — 90 is better.\n\n**What to Measure**\n\nNumber of trades, win rate, average win/loss, profit factor, maximum drawdown, maximum consecutive losses. Acceptable variance from backtest: win rate within 10%, drawdown within 1.5× of backtest maximum. If results diverge significantly from backtest, investigate before going live.\n\n**When to Go Live**\n\nAll conditions must be met: 60–90 day forward test completed. Forward test profit factor above 1.2. Drawdown within acceptable range. You accept the statistical likelihood of future drawdown. Live account sized so maximum expected drawdown does not affect you emotionally. All [SalmanFX EAs](/salmanfx) come with a recommended forward test protocol. VIP plan includes 30-day monitoring during your forward test and live launch.`"},
 
-  "best-forex-pairs-ea-2026":{emoji:"💱",tag:"Trading",title:"Best Forex Pairs for EAs in 2026: Spread and Volatility Analysis",isoDate:"2026-02-05",date:"February 5, 2026",mins:7,reads:"5.4K",keywords:"best forex pairs EA trading 2026, EUR/USD EA pair, XAU/USD automated trading",desc:"EUR/USD, GBP/JPY, XAU/USD — which pairs give EAs the best conditions in 2026.",content:"Not all pairs are equal for automated trading. Spread, volatility, liquidity, and trending behaviour vary enormously — and these factors directly determine profitability.
+  "currency-correlation-ea":{emoji:"🔗",tag:"Strategy",title:"Currency Correlation for EA Traders: Avoiding Hidden Overexposure",isoDate:"2026-03-01",date:"March 1, 2026",mins:6,reads:"3.2K",keywords:"currency correlation EA trading, forex pair correlation, multiple EA exposure risk",desc:"Running multiple EAs simultaneously creates hidden correlation risk. How to measure and control it.",content:"Many EA traders run multiple EAs on multiple pairs believing they are diversifying. In many cases, they are actually multiplying exposure to a single factor — most commonly USD direction.\n\n**The Correlation Problem**\n\nEUR/USD and GBP/USD have a historical correlation of approximately 0.85. Running trend EAs on both does not give two independent positions — it gives approximately 1.85× the exposure. If USD suddenly strengthens (NFP surprise), both EAs take losses simultaneously. Instead of two independent loss events, you take one larger loss event, twice.\n\n**Correlation Matrix (Q1 2026)**\n\nEUR/USD and GBP/USD: 0.85 (highly correlated). EUR/USD and USD/CHF: -0.92 (inverse). EUR/USD and AUD/USD: 0.72. EUR/USD and USD/JPY: -0.65. XAU/USD and USD/JPY: -0.55.\n\n**Safe Multi-EA Portfolio**\n\nSelect pairs with correlation below 0.6 between any two. Example diversified portfolio: EUR/USD (Europe exposure) + USD/JPY (Asia exposure) + XAU/USD (commodity/risk sentiment). These three have relatively low cross-correlation and provide genuine diversification. Avoid running simultaneously: EUR/USD + GBP/USD + EUR/GBP — these three are mathematically related.\n\n**Position Sizing for Correlated EAs**\n\nIf running 3 correlated EAs, treat them as a single position for risk sizing. Risk each individual EA at 0.3–0.5% to keep total correlated risk at 1–1.5%. [SalmanFX Pro and VIP plans](/salmanfx) include a multi-pair correlation matrix and recommended portfolio configurations.`"},
 
-**The Cost-per-Trade Reality**
-
-On a raw spread account: EUR/USD averages 0.1 pip spread. GBP/JPY averages 0.8 pip spread. On the same 20-pip trade, that is 0.5% cost vs 4% cost. An EA that is marginally profitable on EUR/USD may be unprofitable on GBP/JPY purely from spread differential.
-
-**Top 5 Pairs for Trend EAs in 2026**
-
-EUR/USD: Lowest spreads (0.0–0.3 pip on ECN), highest liquidity, strong trending during London and New York sessions. Default pair for [MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review).
-
-XAU/USD (Gold): Highest daily range ($15–30/day in 2026). Wider spread (1.5–4 pips) but range more than compensates. Best for EAs with 20+ pip targets. See the [gold EA strategy guide](/salmanfx/blog/gold-xauusd-ea-strategy).
-
-GBP/USD: Similar liquidity to EUR/USD but more volatility during London session. Spread: 0.3–0.8 pip on ECN. Best for scalping EAs targeting 5–15 pip moves.
-
-USD/JPY: Strong trending with Asian session liquidity. Spreads: 0.2–0.6 pip. Best for Tokyo session EAs.
-
-EUR/JPY: Higher spread (0.8–1.5 pip) but genuinely directional during trend phases. Good for swing EAs with 30+ pip targets.
-
-**Pairs to Avoid**
-
-Exotic pairs (USD/TRY, USD/ZAR): Spreads of 10–40 pips make automation unviable. Any pair with weekend gap risk above 50 pips regularly. Check [broker comparison](/salmanfx/blog/best-brokers-ea-trading-2026) for spread data by broker.`"},
-
-  "vps-mt4-contabo-setup":{emoji:"🖥️",tag:"Technical",title:"VPS for MT4: Complete Contabo Setup Guide 2026",isoDate:"2026-01-22",date:"January 22, 2026",mins:10,reads:"9.1K",keywords:"VPS MT4 forex 2026, Contabo VPS setup, MetaTrader VPS guide",desc:"Cheap, reliable VPS for forex EAs — complete Contabo setup from account creation to MT4 running 24/7.",content:"Running an EA on your home computer means trades stop if your computer turns off or the internet drops. A VPS keeps your EA running 24/7 regardless of your local setup.
-
-**Why Contabo**
-
-Contabo (contabo.com) is the most popular budget VPS for forex traders globally. Price: EUR 5.99/month for 4 cores, 4GB RAM, 100GB SSD — enough for 5–10 MT4 instances. Location options: Europe, US, and Asia — choose nearest to your broker's server. Uptime: 99.9%+.
-
-**Step 1: Order the VPS**
-
-Go to contabo.com > CLOUD VPS S. Select Windows Server 2019 (not Linux — MT4 requires Windows). Choose the data centre nearest to your broker's servers. You receive login credentials within 15–30 minutes.
-
-**Step 2: Connect via Remote Desktop**
-
-On your PC: open Remote Desktop Connection (search \"mstsc\"). Enter the VPS IP address and login credentials. You are now controlling the VPS desktop remotely.
-
-**Step 3: Install MT4**
-
-Within the VPS remote desktop: download your broker's MT4 installer from their website. Install and log in to your trading account. Verify live prices are showing.
-
-**Step 4: Install and Enable Your EA**
-
-Copy the .ex4 file to the VPS. In MT4: File > Open Data Folder > MQL4 > Experts. Paste the EA file. Restart MT4. Drag the EA onto your chosen chart. Enter your license key for licensed EAs like [MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review). Enable AutoTrading. Verify the smiley face icon in the chart's top-right corner.
-
-**Step 5: Verify and Monitor**
-
-The VPS runs continuously. Check every 2–3 days via Remote Desktop. Set up MT4 email alerts (Tools > Options > Email) for trade notifications without opening the VPS. Full setup assistance included with [VIP plan](/salmanfx).`"},
-
-  "win-rate-vs-risk-reward":{emoji:"📐",tag:"Strategy",title:"Win Rate vs Risk:Reward — What Actually Determines EA Profit",isoDate:"2026-01-15",date:"January 15, 2026",mins:6,reads:"4.8K",keywords:"win rate risk reward forex, EA profitability formula, expectancy forex EA",desc:"A 45% win rate EA can outperform a 75% win rate system. Here's the mathematics.",content:"Most beginners fixate on win rate. The correct question is: what is the expected value per trade?
-
-**The Expectancy Formula**
-
-Expected value = (Win rate × Average win) − (Loss rate × Average loss).
-
-Example A: 75% win rate, 1:0.5 RR. E = (0.75 × 50) − (0.25 × 100) = +12.50 per trade.
-Example B: 40% win rate, 1:3 RR. E = (0.40 × 300) − (0.60 × 100) = +60 per trade.
-Example B makes 4.8× more despite losing 60% of the time.
-
-**The High Win Rate Trap**
-
-High win rate EAs (above 70%) typically achieve this with large stops or no stops combined with small take profits. This creates a smooth equity curve — followed by catastrophic losses when the large stop finally hits. This is the \"picking up pennies in front of a steamroller\" pattern.
-
-**What Good EA Statistics Look Like**
-
-Positive expectancy at realistic spread and commission. Win rate: 35–75% can all be profitable — what matters is the RR ratio. Maximum consecutive losses: a 40% win rate can statistically see 10+ consecutive losses. Your position sizing must survive this. See [money management guide](/salmanfx/blog/money-management-forex).
-
-**MM FLIP CODEPRO Approach**
-
-[MM FLIP CODEPRO](/salmanfx) targets 1:1.2 to 1:1.5 RR per trade. At a historical 52% win rate, this gives positive expectancy of approximately +17–28 per trade unit. Contact [Salman](https://wa.me/971544735060) for full historical trade data before purchasing.`"},
-
-  "money-management-forex":{emoji:"💰",tag:"Strategy",title:"Money Management for Forex EAs: Lot Sizing and Drawdown Rules",isoDate:"2026-01-05",date:"January 5, 2026",mins:9,reads:"6.7K",keywords:"money management forex EA, lot sizing automated trading, drawdown rules EA",desc:"Fixed lots, risk per trade, martingale risk — how to protect your account while giving your EA room to perform.",content:"Money management is the difference between an EA that survives long enough to show its edge and one that blows up before the strategy proves itself.
-
-**The Fundamental Rule: Risk Per Trade**
-
-Never risk more than 1–2% of account equity per trade. On a USD 5,000 account: maximum risk per trade is USD 50–100. A 10-loss run at 1% risk costs 10% of account. At 5% risk per trade, the same sequence costs 50% — from which recovery requires a 100% gain.
-
-**Fixed Lot vs Percentage Risk**
-
-Fixed lot: Simple but does not scale. Percentage risk: Automatically scales with account size — as account grows, position size grows; as drawdown reduces equity, position size reduces proportionally. Professional standard for serious EA deployment.
-
-**Drawdown Limits**
-
-Define before starting: maximum daily drawdown (e.g., 5%) and maximum total drawdown (e.g., 20%) at which you pause the EA and review. Pre-defining these rules prevents emotional decision-making during drawdown. See the [drawdown management guide](/salmanfx/blog/drawdown-management-forex).
-
-**Martingale and Averaging Risk**
-
-Some EAs double lot size after losses. The appearance of high win rate is real — but one sufficiently long adverse move destroys the account entirely. If your EA multiplies lots after losses, your maximum risk is your entire account.
-
-**MM FLIP CODEPRO Approach**
-
-[MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review) uses a configurable 10-step lot progression that adds to winning positions in the direction of the trend — not into losing counter-trend positions. Worst case per sequence is the initial risk, not runaway loss. Contact [SalmanFX](https://wa.me/971544735060) for the complete money management guide included with every purchase.`"},
-
-  "mt4-vs-mt5-2026":{emoji:"⚔️",tag:"Platform",title:"MT4 vs MT5 in 2026: Which Platform for EA Trading?",isoDate:"2026-02-28",date:"February 28, 2026",mins:7,reads:"8.3K",keywords:"MT4 vs MT5 2026, MetaTrader 4 vs 5, which platform for EA",desc:"MT4 has more EAs and brokers. MT5 has better execution. Which is right for automated trading in 2026.",content:"MetaTrader 4 launched in 2005. MetaTrader 5 in 2010. Both are still actively used in 2026, with MT4 holding the majority of automated retail trading volume.
-
-**Why MT4 Still Dominates**
-
-EA library: MT4 Code Base has 4,000+ free EAs and indicators. MT5 has far fewer. Broker support: IC Markets, Pepperstone, FP Markets all maintain MT4. Stability: MT4's simpler architecture means fewer crashes on VPS. Community: 15 years of answered MQL4 questions and code examples.
-
-**Where MT5 is Better**
-
-Execution model: more closely matches institutional practice. Multi-asset: MT5 natively handles stocks, futures, and options. Strategy Tester: MT5 runs on real tick data by default and can backtest multiple currencies simultaneously. MQL5 programming: more capable for complex EAs.
-
-**2026 Broker Landscape**
-
-Still offering MT4: IC Markets, Pepperstone, Exness, FP Markets, Tickmill. MT4 is not dying — it remains the dominant retail EA platform despite being 20 years old.
-
-**SalmanFX Position**
-
-All [SalmanFX EAs](/salmanfx) are available for both MT4 and MT5. MT4 recommended for stability and broker compatibility. MT5 available for platforms that have dropped MT4. Both versions included at no extra cost. See [SalmanFX pricing](/salmanfx) for full plan details.`"},
-
-  "backtesting-ea-guide":{emoji:"🔬",tag:"Technical",title:"How to Backtest a Forex EA Properly: Strategy Tester Guide",isoDate:"2026-02-12",date:"February 12, 2026",mins:11,reads:"7.2K",keywords:"backtest forex EA MT4, strategy tester guide, accurate backtesting 2026",desc:"Modelling quality, spread, tick data — why most backtests are wrong and how to get trustworthy results.",content:"Most EA backtests are misleading. Here is how to run tests that actually predict live performance.
-
-**The Modelling Quality Problem**
-
-MT4's Strategy Tester shows \"Modelling Quality\" as a percentage. Tests below 90% quality use interpolated data — the tester guesses where price was between candles, introducing systematic bias that makes EAs look better than they are. Requirement: Always run at 99% quality using real tick data from Dukascopy (free) loaded via the Tick Data Suite plugin.
-
-**Setting Realistic Spread**
-
-The tester defaults to 0 spread. Always set spread to your live broker average: raw account EUR/USD: 0.5–1.0 pip. Standard account: 1.5–2.0 pips. Using 0 spread when live spread averages 2 pip overstates profitability by 20–40%.
-
-**What Good Backtest Results Look Like**
-
-Good signs: Profit factor above 1.3, maximum drawdown below 25%, consistent equity curve across multiple years, expectancy positive across 2019–2025. Warning signs: Profit factor above 3.0 (usually overfitting), drawdown below 5% (unrealistic), performance concentrated in one year. See the [overfitting guide](/salmanfx/blog/ea-optimisation-overfitting) for the in/out-of-sample test methodology.
-
-**Forward Test Before Going Live**
-
-After a passing backtest, run the EA in demo for 60–90 days of live market exposure. See the [forward testing guide](/salmanfx/blog/ea-forward-test-guide) for the full protocol. All [SalmanFX EAs](/salmanfx) include verified 99%-quality backtest reports — request via WhatsApp before purchasing.`"},
-
-  "drawdown-management-forex":{emoji:"📉",tag:"Risk",title:"Managing Drawdown on Live Forex EA Accounts",isoDate:"2026-01-30",date:"January 30, 2026",mins:7,reads:"4.9K",keywords:"forex EA drawdown management, drawdown rules automated trading",desc:"How much drawdown is acceptable, when to pause an EA, and long-term equity curve thinking.",content:"Drawdown is inevitable. Every profitable EA experiences it. The difference between successful and unsuccessful EA traders is almost entirely in how they respond to drawdown.
-
-**What Normal Drawdown Looks Like**
-
-A well-designed trend-following EA should have: maximum historical drawdown of 10–25%, average drawdown duration of 2–8 weeks, recovery ratio of 3:1 or better. If maximum historical drawdown is below 5%, the EA is almost certainly overfitted or hiding risk through averaging. Real trading systems draw down.
-
-**The Three Drawdown Response Errors**
-
-Error 1 — Stopping during normal drawdown: You remove the EA after a 12% drawdown. It immediately has its best month. This is the most common and costly mistake. Error 2 — Ignoring serious drawdown: A 35% drawdown may signal that the EA's edge no longer exists. Error 3 — Increasing size to recover faster: Amplifies losses, not recoveries.
-
-**Pre-Defined Rules**
-
-Before starting any live EA, write down: (1) Maximum acceptable drawdown before pausing: e.g., 20%. (2) Maximum daily loss before stopping for the day: e.g., 5%. (3) Maximum calendar days in consecutive drawdown before reviewing: e.g., 90. Commit to these rules — do not override them emotionally.
-
-**Position Sizing and Psychology**
-
-Size the EA so that the maximum expected drawdown does not affect your life or emotional state. If you cannot comfortably lose 20% of the EA account balance, the position size is too large. See [money management guide](/salmanfx/blog/money-management-forex). Contact [SalmanFX](https://wa.me/971544735060) for live account drawdown support with VIP plan.`"},
-
-  "best-brokers-ea-trading-2026":{emoji:"🏦",tag:"Brokers",title:"Best Forex Brokers for EA Trading in 2026",isoDate:"2026-01-20",date:"January 20, 2026",mins:8,reads:"8.9K",keywords:"best forex broker EA 2026, IC Markets EA broker, Pepperstone MT4 broker review",desc:"IC Markets, Pepperstone, Exness, FP Markets — which brokers give EAs the best execution environment.",content:"Your broker matters as much as your EA. Poor execution can turn a profitable strategy into a losing one.
-
-**What to Look For**
-
-Raw spread or ECN account (starting at 0.0 pip). Fast execution (under 50ms). No restrictions on EA type. MT4 support. Regulated by ASIC, FCA, or CySEC. Commission below USD 7 per standard lot round trip.
-
-**#1 IC Markets**
-
-Lowest average spreads (EUR/USD averages 0.02 pip). Execution average 37ms. Data centres in New York and London. Regulated ASIC and CySEC. Commission USD 3.50 per side. No EA restrictions. Default recommendation for all [SalmanFX EAs](/salmanfx).
-
-**#2 Pepperstone**
-
-Similar spreads to IC Markets. Stronger FCA regulation. Razor account on MT4. Commission USD 3.50 per side. Excellent for traders who prioritise regulatory protection.
-
-**#3 Exness**
-
-No minimum deposit. Accepts local payment methods globally. Best for traders starting with under USD 500. Competitive spreads and regulated by FCA and CySEC.
-
-**#4 FP Markets**
-
-Best educational resources and customer support. Commission USD 3.00 per side. Slightly slower execution than IC Markets in peak conditions.
-
-**Brokers to Avoid**
-
-Market makers that requote. Brokers with \"no scalping\" terms. Any broker not regulated by a Tier 1 authority. All SalmanFX EAs tested on IC Markets and Pepperstone raw accounts. See [VPS setup guide](/salmanfx/blog/vps-mt4-contabo-setup) to pair with the right broker location.`"},
-
-  "gold-xauusd-ea-strategy":{emoji:"🥇",tag:"Strategy",title:"Trading Gold (XAU/USD) with EAs: Full Strategy Guide 2026",isoDate:"2026-03-05",date:"March 5, 2026",mins:8,reads:"6.5K",keywords:"XAU/USD EA strategy 2026, gold forex EA, trading gold MT4 automated",desc:"XAU/USD is the most popular EA instrument in 2026. Settings, session timing, and risk rules.",content:"Gold (XAU/USD) has become the most popular EA instrument in 2026. Its high daily range and strong trending make it ideal for automated strategies — but it needs different settings than major forex pairs.
-
-**Why Gold Works for EAs**
-
-Range: Gold typically moves USD 15–35 per day (2026 average: USD 24). This allows meaningful profit potential even with wider spread. Trending: Strong macro drivers (inflation, USD weakness, geopolitical risk) create sustained directional moves of 50–200+ pip equivalent. Volume: Most heavily traded commodity globally — genuine price discovery, limited manipulation.
-
-**Session Timing**
-
-London open (08:00–10:00 GMT): High volatility, significant directional moves. New York open (13:00–15:00 GMT): Highest volatility of the day. Late Asia (01:00–06:00 GMT): Lower volume, more fake-outs. Restrict gold EAs to London and New York sessions for best performance.
-
-**Settings for Parabolic SAR on Gold H1**
-
-Step: 0.015 (slower than EUR/USD default, needed for gold's volatility). Maximum: 0.15. Stop loss minimum: 30–50 pips — tighter stops are hit by normal intraday noise. Take profit: 60–150 pips or trailing SAR exit. Risk per trade: 0.5–1% of account (lower than major pairs due to higher per-pip value).
-
-**The Spread Challenge**
-
-Gold spread on raw accounts: 1.5–3.5 pip equivalent. Scalping strategies targeting 5–10 pips are unviable at this spread cost. Gold works for strategies with average trade size of 30+ pips.
-
-[MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review) Pro and VIP plans include XAU/USD access with gold-optimised parameters. See [SalmanFX pricing](/salmanfx) for plan details.`"},
-
-  "forex-ea-license-protection":{emoji:"🔐",tag:"Technical",title:"License Key Protection for Forex EAs: MQL4 Implementation Guide",isoDate:"2026-02-25",date:"February 25, 2026",mins:7,reads:"3.8K",keywords:"EA license key protection MQL4, protect forex EA piracy, MQL4 license",desc:"Account number hash, expiry checks, server-side validation — protecting your EA from piracy.",content:"If you sell EAs, protecting them from copying is essential. The .ex4 compilation provides minimal protection — decompilers exist. License key validation adds a meaningful protection layer.
-
-**Method 1: Account Number Lock (Basic)**
-
-The simplest protection: the EA only runs on a specific account number. Check \'AccountNumber()\' at the start of OnTick() — if it does not match the licensed number, stop. The buyer receives the .ex4 compiled for their account number only. No one else can use it.
-
-**Method 2: Hash-Based License Key**
-
-More sophisticated: the EA generates a hash from the account number and compares it to the license key provided. The hash function used in [MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review): base string value 5381, hash = (hash × 33) XOR each character, result modulo 99999999. You keep the key generator private. The buyer enters the key — if it does not match their account number hash, the EA stops.
-
-**Method 3: Expiry Date Check**
-
-The EA compares current date against an embedded expiry. Once expired, it stops and displays a renewal message. This enables subscription licensing — sell 1-year licenses that automatically expire. Renewal generates a new key with updated expiry date.
-
-**Method 4: Server-Side Validation**
-
-Most robust: the EA makes a WebRequest to your validation server on startup. No server response = no trading. Prevents the EA from working if disconnected from your server. Requires a server-side script and reliable hosting.
-
-For EA developers: contact [SalmanFX](https://wa.me/971544735060) for custom license implementation on your MQL4 EA. For buyers wanting a licensed, protected EA: all SalmanFX EAs use account-number-lock + hash key protection as standard.`"},
-
-  "prop-firm-ea-guide":{emoji:"🎯",tag:"Trading",title:"Prop Firm Trading with EAs: FTMO and Rules to Know",isoDate:"2026-02-08",date:"February 8, 2026",mins:9,reads:"7.6K",keywords:"prop firm EA trading 2026, FTMO EA rules, passing prop firm challenge with EA",desc:"Using EAs on prop firm challenges — which rules matter, which EAs pass, and what to avoid.",content:"Prop firms offer funded accounts to traders who pass a challenge. EAs can be used — but with important caveats specific to each firm's rules.
-
-**FTMO Challenge Structure**
-
-Phase 1: Reach 10% profit, stay under 5% daily drawdown, 10% maximum drawdown. Phase 2 (Verification): Reach 5% profit, same drawdown limits. Once funded: 80–90% profit share on USD 10,000 to USD 200,000 accounts.
-
-**EA Rules at Major Prop Firms**
-
-FTMO: EAs permitted. No HFT (over 10 trades per second), no latency arbitrage, no tick scalping exploiting price feed delays. Standard trend-following and intraday EAs are fully permitted. MyForexFunds: EAs permitted, similar restrictions — avoid more than 5 trades per minute. The5%ers: EAs permitted, focus on trading consistency.
-
-**Which Strategies Pass Prop Challenges**
-
-Best: Trend-following with defined SL and TP on every trade. The EA must never have an uncapped loss — prop firms terminate accounts where a single trade causes the daily drawdown limit breach. Good: Swing EAs holding hours or days — fewer trades, less commission drag on the 10% profit target. Avoid: Martingale and averaging — cannot comply with maximum drawdown rules by design.
-
-**Risk Settings for Prop Accounts**
-
-For USD 10,000 with 5% daily drawdown limit: maximum risk per trade = 1% = USD 100 stop. With a 20-pip stop, that is 0.5 lot on EUR/USD. Conservative and appropriate for the challenge phase — the goal is passing, not maximising.
-
-Multiple [SalmanFX](/salmanfx) customers have passed FTMO Phase 1 and 2 using MM FLIP CODEPRO. Contact [Salman](https://wa.me/971544735060?text=Hi Salman, I want to use MM FLIP CODEPRO for a prop firm) for challenge-specific configuration included with VIP plan.`"},
-
-  "averaging-down-strategy-ea":{emoji:"🔄",tag:"Strategy",title:"Averaging Down with EAs: When It Works and When It Blows Accounts",isoDate:"2026-01-25",date:"January 25, 2026",mins:8,reads:"5.3K",keywords:"averaging down EA forex, martingale EA risk, grid EA dangers 2026",desc:"A systematic analysis of when averaging down adds genuine edge versus when it multiplies risk to account destruction.",content:"Averaging down — adding to a losing position to reduce average entry — is the engine behind some of the most consistently profitable-looking EAs and also the cause of most account blowups.
-
-**The Case For (When It Works)**
-
-If price must eventually return to your entry level (mean reversion), averaging down reduces your average entry and requires only partial recovery to profit. In genuine ranging markets where price oscillates around a mean, this works enough of the time to produce consistent small profits.
-
-**The Case Against (The Fatal Flaw)**
-
-The assumption fails when price trends. If EUR/USD trends 500 pips against your entry, the averaging EA adds at 50, 100, 200, 350, 500 pips loss — each time multiplying position size. The final position loss is several times the account balance. Margin call terminates the account. This is not an edge case — it is a mathematically inevitable outcome given sufficient time.
-
-**When Averaging Is Part of a Legitimate Strategy**
-
-Adding to winning positions (pyramiding) in the direction of the trend: this is the opposite of averaging down and is a legitimate component of trend systems, including [MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review). Mean-reversion with hard maximum position count and a hard stop on the total: viable only with strictly defined total risk.
-
-**SalmanFX Position**
-
-SalmanFX EAs do not use martingale or uncapped averaging-down sequences. The lot progression in [MM FLIP CODEPRO](/salmanfx) adds to positions in the direction of confirmed trend signals — not into losing counter-trend positions. Contact [Salman](https://wa.me/971544735060) for detailed risk documentation on any EA before purchasing.`"},
-
-  "ea-optimisation-overfitting":{emoji:"🧪",tag:"Technical",title:"EA Optimisation vs Overfitting: How to Tell the Difference",isoDate:"2026-01-10",date:"January 10, 2026",mins:7,reads:"4.7K",keywords:"EA overfitting forex, curve fitting backtest, optimisation vs overfitting MT4",desc:"Most optimised EAs fail on live accounts because they are overfit. Here's how to identify genuine edge.",content:"Optimisation is finding the best historical parameters. Overfitting is finding parameters that happened to work on a specific dataset with no reason they will work forward. The two look identical — until you deploy live.
-
-**The In-Sample / Out-of-Sample Test**
-
-Divide historical data into two non-overlapping periods. Optimise only on the first (in-sample). Run optimised parameters on the second (out-of-sample) without changes. If performance is comparable: genuine robustness. If performance collapses: the parameters are overfit.
-
-Rule of thumb: if profit factor drops below 1.2 on out-of-sample after being 2.0+ in-sample, the EA is overfit.
-
-**Warning Signs in Backtest Results**
-
-Profit factor above 4.0: almost always overfitting. No losing months in a 5-year test: impossible for a real strategy. Performance dramatically better in one year: strategy only works in one market regime. Very tight SL/TP (3 pip stop, 6 pip TP): eliminates any execution variance — fragile to live conditions.
-
-**Robust Optimisation Practices**
-
-Limit parameter search: optimise 2–3 parameters simultaneously (more creates combinatorial overfitting). Use larger steps: test stop loss in steps of 10, not 1. Prefer plateaus over peaks: a parameter value surrounded by similarly good values is more robust than an isolated maximum. See the [backtesting guide](/salmanfx/blog/backtesting-ea-guide) for the full methodology.
-
-All [SalmanFX EAs](/salmanfx) validated using strict in/out-of-sample methodology. Backtest reports available on request — WhatsApp [+971 544 735 060](https://wa.me/971544735060).`"},
-
-  "swing-trading-ea-mt4":{emoji:"📈",tag:"Strategy",title:"Swing Trading EA for MT4: Holding Positions Overnight",isoDate:"2026-03-12",date:"March 12, 2026",mins:8,reads:"4.1K",keywords:"swing trading EA MT4 2026, overnight position EA, H4 swing automated strategy",desc:"Swing EAs hold trades for hours or days — advantages over scalpers and how to configure them for 2026.",content:"Swing trading EAs hold positions for hours to days, capturing larger moves than scalpers. In 2026, swing EAs are outperforming scalpers on most major pairs due to the directional macro environment.
-
-**Advantages Over Scalpers**
-
-Spread impact: 1-pip spread on a 100-pip target is 1%. The same spread on a 5-pip scalping target is 20%. Swing EAs are inherently more spread-resistant. Execution sensitivity: swing EAs tolerate 100–200ms latency — broker selection is less critical. Prop firm compliance: fully compatible with all major prop firm rules.
-
-**Timeframe Selection**
-
-H4 (4-hour chart): Default swing timeframe. Each trade typically holds 12–72 hours. Genuine directional information without lower-timeframe noise. Daily chart: Position trading EAs, holds days to weeks. Lower frequency, larger targets. H1: Borderline intraday/swing — used for swing approaches on strongly trending pairs.
-
-**Setting Stop Loss and Take Profit**
-
-On H4, EUR/USD daily range is 50–80 pips. A 30-pip stop is triggered by normal intraday noise. Minimum stop for H4 swing EA: 50 pips. Take profit: 100–200 pips or trailing stop.
-
-**Overnight and Weekend Risk**
-
-Swing EAs hold overnight — exposure to gap risk. Gaps at Monday open can be 10–50+ pips. Risk management: reduce position size on Friday after 18:00 GMT if holding over the weekend. Some swing EAs close Friday close and reopen Monday — safest approach.
-
-[MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review) can be configured for H4 swing trading. Contact [SalmanFX](https://wa.me/971544735060) for swing configuration settings included with Pro and VIP plans.`"},
-
-  "news-trading-ea-guide":{emoji:"📰",tag:"Strategy",title:"News Trading EAs: How to Handle High-Impact Forex Events",isoDate:"2026-02-22",date:"February 22, 2026",mins:6,reads:"3.9K",keywords:"news trading EA forex, NFP EA strategy, FOMC automated trading",desc:"NFP, CPI, FOMC — whether to pause your EA or exploit the volatility, with risk management rules.",content:"High-impact news (NFP, CPI, FOMC) causes the fastest price moves in forex. These spikes can be profitable or catastrophically loss-making for automated systems.
-
-**The Two Approaches**
-
-Pause during news: Many EAs stop trading 15–30 minutes before and after high-impact releases. MQL4 implementation: a news filter checks whether current time is within a \"no-trade window\" around scheduled events. Prevents the EA entering a trade just before a spike that hits the stop instantly.
-
-Trade the news: Some EAs place opposing stop orders before releases, triggering whichever direction the spike takes. Requires under 20ms execution, a broker that does not widen spreads during news, and immediate cancellation of the losing pending order.
-
-**Which Approach for Which EA Type**
-
-Trend-following EAs (like [MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review)): Pause during news. The initial spike direction is often reversed within minutes, generating a false signal. Missing signals around news costs far less than being stopped out on the spike. Scalping EAs: Pause during news — spread widens dramatically. News-specific EAs: Trade the news, but only with a broker that can execute within 15ms and does not widen spreads.
-
-**Simple MQL4 News Filter**
-
-\'if (Hour() == newsHour && Minute() >= newsMinute - 30 && Minute() <= newsMinute + 30) return;\' Pauses the EA for 30 minutes before and after any defined news event. A full implementation with automatic economic calendar is included in [VIP plan](/salmanfx).`"},
-
-  "mql4-programming-basics":{emoji:"💻",tag:"Technical",title:"MQL4 Programming for Beginners: Build Your First MT4 EA",isoDate:"2026-02-15",date:"February 15, 2026",mins:12,reads:"5.8K",keywords:"MQL4 beginner guide 2026, write first forex EA, MT4 programming tutorial",desc:"Variables, OrderSend, OnTick — a genuine beginner's guide to writing MQL4 code that actually trades.",content:"MQL4 is the programming language of MetaTrader 4. Based on C++ but significantly simplified. You do not need a programming background — but you do need to understand a few fundamental concepts.
-
-**The Basic EA Structure**
-
-Every MT4 EA has three main functions: OnInit() — runs once when the EA starts. OnTick() — runs every time price updates — this is where your trading logic goes. OnDeinit() — runs when the EA is removed.
-
-**Variables and Data Types**
-
-\'double currentPrice = Ask;\' — decimal number (prices, indicators).
-\'int totalOrders = OrdersTotal();\' — whole number (counts).
-\'bool upTrend = Close[0] > iMA(NULL, 0, 50, 0, MODE_EMA, PRICE_CLOSE, 0);\' — true/false condition.
-
-**Reading Indicator Values**
-
-Current bar's SAR: \'double sar = iSAR(NULL, 0, 0.02, 0.2, 0);\'
-Previous bar's SAR: \'double sarPrev = iSAR(NULL, 0, 0.02, 0.2, 1);\'
-50-period EMA: \'double ema50 = iMA(NULL, 0, 50, 0, MODE_EMA, PRICE_CLOSE, 0);\'
-
-**Placing a Trade**
-
-\'OrderSend(Symbol(), OP_BUY, 0.1, Ask, 3, Ask - 50*Point, Ask + 100*Point, \"EA Trade\", 0, 0, clrGreen);\'
-Parameters: symbol, direction, lot size, price, slippage, stop loss, take profit, comment.
-
-**The Full SAR EA in 20 Lines**
-
-A basic Parabolic SAR EA — the core logic of [MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review) — can be written in under 20 lines of MQL4. Once you understand OrderSend and indicator calls, you can build and customise any strategy.
-
-For custom EA development, contact [SalmanFX](https://wa.me/971544735060?text=Hi Salman, I need custom EA development). Custom EA modifications start from AED 299. Also see [Web Builder](/webbuilder) to build a website for your EA business.`"},
-
-  "scalping-ea-settings":{emoji:"⚡",tag:"Strategy",title:"Scalping EA Settings for MT4: Pairs, Sessions, Configuration",isoDate:"2026-03-08",date:"March 8, 2026",mins:7,reads:"5.2K",keywords:"scalping EA MT4 settings 2026, forex scalper configuration, best scalping pairs EA",desc:"Scalping EAs need low spreads and fast execution. How to configure and test a scalper in 2026.",content:"Scalping EAs target small profits (2–15 pips) on many trades daily. They require specific conditions that most traders underestimate.
-
-**The Spread Requirement**
-
-On a 5-pip target trade, a 1.5-pip spread consumes 30% of the intended profit. For scalping EAs to be profitable, you need spread under 0.5 pip during trading hours. Only achievable on raw/ECN accounts (IC Markets, Pepperstone) during high-liquidity sessions. Standard account spreads of 1.5–2 pip make most scalping EAs unprofitable regardless of signal quality.
-
-**Sessions That Work for Scalping**
-
-London open (07:30–09:30 GMT): Highest liquidity, lowest spreads, strong directional moves on EUR/USD and GBP/USD. New York open overlap (13:00–15:00 GMT): Excellent liquidity, active institutional participation. Both sessions: spreads should be 0.0–0.3 pip. Avoid Asian session on EUR pairs — lower liquidity and wider spreads.
-
-**M1 vs M5 Scalping**
-
-M1: Maximum trade frequency, 2–5 pip targets, highest sensitivity to execution speed. Requires sub-30ms execution. M5: More robust to execution variance, 5–12 pip targets, fewer trades per day, better signal quality.
-
-**Execution Quality Test**
-
-Before running any scalping EA live: manually place 20 market orders and immediately close them. Record slippage for each. Average slippage under 0.5 pip: acceptable for scalping. Over 1 pip: change broker or VPS location. See [broker comparison](/salmanfx/blog/best-brokers-ea-trading-2026) and [VPS guide](/salmanfx/blog/vps-mt4-contabo-setup).`"},
-
-  "trailing-stop-ea-mt4":{emoji:"🎯",tag:"Technical",title:"Trailing Stop in Your MT4 EA: Full MQL4 Code Guide",isoDate:"2026-01-12",date:"January 12, 2026",mins:8,reads:"6.3K",keywords:"trailing stop MQL4 code, MT4 EA trailing stop, add trailing stop EA",desc:"Three trailing stop methods — fixed pip, ATR-based, and SAR trail — with working MQL4 code.",content:"A trailing stop automatically moves the stop loss in the direction of a profitable trade, locking in gains while allowing the trade to continue.
-
-**Method 1: Fixed Pip Trailing**
-
-If the trade is profitable by more than X pips, move the stop loss to X pips below current price (for a buy) and trail it upward as price moves. Loop through open orders, check profit in pips, modify stop loss using OrderModify(). Typical trail distance for H1 trend EA: 20–40 pips. For H4: 50–100 pips.
-
-**Method 2: ATR-Based Trailing**
-
-Uses Average True Range to set trail distance dynamically. High volatility = wider trail (room to breathe). Low volatility = tighter trail (locks in profit aggressively). Implementation: \'double atr = iATR(NULL, 0, 14, 1); double trailDistance = atr * 1.5;\' ATR multiplier of 1.5–2.0 works well for most trend EAs. This is the approach used in [MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review).
-
-**Method 3: SAR-Based Trailing**
-
-For SAR-based EAs, use the SAR itself as the trailing stop — close when SAR flips. \'if (sarCurrent > Close[0] && sarPrev < Close[1]) { CloseAllBuyOrders(); }\' Creates a \"flip and reverse\" system always in the market. Best for strong trending conditions, generates whipsaws in ranges.
-
-**Which Method to Use**
-
-Fixed pip: Simple, easy to optimise. ATR-based: Adaptive, recommended for volatile pairs (gold, GBP/JPY). SAR-based: Best for pure trend systems already using SAR for entry. Contact [SalmanFX](https://wa.me/971544735060?text=Hi Salman, I need trailing stop code) for custom trailing stop implementation.`"},
-
-  "forex-psychology-automated":{emoji:"🧠",tag:"Trading",title:"Forex Psychology When Trading with EAs: What Still Goes Wrong",isoDate:"2026-01-08",date:"January 8, 2026",mins:6,reads:"4.4K",keywords:"forex psychology EA trading, emotional trading EA, automated trading mistakes",desc:"Automation removes some emotional mistakes but introduces new ones. What traders still get wrong with EAs.",content:"The main selling point of EAs is emotion removal. But automation does not eliminate the human psychology problem — it just changes where that psychology creates damage.
-
-**The Four EA-Specific Psychological Failures**
-
-Failure 1 — Stopping during normal drawdown: The most common and most costly mistake. You see -12% and stop the EA. It immediately has its best month and you are not in it. Pre-define your maximum acceptable drawdown in writing — do not act unless that specific level is breached. See [drawdown management guide](/salmanfx/blog/drawdown-management-forex).
-
-Failure 2 — Over-optimising after losses: After a losing month, you change settings to avoid those specific losses. This is pattern-matching on noise. The market is stochastic — losses are expected events, not signals to change parameters.
-
-Failure 3 — Running too many correlated EAs: Six EUR pairs moving against you simultaneously = six losses at once, not six independent events. See [currency correlation guide](/salmanfx/blog/currency-correlation-ea).
-
-Failure 4 — Increasing size after winning streaks: After a good month, doubling lot size is the equivalent of doubling down at a casino after a win. The drawdown that follows the winning streak now hits a larger account balance.
-
-**The Written Rules Solution**
-
-Write down your rules before starting: maximum drawdown limit, maximum consecutive losses before review, conditions for increasing size, conditions for stopping. Commit to them in writing. Follow the written rules — not the emotional response. [VIP plan](/salmanfx) includes a complete trading psychology framework guide.`"},
-
-  "ea-forward-test-guide":{emoji:"📋",tag:"Technical",title:"Forward Testing Your EA: Validate Before Going Live",isoDate:"2026-02-02",date:"February 2, 2026",mins:7,reads:"3.6K",keywords:"forward test EA forex, EA demo testing guide, validate EA before live",desc:"Demo account forward test setup, duration requirements, and how to interpret results.",content:"A backtest shows historical performance. A forward test shows performance on unseen live data. The forward test is the bridge between a promising backtest and a live account.
-
-**Why Forward Testing Is Non-Negotiable**
-
-Backtests are run on known data. Live markets have different characteristics: spread variance, execution latency, broker-specific quotes, and regime changes after the backtest period. A forward test on a demo account exposes the EA to real-market factors that the tester cannot replicate.
-
-**Setting Up a Valid Forward Test**
-
-Use a demo account with the same broker you intend to trade live (not a generic demo). Use the same proportional lot size as intended live (if planning 0.1 lot on USD 1,000, use 0.1 lot on USD 1,000 demo). Enable on the same timeframe and pair. Run continuously for minimum 60 trading days — 90 is better.
-
-**What to Measure**
-
-Number of trades, win rate, average win/loss, profit factor, maximum drawdown, maximum consecutive losses. Acceptable variance from backtest: win rate within 10%, drawdown within 1.5× of backtest maximum. If results diverge significantly from backtest, investigate before going live.
-
-**When to Go Live**
-
-All conditions must be met: 60–90 day forward test completed. Forward test profit factor above 1.2. Drawdown within acceptable range. You accept the statistical likelihood of future drawdown. Live account sized so maximum expected drawdown does not affect you emotionally. All [SalmanFX EAs](/salmanfx) come with a recommended forward test protocol. VIP plan includes 30-day monitoring during your forward test and live launch.`"},
-
-  "currency-correlation-ea":{emoji:"🔗",tag:"Strategy",title:"Currency Correlation for EA Traders: Avoiding Hidden Overexposure",isoDate:"2026-03-01",date:"March 1, 2026",mins:6,reads:"3.2K",keywords:"currency correlation EA trading, forex pair correlation, multiple EA exposure risk",desc:"Running multiple EAs simultaneously creates hidden correlation risk. How to measure and control it.",content:"Many EA traders run multiple EAs on multiple pairs believing they are diversifying. In many cases, they are actually multiplying exposure to a single factor — most commonly USD direction.
-
-**The Correlation Problem**
-
-EUR/USD and GBP/USD have a historical correlation of approximately 0.85. Running trend EAs on both does not give two independent positions — it gives approximately 1.85× the exposure. If USD suddenly strengthens (NFP surprise), both EAs take losses simultaneously. Instead of two independent loss events, you take one larger loss event, twice.
-
-**Correlation Matrix (Q1 2026)**
-
-EUR/USD and GBP/USD: 0.85 (highly correlated). EUR/USD and USD/CHF: -0.92 (inverse). EUR/USD and AUD/USD: 0.72. EUR/USD and USD/JPY: -0.65. XAU/USD and USD/JPY: -0.55.
-
-**Safe Multi-EA Portfolio**
-
-Select pairs with correlation below 0.6 between any two. Example diversified portfolio: EUR/USD (Europe exposure) + USD/JPY (Asia exposure) + XAU/USD (commodity/risk sentiment). These three have relatively low cross-correlation and provide genuine diversification. Avoid running simultaneously: EUR/USD + GBP/USD + EUR/GBP — these three are mathematically related.
-
-**Position Sizing for Correlated EAs**
-
-If running 3 correlated EAs, treat them as a single position for risk sizing. Risk each individual EA at 0.3–0.5% to keep total correlated risk at 1–1.5%. [SalmanFX Pro and VIP plans](/salmanfx) include a multi-pair correlation matrix and recommended portfolio configurations.`"},
-
-  "exit-strategy-ea-design":{emoji:"🚪",tag:"Strategy",title:"Exit Strategy Design for Forex EAs: TP, Trailing, Time Exits",isoDate:"2025-12-20",date:"December 20, 2025",mins:8,reads:"4.8K",keywords:"EA exit strategy design, take profit MT4 EA, trailing stop exit EA",desc:"Where you exit defines your equity curve more than where you enter. Complete exit design framework.",content:"Traders obsess over entries. Professionals obsess over exits. The entry determines when you are in the market. The exit determines how much you actually make.
-
-**The Three Exit Categories**
-
-Take Profit (TP): Fixed price target. Simple and transparent. The problem: you exit exactly when the trade is going most strongly in your favour — capping the best moves in the market. Trailing Stop: Locks in profit while allowing the trade to continue. Gives back some profit on the reversal before exit, but captures large moves. Time Exit: Close at a specific time regardless of profit/loss. Used by session-based strategies.
-
-**Choosing the Right Exit**
-
-Trend-following EAs: Trailing stop or SAR-based exit. The whole point of trend following is to capture extended moves — a fixed TP caps the trade at precisely the wrong moment. Scalping EAs: Fixed TP. Fast, predictable. Trail distances on tiny targets create more slippage than benefit. Mean-reversion EAs: Fixed TP at the mean target plus a time exit — if price has not reached TP within X hours, close at market.
-
-**Partial Exits: The Best of Both**
-
-Close 50% at a fixed TP (securing profit), move stop loss to breakeven on remaining 50%, trail the remaining half with a wider stop. You get: certainty of some profit, unlimited upside participation, and zero risk of the remaining half turning into a loss. This structure is used in [MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review) VIP configuration.
-
-**Coding a Partial Close in MQL4**
-
-\'double currentLots = OrderLots();\'
-\'OrderClose(OrderTicket(), currentLots * 0.5, Bid, 3, clrYellow);\'
-
-This closes exactly half the position at market. The remaining half continues with the trailing stop. Contact [SalmanFX](https://wa.me/971544735060) for custom exit strategy design — included with VIP plan.`"},
+  "exit-strategy-ea-design":{emoji:"🚪",tag:"Strategy",title:"Exit Strategy Design for Forex EAs: TP, Trailing, Time Exits",isoDate:"2025-12-20",date:"December 20, 2025",mins:8,reads:"4.8K",keywords:"EA exit strategy design, take profit MT4 EA, trailing stop exit EA",desc:"Where you exit defines your equity curve more than where you enter. Complete exit design framework.",content:"Traders obsess over entries. Professionals obsess over exits. The entry determines when you are in the market. The exit determines how much you actually make.\n\n**The Three Exit Categories**\n\nTake Profit (TP): Fixed price target. Simple and transparent. The problem: you exit exactly when the trade is going most strongly in your favour — capping the best moves in the market. Trailing Stop: Locks in profit while allowing the trade to continue. Gives back some profit on the reversal before exit, but captures large moves. Time Exit: Close at a specific time regardless of profit/loss. Used by session-based strategies.\n\n**Choosing the Right Exit**\n\nTrend-following EAs: Trailing stop or SAR-based exit. The whole point of trend following is to capture extended moves — a fixed TP caps the trade at precisely the wrong moment. Scalping EAs: Fixed TP. Fast, predictable. Trail distances on tiny targets create more slippage than benefit. Mean-reversion EAs: Fixed TP at the mean target plus a time exit — if price has not reached TP within X hours, close at market.\n\n**Partial Exits: The Best of Both**\n\nClose 50% at a fixed TP (securing profit), move stop loss to breakeven on remaining 50%, trail the remaining half with a wider stop. You get: certainty of some profit, unlimited upside participation, and zero risk of the remaining half turning into a loss. This structure is used in [MM FLIP CODEPRO](/salmanfx/blog/mm-flip-codepro-review) VIP configuration.\n\n**Coding a Partial Close in MQL4**\n\n\'double currentLots = OrderLots();\'\n\'OrderClose(OrderTicket(), currentLots * 0.5, Bid, 3, clrYellow);\'\n\nThis closes exactly half the position at market. The remaining half continues with the trailing stop. Contact [SalmanFX](https://wa.me/971544735060) for custom exit strategy design — included with VIP plan.`"},
 };
 
 const ALL_SLUGS = Object.keys(POSTS);
