@@ -1,10 +1,16 @@
 "use client";
 import { usePathname } from "next/navigation";
-import Navbar from "./Navbar";
+import { NavBar } from "../NavBar";
 
-// Hides navbar on the root landing page only
 export default function NavbarWrapper() {
-  const path = usePathname();
-  if (path === "/") return null;
-  return <Navbar />;
+  const pathname = usePathname();
+  if (pathname === "/") return null;
+  if (pathname.startsWith("/archai")) return null;
+  if (pathname.startsWith("/properties")) return null;
+  if (pathname.startsWith("/salmanfx")) return null;
+  if (pathname.startsWith("/webbuilder")) return null;
+  if (pathname.startsWith("/admin")) return null;
+  if (pathname.startsWith("/hire")) return null;
+  if (pathname.startsWith("/al-noor")) return null;
+  return <NavBar />;
 }

@@ -208,6 +208,14 @@ export default function LandingPage() {
           .cta-btn:hover  { filter:brightness(1.15); transform:scale(1.05) !important; }
           .tag-chip { transition:all 0.18s ease; cursor:pointer; }
           .tag-chip:hover { transform:translateY(-2px) scale(1.08) !important; filter:brightness(1.2); }
+          .alnoor-card:hover .alnoor-door-left { transform:perspective(1200px) rotateY(-28deg) !important; }
+          .alnoor-card:hover .alnoor-door-right { transform:perspective(1200px) rotateY(28deg) !important; }
+          .alnoor-card:hover .centre-door-left { transform:perspective(400px) rotateY(-55deg) !important; }
+          .alnoor-card:hover .centre-door-right { transform:perspective(400px) rotateY(55deg) !important; }
+          .alnoor-card:hover .alnoor-glow { opacity:1 !important; }
+          .alnoor-card:hover .alnoor-cta { transform:scale(1.05) translateY(-2px); box-shadow:0 8px 24px rgba(46,204,113,0.6) !important; }
+          .alnoor-card { transition:box-shadow 0.4s, border-color 0.4s; }
+          .alnoor-card:hover { border-color:rgba(212,168,67,0.5) !important; box-shadow:0 20px 60px rgba(212,168,67,0.2) !important; }
         `}</style>
 
         {/* Canvas starfield */}
@@ -461,7 +469,184 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Footer */}
+          {/* ── AL-NOOR MOSQUE CARD ── */}
+          <div style={{ width:"100%", maxWidth:1380, marginTop:"clamp(10px,1.5vh,18px)", animation: mounted ? "fadeUp 1s ease 0.2s both" : "none" }}>
+            <a href="/al-noor" className="alnoor-card" style={{ textDecoration:"none", display:"block", position:"relative", borderRadius:24, overflow:"hidden", minHeight:"clamp(380px,52vh,560px)", cursor:"pointer", border:"2px solid rgba(212,168,67,0.5)", boxShadow:"0 8px 40px rgba(0,0,0,0.6)" }}>
+
+              {/* ── BACKGROUND ── */}
+              <div style={{ position:"absolute", inset:0, background:"linear-gradient(160deg, #041f08 0%, #072d0d 35%, #0a3810 65%, #051e08 100%)" }}/>
+
+              {/* Stars */}
+              <div style={{ position:"absolute", inset:0, backgroundImage:"radial-gradient(2.5px 2.5px at 8% 12%, rgba(212,168,67,1.0) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 18% 28%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(2px 2px at 30% 8%, rgba(212,168,67,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 45% 18%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(2px 2px at 60% 6%, rgba(212,168,67,0.8) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 72% 22%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(2px 2px at 85% 10%, rgba(212,168,67,0.7) 0%, transparent 100%), radial-gradient(1px 1px at 92% 30%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(2.5px 2.5px at 95% 8%, rgba(212,168,67,0.9) 0%, transparent 100%), radial-gradient(1px 1px at 3% 40%, rgba(255,255,255,0.3) 0%, transparent 100%)" }}/>
+
+              {/* Geometric pattern */}
+              <div style={{ position:"absolute", inset:0, opacity:0.10, backgroundImage:"repeating-linear-gradient(60deg,#d4a843 0,#d4a843 1px,transparent 0,transparent 50%), repeating-linear-gradient(120deg,#d4a843 0,#d4a843 1px,transparent 0,transparent 50%)", backgroundSize:"28px 48px" }}/>
+
+              {/* Radial glow centre */}
+              <div className="alnoor-glow" style={{ position:"absolute", inset:0, background:"radial-gradient(ellipse 70% 80% at 50% 55%, rgba(46,204,113,0.35) 0%, rgba(212,168,67,0.18) 40%, transparent 70%)", opacity:0.8, transition:"opacity 0.6s" }}/>
+
+              {/* ── MOSQUE SVG FACADE (top) ── */}
+              <div style={{ position:"absolute", top:0, left:0, right:0, display:"flex", justifyContent:"center", alignItems:"flex-start", paddingTop:0, zIndex:1, pointerEvents:"none" }}>
+                <svg viewBox="0 0 1000 160" style={{ width:"100%", height:"auto", maxHeight:140 }} preserveAspectRatio="xMidYMin meet">
+                  {/* Sky gradient */}
+                  <defs>
+                    <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#030d05"/>
+                      <stop offset="100%" stopColor="transparent"/>
+                    </linearGradient>
+                    <linearGradient id="goldG" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#f0c060"/>
+                      <stop offset="100%" stopColor="#9a7a30"/>
+                    </linearGradient>
+                  </defs>
+                  {/* Main dome centre */}
+                  <ellipse cx="500" cy="90" rx="90" ry="90" fill="rgba(5,25,10,0.95)" stroke="rgba(212,168,67,0.5)" strokeWidth="1.5"/>
+                  <path d="M420,90 Q500,10 580,90" fill="rgba(5,25,10,0.95)" stroke="rgba(212,168,67,0.6)" strokeWidth="2"/>
+                  {/* Centre finial */}
+                  <line x1="500" y1="10" x2="500" y2="0" stroke="#d4a843" strokeWidth="2"/>
+                  <polygon points="500,0 495,12 505,12" fill="#d4a843"/>
+                  <circle cx="500" cy="22" r="4" fill="none" stroke="#d4a843" strokeWidth="1.5"/>
+                  {/* Left small dome */}
+                  <ellipse cx="330" cy="95" rx="55" ry="55" fill="rgba(5,22,9,0.95)" stroke="rgba(212,168,67,0.35)" strokeWidth="1.2"/>
+                  <path d="M278,95 Q330,47 382,95" fill="rgba(5,22,9,0.95)" stroke="rgba(212,168,67,0.4)" strokeWidth="1.5"/>
+                  <line x1="330" y1="47" x2="330" y2="38" stroke="#d4a843" strokeWidth="1.5"/>
+                  <polygon points="330,38 326,49 334,49" fill="#d4a843"/>
+                  {/* Right small dome */}
+                  <ellipse cx="670" cy="95" rx="55" ry="55" fill="rgba(5,22,9,0.95)" stroke="rgba(212,168,67,0.35)" strokeWidth="1.2"/>
+                  <path d="M618,95 Q670,47 722,95" fill="rgba(5,22,9,0.95)" stroke="rgba(212,168,67,0.4)" strokeWidth="1.5"/>
+                  <line x1="670" y1="47" x2="670" y2="38" stroke="#d4a843" strokeWidth="1.5"/>
+                  <polygon points="670,38 666,49 674,49" fill="#d4a843"/>
+                  {/* Left minaret */}
+                  <rect x="100" y="30" width="28" height="130" fill="rgba(4,20,8,0.97)" stroke="rgba(212,168,67,0.3)" strokeWidth="1"/>
+                  <polygon points="114,10 102,32 126,32" fill="rgba(212,168,67,0.7)"/>
+                  <line x1="114" y1="4" x2="114" y2="0" stroke="#d4a843" strokeWidth="1.5"/>
+                  <rect x="103" y="55" width="22" height="8" fill="rgba(212,168,67,0.15)" stroke="rgba(212,168,67,0.2)" strokeWidth="0.5"/>
+                  <rect x="103" y="85" width="22" height="8" fill="rgba(212,168,67,0.15)" stroke="rgba(212,168,67,0.2)" strokeWidth="0.5"/>
+                  <rect x="103" y="115" width="22" height="8" fill="rgba(212,168,67,0.15)" stroke="rgba(212,168,67,0.2)" strokeWidth="0.5"/>
+                  {/* Right minaret */}
+                  <rect x="872" y="30" width="28" height="130" fill="rgba(4,20,8,0.97)" stroke="rgba(212,168,67,0.3)" strokeWidth="1"/>
+                  <polygon points="886,10 874,32 898,32" fill="rgba(212,168,67,0.7)"/>
+                  <line x1="886" y1="4" x2="886" y2="0" stroke="#d4a843" strokeWidth="1.5"/>
+                  <rect x="875" y="55" width="22" height="8" fill="rgba(212,168,67,0.15)" stroke="rgba(212,168,67,0.2)" strokeWidth="0.5"/>
+                  <rect x="875" y="85" width="22" height="8" fill="rgba(212,168,67,0.15)" stroke="rgba(212,168,67,0.2)" strokeWidth="0.5"/>
+                  <rect x="875" y="115" width="22" height="8" fill="rgba(212,168,67,0.15)" stroke="rgba(212,168,67,0.2)" strokeWidth="0.5"/>
+                  {/* Base wall */}
+                  <rect x="0" y="140" width="1000" height="20" fill="rgba(4,18,8,0.98)" stroke="rgba(212,168,67,0.2)" strokeWidth="1"/>
+                  {/* Decorative arch windows on wall */}
+                  {[150,250,350,450,550,650,750,850].map((x,i) => (
+                    `<path key="${i}" d="M${x-15},160 L${x-15},148 Q${x},138 ${x+15},148 L${x+15},160" fill="rgba(212,168,67,0.06)" stroke="rgba(212,168,67,0.15)" strokeWidth="0.8"/>`
+                  )).join("")}
+                  {/* Moon top right */}
+                  <text x="950" y="35" fontSize="22" textAnchor="middle" fill="rgba(212,168,67,0.9)">🌙</text>
+                </svg>
+              </div>
+
+              {/* ── MAIN CONTENT AREA ── */}
+              <div style={{ position:"absolute", inset:0, display:"flex", alignItems:"stretch", zIndex:2, paddingTop:"clamp(110px,15vw,155px)" }}>
+
+                {/* LEFT PANEL (SalmanFX style — door that opens) */}
+                <div className="alnoor-door-left" style={{ flex:1, padding:"16px 20px 20px", display:"flex", flexDirection:"column", justifyContent:"space-between", borderRight:"1px solid rgba(212,168,67,0.15)", transformOrigin:"left center", transition:"transform 0.8s cubic-bezier(0.23,1,0.32,1)", transform:"perspective(1200px) rotateY(0deg)" }}>
+                  {/* Windows top */}
+                  <div style={{ display:"flex", gap:10, marginBottom:12 }}>
+                    {[0,1].map(i => (
+                      <div key={i} style={{ flex:1, height:28, background:"rgba(212,168,67,0.14)", border:"1px solid rgba(212,168,67,0.4)", borderRadius:"50% 50% 0 0", display:"flex", alignItems:"center", justifyContent:"center", fontSize:12 }}>
+                        {i===0?"⭐":"✨"}
+                      </div>
+                    ))}
+                  </div>
+                  {/* Lines — text info */}
+                  <div style={{ flex:1, display:"flex", flexDirection:"column", gap:8 }}>
+                    {[["📖","Full Quran","114 Surahs + English"],["🕌","Prayer Times","Fajr to Isha · GPS"],["🧭","Qibla Finder","Live compass direction"]].map(([ic,t,s]) => (
+                      <div key={t} style={{ display:"flex", alignItems:"center", gap:10, padding:"8px 10px", background:"rgba(212,168,67,0.09)", border:"1px solid rgba(212,168,67,0.22)", borderRadius:8 }}>
+                        <span style={{ fontSize:16 }}>{ic}</span>
+                        <div>
+                          <div style={{ fontSize:11, fontWeight:700, color:"rgba(255,255,255,0.8)" }}>{t}</div>
+                          <div style={{ fontSize:9, color:"rgba(212,168,67,0.6)" }}>{s}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* CENTRE COLUMN — Main door */}
+                <div style={{ width:"clamp(160px,22%,260px)", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"space-between", padding:"12px 16px 0", borderRight:"1px solid rgba(212,168,67,0.15)" }}>
+                  {/* Arabic calligraphy */}
+                  <div style={{ textAlign:"center" }}>
+                    <div style={{ fontFamily:"'Noto Naskh Arabic',serif", fontSize:"clamp(18px,2.5vw,32px)", color:"#f0c060", textShadow:"0 0 30px rgba(212,168,67,1.0), 0 0 60px rgba(212,168,67,0.7), 0 0 90px rgba(212,168,67,0.4)", lineHeight:1.3, marginBottom:4 }}>
+                      النور
+                    </div>
+                    <div style={{ fontFamily:"'Noto Naskh Arabic',serif", fontSize:"clamp(13px,1.8vw,22px)", color:"rgba(240,192,96,0.7)", marginBottom:8 }}>
+                      رَمَضَانُ كَرِيم
+                    </div>
+                    <div style={{ fontSize:"clamp(8px,0.9vw,11px)", fontWeight:800, letterSpacing:"0.2em", color:"rgba(46,204,113,0.7)", textTransform:"uppercase", marginBottom:12 }}>AL-NOOR</div>
+                  </div>
+
+                  {/* THE DOOR */}
+                  <div style={{ width:"100%", flex:1, position:"relative", display:"flex", flexDirection:"column" }}>
+                    {/* Arch top */}
+                    <div style={{ width:"80%", height:"clamp(30px,5vw,50px)", margin:"0 auto", background:"rgba(212,168,67,0.06)", border:"1.5px solid rgba(212,168,67,0.35)", borderBottom:"none", borderRadius:"50% 50% 0 0" }}/>
+                    {/* Door body — two panels */}
+                    <div style={{ flex:1, display:"flex", gap:2, width:"80%", margin:"0 auto" }}>
+                      {/* Left door panel */}
+                      <div className="centre-door-left" style={{ flex:1, background:"linear-gradient(160deg,#083518,#0f4a1e)", border:"1px solid rgba(212,168,67,0.3)", borderRight:"1px solid rgba(212,168,67,0.2)", borderRadius:"0 0 0 6px", transformOrigin:"left center", transition:"transform 0.8s cubic-bezier(0.23,1,0.32,1)", transform:"perspective(400px) rotateY(0deg)", position:"relative", overflow:"hidden" }}>
+                        <div style={{ position:"absolute", inset:4, border:"1px solid rgba(212,168,67,0.12)", borderRadius:3 }}/>
+                        <div style={{ position:"absolute", inset:8, border:"1px solid rgba(212,168,67,0.06)", borderRadius:2 }}/>
+                        {/* handle */}
+                        <div style={{ position:"absolute", right:6, top:"55%", width:5, height:18, background:"linear-gradient(to bottom,#d4a843,#9a7a30)", borderRadius:3, boxShadow:"0 0 6px rgba(212,168,67,0.6)" }}/>
+                      </div>
+                      {/* Right door panel */}
+                      <div className="centre-door-right" style={{ flex:1, background:"linear-gradient(160deg,#083518,#0f4a1e)", border:"1px solid rgba(212,168,67,0.3)", borderLeft:"1px solid rgba(212,168,67,0.2)", borderRadius:"0 0 6px 0", transformOrigin:"right center", transition:"transform 0.8s cubic-bezier(0.23,1,0.32,1)", transform:"perspective(400px) rotateY(0deg)", position:"relative", overflow:"hidden" }}>
+                        <div style={{ position:"absolute", inset:4, border:"1px solid rgba(212,168,67,0.12)", borderRadius:3 }}/>
+                        <div style={{ position:"absolute", inset:8, border:"1px solid rgba(212,168,67,0.06)", borderRadius:2 }}/>
+                        <div style={{ position:"absolute", left:6, top:"55%", width:5, height:18, background:"linear-gradient(to bottom,#d4a843,#9a7a30)", borderRadius:3, boxShadow:"0 0 6px rgba(212,168,67,0.6)" }}/>
+                      </div>
+                    </div>
+                    {/* Threshold */}
+                    <div style={{ width:"80%", height:6, margin:"0 auto", background:"linear-gradient(90deg,rgba(212,168,67,0.4),rgba(212,168,67,0.8),rgba(212,168,67,0.4))", borderRadius:"0 0 4px 4px" }}/>
+                    {/* Steps */}
+                    {[1,2,3].map(s => (
+                      <div key={s} style={{ width:`${80+s*5}%`, height:5, margin:`2px auto 0`, background:`rgba(212,168,67,${0.12-s*0.03})`, borderRadius:2 }}/>
+                    ))}
+                  </div>
+
+                  {/* CTA */}
+                  <div className="alnoor-cta" style={{ margin:"12px 0", padding:"9px 18px", background:"linear-gradient(135deg,#2ecc71,#1a8c40)", borderRadius:10, fontSize:"clamp(9px,1vw,12px)", fontWeight:800, color:"#fff", letterSpacing:"0.05em", boxShadow:"0 4px 16px rgba(46,204,113,0.4)", transition:"all 0.3s", whiteSpace:"nowrap" }}>
+                    Enter Al-Noor ☪️
+                  </div>
+                </div>
+
+                {/* RIGHT PANEL */}
+                <div className="alnoor-door-right" style={{ flex:1, padding:"16px 20px 20px", display:"flex", flexDirection:"column", justifyContent:"space-between", borderLeft:"1px solid rgba(212,168,67,0.15)", transformOrigin:"right center", transition:"transform 0.8s cubic-bezier(0.23,1,0.32,1)", transform:"perspective(1200px) rotateY(0deg)" }}>
+                  {/* Windows top */}
+                  <div style={{ display:"flex", gap:10, marginBottom:12 }}>
+                    {[0,1,2].map(i => (
+                      <div key={i} style={{ flex:1, height:28, background:"rgba(212,168,67,0.14)", border:"1px solid rgba(212,168,67,0.4)", borderRadius:"50% 50% 0 0", display:"flex", alignItems:"center", justifyContent:"center", fontSize:10 }}>
+                        {["⭐","🌟","✨"][i]}
+                      </div>
+                    ))}
+                  </div>
+                  {/* Lines */}
+                  <div style={{ flex:1, display:"flex", flexDirection:"column", gap:8 }}>
+                    {[["📿","Tasbeeh Counter","33 · 99 · 100 modes"],["🤲","Daily Duas","Morning, sleep & more"],["🌙","Hijri Calendar","Islamic dates daily"]].map(([ic,t,s]) => (
+                      <div key={t} style={{ display:"flex", alignItems:"center", gap:10, padding:"8px 10px", background:"rgba(212,168,67,0.09)", border:"1px solid rgba(212,168,67,0.22)", borderRadius:8 }}>
+                        <span style={{ fontSize:16 }}>{ic}</span>
+                        <div>
+                          <div style={{ fontSize:11, fontWeight:700, color:"rgba(255,255,255,0.8)" }}>{t}</div>
+                          <div style={{ fontSize:9, color:"rgba(212,168,67,0.6)" }}>{s}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Gold border frame */}
+              <div style={{ position:"absolute", inset:0, borderRadius:24, border:"1.5px solid rgba(212,168,67,0.2)", pointerEvents:"none", zIndex:10 }}/>
+              <div style={{ position:"absolute", inset:6, borderRadius:20, border:"1px solid rgba(212,168,67,0.07)", pointerEvents:"none", zIndex:10 }}/>
+            </a>
+          </div>
+
+          {/* Footer */}          {/* Footer */}
           <div style={{ marginTop:"clamp(10px,2vh,20px)", textAlign:"center", animation: mounted ? "fadeUp 1s ease 0.25s both" : "none" }}>
             <div style={{ fontSize:10, color:"rgba(255,255,255,0.12)", letterSpacing:"0.12em", marginBottom:6 }}>
               DUBAI ROVERS PLATFORM · EST. 2015 · DUBAI, UAE 🇦🇪

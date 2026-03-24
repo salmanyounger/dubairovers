@@ -153,6 +153,10 @@ export function NavBar() {
           </Link>
           <Link href="/about"       className={`drlink${isActive("/about") ? " act" : ""}`}>About</Link>
           <Link href="/contact"     className={`drlink${isActive("/contact") ? " act" : ""}`}>Contact</Link>
+          <Link href="/al-noor"     className={`drlink${isActive("/al-noor") ? " act" : ""}`}
+            style={{ color: isActive("/al-noor") ? "#fff" : "rgba(46,204,113,0.85)" }}>
+            🌙 Al-Noor
+          </Link>
         </div>
 
         {/* ── RIGHT SIDE ── */}
