@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import WALKING_ROUTES from "../../data/walking-routes";
+import WALKING_ROUTES from "../data/walking-routes";
 
 const PW = "walkingroutes2025";
 
