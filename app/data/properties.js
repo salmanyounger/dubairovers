@@ -1,2 +1,3 @@
-import { BP_PROPS } from '../../properties/data/blueprint-props';
-export default BP_PROPS;
+export const PROPERTIES = [];
+export const BP_PROPS = [];
+export default PROPERTIES;
