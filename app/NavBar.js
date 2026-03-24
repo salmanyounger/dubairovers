@@ -85,7 +85,7 @@ export function NavBar() {
       <div style={{ maxWidth:1380, margin:"0 auto", padding:"0 20px", height:62, display:"flex", alignItems:"center", justifyContent:"space-between", gap:8 }}>
 
         {/* ── LOGO ── */}
-        <Link href="/tours" style={{ textDecoration:"none", display:"flex", alignItems:"center", gap:9, flexShrink:0 }}>
+        <Link href="/" style={{ textDecoration:"none", display:"flex", alignItems:"center", gap:9, flexShrink:0 }}>
           <div style={{ width:36, height:36, borderRadius:9, background:"linear-gradient(135deg,#f97316,#ec4899)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:18, boxShadow:"0 4px 12px rgba(249,115,22,0.4)" }}>🏜️</div>
           <div>
             <div style={{ fontSize:16, fontWeight:800, color:"#fff", lineHeight:1.1 }}>
@@ -109,7 +109,7 @@ export function NavBar() {
         {/* ── NAV LINKS ── */}
         <div style={{ display:"flex", alignItems:"center", gap:2 }}>
 
-          <Link href="/tours" className={`drlink${isActive("/tours") ? " act" : ""}`}>Home</Link>
+          <Link href="/" className={`drlink${isActive("/tours") ? " act" : ""}`}>Home</Link>
 
           {/* TOURS DROPDOWN */}
           <div ref={dropRef} style={{ position:"relative" }}>
@@ -137,7 +137,7 @@ export function NavBar() {
                     </Link>
                   ))}
                 </div>
-                <Link href="/tours" style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:6, padding:"9px", background:"rgba(249,115,22,0.1)", border:"1px solid rgba(249,115,22,0.2)", borderRadius:9, color:"#f97316", fontSize:12, fontWeight:600, textDecoration:"none" }}>
+                <Link href="/" style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:6, padding:"9px", background:"rgba(249,115,22,0.1)", border:"1px solid rgba(249,115,22,0.2)", borderRadius:9, color:"#f97316", fontSize:12, fontWeight:600, textDecoration:"none" }}>
                   View All Tours →
                 </Link>
               </div>
@@ -153,10 +153,7 @@ export function NavBar() {
           </Link>
           <Link href="/about"       className={`drlink${isActive("/about") ? " act" : ""}`}>About</Link>
           <Link href="/contact"     className={`drlink${isActive("/contact") ? " act" : ""}`}>Contact</Link>
-          <Link href="/al-noor"     className={`drlink${isActive("/al-noor") ? " act" : ""}`}
-            style={{ color: isActive("/al-noor") ? "#fff" : "rgba(46,204,113,0.85)" }}>
-            🌙 Al-Noor
-          </Link>
+
         </div>
 
         {/* ── RIGHT SIDE ── */}
@@ -186,7 +183,7 @@ export function NavBar() {
           </button>
 
           {/* Book Now */}
-          <Link href="/tours" className="book-btn"
+          <Link href="/" className="book-btn"
             style={{ padding:"9px 18px", background:"linear-gradient(135deg,#f97316,#ea580c)", borderRadius:20, color:"#fff", fontSize:13, fontWeight:700, textDecoration:"none", display:"flex", alignItems:"center", gap:6, boxShadow:"0 4px 14px rgba(249,115,22,0.35)", transition:"all 0.2s ease" }}>
             🚀 Book Now
           </Link>

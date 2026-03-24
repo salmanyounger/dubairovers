@@ -526,7 +526,7 @@ function HomeTab({onTabChange,onOpen}){
   return(
     <div>
       <div style={{background:"linear-gradient(135deg,rgba(59,130,246,0.1) 0%,rgba(99,102,241,0.07) 60%,transparent 100%)",borderBottom:`1px solid ${T.border}`,padding:"48px 24px 40px"}}>
-        <div style={{maxWidth:1200,margin:"0 auto",display:"grid",gridTemplateColumns:"1fr 380px",gap:32,alignItems:"center"}}>
+        <div style={{maxWidth:1200,margin:"0 auto",display:"grid",gridTemplateColumns:"minmax(0,1fr) minmax(0,340px)",gap:32,alignItems:"center"}}>
           <div>
             <div style={{display:"flex",gap:7,marginBottom:20,flexWrap:"wrap"}}>
               {[["DUBAI","Dubai"],["ABU DHABI","Abu Dhabi"],["SHARJAH","Sharjah"],["RAK","Ras Al Khaimah"]].map(([label,val])=>(
@@ -681,7 +681,7 @@ export default function PropComparePage(){
     return true;
   }).sort((a,b)=>sortBy==="roi"?b.roi-a.roi:sortBy==="price_asc"?a.price-b.price:sortBy==="price_desc"?b.price-a.price:b.score.value-a.score.value),[emirate,propType,minROI,status,visaOnly,beds,search,sortBy]);
 
-  if(!mounted)return<div style={{minHeight:"100vh",background:T.bg}}/>;
+  if(!mounted)return<div style={{minHeight:"100vh", overflowX:"hidden", maxWidth:"100vw",background:T.bg}}/>;
 
   const TABS=[
     {id:"home",icon:"🏠",label:"Home"},{id:"search",icon:"🔍",label:"Properties"},
@@ -694,8 +694,10 @@ export default function PropComparePage(){
   return(
     <>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"/>
-      <div suppressHydrationWarning style={{minHeight:"100vh",background:T.bg,color:T.text,fontFamily:"'Plus Jakarta Sans',sans-serif"}}>
+      <div suppressHydrationWarning style={{minHeight:"100vh", overflowX:"hidden", maxWidth:"100vw",background:T.bg,color:T.text,fontFamily:"'Plus Jakarta Sans',sans-serif"}}>
         <style suppressHydrationWarning>{`
+        @media(max-width:768px){.prop-hero-grid{grid-template-columns:1fr!important;} .prop-tabs{overflow-x:auto!important;white-space:nowrap!important;} select,input{max-width:100%!important;}}
+        
           *{box-sizing:border-box}
           ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:rgba(59,130,246,0.3);border-radius:10px}
           @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}

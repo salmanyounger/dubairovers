@@ -72,7 +72,7 @@ export default function SalmanFXPage() {
     ctx.stroke();
   }, [mounted]);
 
-  if (!mounted) return <div style={{ minHeight:"100vh", background:"#060A0D" }}/>;
+  if (!mounted) return <div style={{ minHeight:"100vh", overflowX:"hidden", background:"#060A0D" }}/>;
 
   const T = {
     bg:"#060A0D", card:"rgba(255,255,255,0.04)", border:"rgba(255,255,255,0.07)",
@@ -83,7 +83,7 @@ export default function SalmanFXPage() {
   return (
     <>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"/>
-      <div suppressHydrationWarning style={{ minHeight:"100vh", background:T.bg, color:T.text, fontFamily:"'Plus Jakarta Sans',sans-serif" }}>
+      <div suppressHydrationWarning style={{ minHeight:"100vh", overflowX:"hidden", background:T.bg, color:T.text, fontFamily:"'Plus Jakarta Sans',sans-serif" }}>
         <style suppressHydrationWarning>{`
           *{box-sizing:border-box}
           ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:rgba(16,185,129,0.3);border-radius:10px}
@@ -217,7 +217,7 @@ export default function SalmanFXPage() {
                 ))}
               </div>
               <div style={{ fontSize:16, fontWeight:800, marginBottom:16 }}>🔄 How to Get Started</div>
-              <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:12 }}>
+              <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))", gap:12 }}>
                 {[["01","Purchase & License","Buy via WhatsApp. I generate your license key tied to your MT4/MT5 account number within 2 hours."],
                   ["02","Install & Activate","Attach .ex4/.ex5 to your chart. Enter license key in EA inputs. Done in 5 minutes."],
                   ["03","Set Parameters","Choose lot size, risk %, pair and timeframe. I provide recommended settings for each pair."],

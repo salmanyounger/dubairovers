@@ -55,7 +55,7 @@ export default function WebBuilderPage() {
 
   useEffect(() => { setMounted(true); }, []);
 
-  if (!mounted) return <div style={{ minHeight:"100vh", background:"#0A060F" }}/>;
+  if (!mounted) return <div style={{ minHeight:"100vh", overflowX:"hidden", background:"#0A060F" }}/>;
 
   const T = {
     bg:"#0A060F", card:"rgba(255,255,255,0.04)", border:"rgba(255,255,255,0.07)",
@@ -66,7 +66,7 @@ export default function WebBuilderPage() {
   return (
     <>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"/>
-      <div suppressHydrationWarning style={{ minHeight:"100vh", background:T.bg, color:T.text, fontFamily:"'Plus Jakarta Sans',sans-serif" }}>
+      <div suppressHydrationWarning style={{ minHeight:"100vh", overflowX:"hidden", background:T.bg, color:T.text, fontFamily:"'Plus Jakarta Sans',sans-serif" }}>
         <style suppressHydrationWarning>{`
           *{box-sizing:border-box}
           @media(max-width:768px){

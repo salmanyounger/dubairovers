@@ -917,7 +917,7 @@ export default function ArchaiPage() {
             <a href="/archai/blog" style={{padding:"5px 13px",borderRadius:6,border:"1px solid rgba(200,169,110,0.35)",background:"rgba(200,169,110,0.08)",color:"#C8A96E",fontSize:12,fontWeight:700,textDecoration:"none",fontFamily:"Outfit,sans-serif"}}>📝 Blog</a>
           </div>
           <div style={{display:'flex',alignItems:'center',gap:10}}>
-            <Link href="/tours" style={{fontSize:12,color:'var(--muted)',textDecoration:'none',padding:'8px 14px',border:'1px solid rgba(255,255,255,0.08)',borderRadius:20}}>← Dubai Rovers</Link>
+            <Link href="/" style={{fontSize:12,color:"var(--muted)",textDecoration:"none",padding:"8px 14px",border:"1px solid rgba(255,255,255,0.08)",borderRadius:20}}>← Dubai Rovers</Link>
             <button className="nav-cta" onClick={() => goPage('config')}>Start Free →</button>
           </div>
         </nav>
