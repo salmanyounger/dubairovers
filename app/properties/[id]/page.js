@@ -37,16 +37,22 @@ export default function PropertyDetail() {
     bg:"#080810", card:"rgba(255,255,255,0.04)", border:"rgba(255,255,255,0.08)",
     text:"#F1F5F9", sub:"rgba(255,255,255,0.45)", gold:"#F59E0B", blue:"#6366F1", green:"#10B981"
   };
-  const B = (ex={}) => ({ background:T.card, border:"1px solid "+T.border, borderRadius:14, padding:"18px 20px", ...ex });
+  const B = (ex={}) => ({ background:T.card, border:`1px solid ${T.border}`, borderRadius:14, padding:"18px 20px", ...ex });
 
   const images = [prop.image, prop.image+"&sat=-20", prop.image+"&sat=20", prop.image+"&brightness=90"];
 
   return (
     <div style={{ minHeight:"100vh", background:T.bg, color:T.text, fontFamily:"'Inter',sans-serif" }}>
-      <style suppressHydrationWarning>{`*{box-sizing:border-box;} ::-webkit-scrollbar{width:5px} ::-webkit-scrollbar-thumb{background:rgba(99,102,241,0.3);border-radius:10px} .prop-tab:hover{background:rgba(255,255,255,0.06)!important} .near-item:hover{background:rgba(99,102,241,0.08)!important;transform:translateX(3px)} @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}} .fade{animation:fadeUp 0.4s ease}`}</style>
+      <style suppressHydrationWarning>{`
+        *{box-sizing:border-box;} ::-webkit-scrollbar{width:5px} ::-webkit-scrollbar-thumb{background:rgba(99,102,241,0.3);border-radius:10px}
+        .prop-tab:hover{background:rgba(255,255,255,0.06)!important}
+        .near-item:hover{background:rgba(99,102,241,0.08)!important;transform:translateX(3px)}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+        .fade{animation:fadeUp 0.4s ease}
+      `}</style>
 
       {/* Breadcrumb */}
-      <div style={{ background:"rgba(0,0,0,0.4)", borderBottom:"1px solid ${T.border}", padding:"12px 24px" }}>
+      <div style={{ background:"rgba(0,0,0,0.4)", borderBottom:`1px solid ${T.border}`, padding:"12px 24px" }}>
         <div style={{ maxWidth:1200, margin:"0 auto", display:"flex", alignItems:"center", gap:8, fontSize:13, color:T.sub }}>
           <Link href="/properties" style={{ color:T.blue, textDecoration:"none" }}>Properties</Link>
           <span>›</span><span style={{ color:T.text }}>{prop.name}</span>
@@ -75,7 +81,7 @@ export default function PropertyDetail() {
             </div>
 
             {/* Tabs */}
-            <div style={{ display:"flex", gap:4, marginBottom:20, background:T.card, border:"1px solid "+T.border, borderRadius:12, padding:4 }}>
+            <div style={{ display:"flex", gap:4, marginBottom:20, background:T.card, border:`1px solid ${T.border}`, borderRadius:12, padding:4 }}>
               {["overview","units","amenities","nearby","roi"].map(t=>(
                 <button key={t} onClick={()=>setTab(t)} className="prop-tab"
                   style={{ flex:1, padding:"8px", borderRadius:9, border:"none", background:tab===t?"#6366F1":"transparent", color:tab===t?"#fff":T.sub, fontSize:12, fontWeight:tab===t?700:400, cursor:"pointer", fontFamily:"Inter,sans-serif", textTransform:"capitalize", transition:"all 0.18s" }}>
@@ -109,10 +115,10 @@ export default function PropertyDetail() {
                     <div style={{ fontSize:15, fontWeight:700, marginBottom:12 }}>✅ Pros & ⚠️ Cons</div>
                     <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:14 }}>
                       <div>
-                        {prop.pros?.map((p,i)=><div key={i} style={{ display:"flex", gap:8, padding:"6px 0", fontSize:13, color:T.sub, borderBottom:i<prop.pros.length-1?"1px solid ${T.border}":"none" }}><span style={{ color:T.green }}>✓</span>{p}</div>)}
+                        {prop.pros?.map((p,i)=><div key={i} style={{ display:"flex", gap:8, padding:"6px 0", fontSize:13, color:T.sub, borderBottom:i<prop.pros.length-1?`1px solid ${T.border}`:"none" }}><span style={{ color:T.green }}>✓</span>{p}</div>)}
                       </div>
                       <div>
-                        {prop.cons?.map((c,i)=><div key={i} style={{ display:"flex", gap:8, padding:"6px 0", fontSize:13, color:T.sub, borderBottom:i<prop.cons.length-1?"1px solid ${T.border}":"none" }}><span style={{ color:"#EF4444" }}>✗</span>{c}</div>)}
+                        {prop.cons?.map((c,i)=><div key={i} style={{ display:"flex", gap:8, padding:"6px 0", fontSize:13, color:T.sub, borderBottom:i<prop.cons.length-1?`1px solid ${T.border}`:"none" }}><span style={{ color:"#EF4444" }}>✗</span>{c}</div>)}
                       </div>
                     </div>
                   </div>
@@ -143,7 +149,7 @@ export default function PropertyDetail() {
                   <div style={{ fontSize:15, fontWeight:700, marginBottom:14 }}>Building Amenities</div>
                   <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:10 }}>
                     {prop.amenities?.map((a,i)=>(
-                      <div key={i} style={{ background:"rgba(99,102,241,0.08)", border:"1px solid rgba(99,102,241,0.2)", borderRadius:10, padding:"10px 14px", fontSize:13, color:T.text }}>
+                      <div key={i} style={{ background:"rgba(99,102,241,0.08)", border:`1px solid rgba(99,102,241,0.2)`, borderRadius:10, padding:"10px 14px", fontSize:13, color:T.text }}>
                         ✨ {a}
                       </div>
                     ))}
@@ -155,7 +161,7 @@ export default function PropertyDetail() {
                 <div style={{ ...B() }}>
                   <div style={{ fontSize:15, fontWeight:700, marginBottom:14 }}>📍 Nearby Places</div>
                   {prop.nearbyPlaces?.map((place,i)=>(
-                    <div key={i} className="near-item" style={{ display:"flex", justifyContent:"space-between", alignItems:"center", padding:"10px 8px", borderRadius:8, borderBottom:i<prop.nearbyPlaces.length-1?"1px solid ${T.border}":"none", transition:"all 0.18s", cursor:"default" }}>
+                    <div key={i} className="near-item" style={{ display:"flex", justifyContent:"space-between", alignItems:"center", padding:"10px 8px", borderRadius:8, borderBottom:i<prop.nearbyPlaces.length-1?`1px solid ${T.border}`:"none", transition:"all 0.18s", cursor:"default" }}>
                       <div style={{ display:"flex", alignItems:"center", gap:10 }}>
                         <span style={{ fontSize:20 }}>{ICONS[place.type]||"📍"}</span>
                         <div>
@@ -163,7 +169,7 @@ export default function PropertyDetail() {
                           <div style={{ fontSize:11, color:T.sub, textTransform:"capitalize" }}>{place.type}</div>
                         </div>
                       </div>
-                      <div style={{ background:"rgba(99,102,241,0.15)", border:"1px solid rgba(99,102,241,0.3)", borderRadius:20, padding:"3px 10px", fontSize:12, fontWeight:700, color:"#818CF8" }}>{place.dist} km</div>
+                      <div style={{ background:`rgba(99,102,241,0.15)`, border:`1px solid rgba(99,102,241,0.3)`, borderRadius:20, padding:"3px 10px", fontSize:12, fontWeight:700, color:"#818CF8" }}>{place.dist} km</div>
                     </div>
                   ))}
                 </div>
@@ -194,7 +200,7 @@ export default function PropertyDetail() {
                         return (
                           <div key={h.year} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:4 }}>
                             <div style={{ fontSize:10, color:T.gold, fontWeight:700 }}>{ h.pricePerSqft.toLocaleString()}</div>
-                            <div style={{ width:"100%", height:pct+"%", background:"linear-gradient(to top, #6366F1, #818CF8)", borderRadius:"4px 4px 0 0", minHeight:8 }}/>
+                            <div style={{ width:"100%", height:pct+"%", background:`linear-gradient(to top, #6366F1, #818CF8)`, borderRadius:"4px 4px 0 0", minHeight:8 }}/>
                             <div style={{ fontSize:9, color:T.sub }}>{h.year}</div>
                           </div>
                         );
@@ -221,7 +227,7 @@ export default function PropertyDetail() {
                     { label:"Service Charge", val:"AED "+prop.serviceCharge+"/sqft", color:T.sub },
                     { label:"10yr ROI", val:prop.roi10yr+"%", color:T.gold },
                   ].map(s=>(
-                    <div key={s.label} style={{ background:"rgba(255,255,255,0.03)", border:"1px solid "+T.border, borderRadius:8, padding:"10px 12px" }}>
+                    <div key={s.label} style={{ background:"rgba(255,255,255,0.03)", border:`1px solid ${T.border}`, borderRadius:8, padding:"10px 12px" }}>
                       <div style={{ fontSize:10, color:T.sub }}>{s.label}</div>
                       <div style={{ fontSize:14, fontWeight:700, color:s.color }}>{s.val}</div>
                     </div>
@@ -233,14 +239,14 @@ export default function PropertyDetail() {
                   💬 WhatsApp Salman Ali
                 </a>
                 <a href="tel:+971544735060"
-                  style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:8, width:"100%", padding:"11px", background:"rgba(99,102,241,0.15)", border:"1px solid rgba(99,102,241,0.3)", borderRadius:12, color:"#818CF8", fontSize:14, fontWeight:700, textDecoration:"none", cursor:"pointer" }}>
+                  style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:8, width:"100%", padding:"11px", background:"rgba(99,102,241,0.15)", border:`1px solid rgba(99,102,241,0.3)`, borderRadius:12, color:"#818CF8", fontSize:14, fontWeight:700, textDecoration:"none", cursor:"pointer" }}>
                   📞 Call +971 544 735 060
                 </a>
               </div>
 
               <div style={{ ...B() }}>
                 <div style={{ fontSize:13, fontWeight:700, marginBottom:10 }}>🧮 Quick Calculators</div>
-                <Link href="/properties/calculator" style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 0", textDecoration:"none", borderBottom:"1px solid ${T.border}" }}>
+                <Link href="/properties/calculator" style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 0", textDecoration:"none", borderBottom:`1px solid ${T.border}` }}>
                   <span style={{ fontSize:20 }}>🏦</span>
                   <div>
                     <div style={{ fontSize:13, fontWeight:600, color:T.text }}>Mortgage Calculator</div>
@@ -262,6 +268,5 @@ export default function PropertyDetail() {
         </div>
       </div>
     </div>
-    </>
   );
 }
