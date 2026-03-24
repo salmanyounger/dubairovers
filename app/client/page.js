@@ -126,7 +126,7 @@ export default function ClientPortal() {
         <Link href="/" style={{ fontFamily:"'Playfair Display',serif", fontSize:20, color:"#F59E0B", fontWeight:700, textDecoration:"none" }}>🏜️ Dubai Rovers</Link>
         <div style={{ display:"flex", gap:12, alignItems:"center" }}>
           {client && <button onClick={logout} style={{ padding:"7px 14px", background:"rgba(239,68,68,0.1)", border:"1px solid rgba(239,68,68,0.2)", borderRadius:8, color:"#EF4444", cursor:"pointer", fontSize:13, fontFamily:"'Outfit',sans-serif" }}>🚪 {getText(t.nav.login,lang) === "My Account" ? "Logout" : "خروج"}</button>}
-          <Link href="/booking" style={{ padding:"8px 16px", background:"linear-gradient(135deg,#F59E0B,#D97706)", borderRadius:8, color:"#000", fontWeight:700, fontSize:13, textDecoration:"none" }}>{getText(t.nav.bookNow, lang)}</Link>
+          <Link href="/booking" style={{ padding:"8px 16px", background:"linear-gradient(135deg,#F59E0B,#D97706)", borderRadius:8, color:"#000", fontWeight:700, fontSize:13, textDecoration:"none" }}>{getText(t.nav?.bookNow, lang)}</Link>
         </div>
       </nav>
 
