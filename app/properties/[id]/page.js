@@ -25,6 +25,7 @@ export default function PropertyDetail() {
         <Link href="/properties" style={{ color:"#6366F1", textDecoration:"none" }}>← Back to Properties</Link>
       </div>
     </div>
+    </>
   );
 
   const unit = Object.values(prop.units)[0];
