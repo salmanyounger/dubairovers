@@ -288,7 +288,7 @@ export default function WebBuilderPage() {
                 ))}
               </div>
               <div style={{ marginTop:18, background:"rgba(139,92,246,0.07)", border:"1px solid rgba(139,92,246,0.18)", borderRadius:11, padding:"14px 18px", fontSize:12, color:"rgba(139,92,246,0.8)" }}>
-                💡 All prices are estimates. Final price depends on specific requirements. WhatsApp me for a free custom quote — I respond within 1 hour.
+                <span>💡</span> All prices are estimates. Final price depends on specific requirements. WhatsApp me for a free custom quote. I respond within 1 hour.
               </div>
             </div>
           )}
