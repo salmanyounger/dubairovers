@@ -1,5 +1,6 @@
 import "./globals.css";
 import NavbarWrapper from "./components/NavbarWrapper";
+import MobileAppNav from "./components/MobileAppNav";
 import NavigationCleanup from "./components/NavigationCleanup";
 
 export const metadata = {
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
         <NavigationCleanup />
         <NavbarWrapper />
         {children}
+        <MobileAppNav />
       </body>
     </html>
   );

@@ -526,7 +526,7 @@ function HomeTab({onTabChange,onOpen}){
   return(
     <div>
       <div style={{background:"linear-gradient(135deg,rgba(59,130,246,0.1) 0%,rgba(99,102,241,0.07) 60%,transparent 100%)",borderBottom:`1px solid ${T.border}`,padding:"48px 24px 40px"}}>
-        <div style={{maxWidth:1200,margin:"0 auto",display:"grid",gridTemplateColumns:"minmax(0,1fr) minmax(0,340px)",gap:32,alignItems:"center"}}>
+        <div className="prop-hero-grid" style={{maxWidth:1200,margin:"0 auto",display:"grid",gridTemplateColumns:"minmax(0,1fr) minmax(0,340px)",gap:32,alignItems:"center"}}>
           <div>
             <div style={{display:"flex",gap:7,marginBottom:20,flexWrap:"wrap"}}>
               {[["DUBAI","Dubai"],["ABU DHABI","Abu Dhabi"],["SHARJAH","Sharjah"],["RAK","Ras Al Khaimah"]].map(([label,val])=>(
@@ -549,7 +549,7 @@ function HomeTab({onTabChange,onOpen}){
             </div>
           </div>
           <div style={{background:"rgba(255,255,255,0.05)",border:`1px solid rgba(255,255,255,0.12)`,borderRadius:20,padding:"22px 20px",backdropFilter:"blur(20px)"}}>
-            <div className="prop-quick-search-inner" style={{fontSize:14,fontWeight:800,color:"#fff",marginBottom:14}}>🔍 Quick Search</div>
+            <div style={{fontSize:14,fontWeight:800,color:"#fff",marginBottom:14}}>🔍 Quick Search</div>
             {[["Emirate",em,setEm,["Dubai","Abu Dhabi","Sharjah","Ras Al Khaimah","Ajman"]],
               ["Budget","",()=>{},[" Any budget","Under AED 500K","AED 500K – 1M","AED 1M – 2M","AED 2M – 5M","AED 5M+"]],
               ["Type","",()=>{},["Any type","Studio","1 Bedroom","2 Bedroom","3 Bedroom"]]].map(([l,v,set,opts])=>(
@@ -696,13 +696,7 @@ export default function PropComparePage(){
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"/>
       <div suppressHydrationWarning style={{minHeight:"100vh", overflowX:"hidden", maxWidth:"100vw",background:T.bg,color:T.text,fontFamily:"'Plus Jakarta Sans',sans-serif"}}>
         <style suppressHydrationWarning>{`
-        @media(max-width:768px){
-          .prop-hero-grid{grid-template-columns:1fr!important; gap:16px!important;}
-          .prop-tabs{overflow-x:auto!important;white-space:nowrap!important;-webkit-overflow-scrolling:touch!important;}
-          select,input{max-width:100%!important;}
-          .prop-quick-search{position:relative!important;margin-top:16px!important;width:100%!important;}
-          .prop-hero-text{padding-right:0!important;}
-        }
+        @media(max-width:768px){.prop-hero-grid{grid-template-columns:1fr!important;} .prop-tabs{overflow-x:auto!important;white-space:nowrap!important;} select,input{max-width:100%!important;}}
         
           *{box-sizing:border-box}
           ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:rgba(59,130,246,0.3);border-radius:10px}
