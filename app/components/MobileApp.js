@@ -160,13 +160,13 @@ function SiteDubaiRovers({ onBack }) {
         <div style={{ position:"relative" }}>
           <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:12, marginBottom:12 }}>
             <div style={{ height:1, width:40, background:`linear-gradient(to right,transparent,${G})` }}/>
-            <span style={{ fontSize:10, color:G, letterSpacing:"3px", textTransform:"uppercase" }}>DUBAI & THE UAE</span>
+            <span style={{ fontSize:10, color:G, letterSpacing:"3px", textTransform:"uppercase" }}>DUBAI {"&"} THE UAE</span>
             <div style={{ height:1, width:40, background:`linear-gradient(to left,transparent,${G})` }}/>
           </div>
           <h1 className="rv-serif" style={{ fontSize:"clamp(28px,8vw,42px)", lineHeight:1.15, marginBottom:12 }}>
-            Explore Dubai<br/><em style={{ color:G }}>& The UAE</em>
+            Explore Dubai<br/><em style={{color:G}}>and The UAE</em>
           </h1>
-          <p style={{ fontSize:13, color:"rgba(255,255,255,0.5)", marginBottom:20 }}>Luxury desert safaris, cruises & curated experiences</p>
+          <p style={{ fontSize:13, color:"rgba(255,255,255,0.5)", marginBottom:20 }}>Luxury desert safaris, cruises and curated experiences</p>
           <div style={{ display:"flex", gap:10, justifyContent:"center" }}>
             <a href="/tours" style={{ padding:"12px 24px", background:`linear-gradient(135deg,${G},#b8922a)`, borderRadius:6, color:"#000", fontWeight:700, fontSize:13, textDecoration:"none" }}>View All Tours</a>
             <button onClick={() => setShowBook(true)} style={{ padding:"12px 20px", background:"transparent", border:`1px solid ${G}`, borderRadius:6, color:G, fontWeight:700, fontSize:13, cursor:"pointer", fontFamily:"inherit" }}>Book Now</button>
@@ -187,7 +187,7 @@ function SiteDubaiRovers({ onBack }) {
 
       {/* TOURS */}
       <div style={{ padding:"20px 16px", display:"flex", flexDirection:"column", gap:14 }} id="rv-tours">
-        <SecHead label="THIS SEASON&apos;S TOURS" />
+        <SecHead label="THIS SEASONS TOURS" />
         {/* Featured first */}
         {filtered.slice(0,1).map(t => (
           <div key={t.id} className="rv-card" onClick={() => { setOpenTour(t); setTourTab("OVERVIEW"); }}
@@ -493,7 +493,7 @@ function SitePropCompare({ onBack }) {
         <h1 style={{ fontSize:"clamp(24px,7vw,36px)", fontWeight:900, lineHeight:1.15, marginBottom:10 }}>
           Find Your Perfect<br/><span style={{ color:G }}>Property in UAE</span>
         </h1>
-        <p style={{ fontSize:13, color:"rgba(255,255,255,0.5)", marginBottom:20 }}>30+ curated properties with AI scoring, mortgage tools & ROI analysis</p>
+        <p style={{ fontSize:13, color:"rgba(255,255,255,0.5)", marginBottom:20 }}>30+ curated properties with AI scoring, mortgage tools and ROI analysis</p>
         <a href="/properties" style={{ padding:"12px 24px", background:`linear-gradient(135deg,${G},#b8922a)`, borderRadius:8, color:"#000", fontWeight:700, fontSize:13, textDecoration:"none", display:"inline-block" }}>Explore Properties →</a>
       </div>
 
@@ -652,7 +652,7 @@ function SiteARCHAI({ onBack }) {
           <h1 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(28px,8vw,40px)", fontStyle:"italic", color:"#fff", lineHeight:1.2, marginBottom:16 }}>
             Design Your Dream Villa
           </h1>
-          <p style={{ fontSize:13, color:"rgba(255,255,255,0.5)", marginBottom:20, lineHeight:1.6 }}>Generate AI architectural prompts, floor plans & cost estimates in minutes</p>
+          <p style={{ fontSize:13, color:"rgba(255,255,255,0.5)", marginBottom:20, lineHeight:1.6 }}>Generate AI architectural prompts, floor plans and cost estimates in minutes</p>
           <div style={{ display:"flex", gap:10 }}>
             <button onClick={() => setStep(1)} style={{ padding:"12px 24px", background:G, border:"none", borderRadius:3, color:"#000", fontWeight:800, fontSize:13, cursor:"pointer", fontFamily:"inherit" }}>Start Design →</button>
             <a href="/archai" style={{ padding:"12px 20px", background:"transparent", border:"1px solid rgba(255,255,255,0.3)", borderRadius:3, color:"rgba(255,255,255,0.8)", fontSize:13, textDecoration:"none" }}>Full App</a>
@@ -935,11 +935,11 @@ function SiteSalmanFX({ onBack }) {
 
       {/* HERO */}
       <div style={{ padding:"28px 18px", position:"relative", zIndex:1 }}>
-        <div style={{ fontSize:11, color:"rgba(0,255,65,0.5)", marginBottom:8 }}>C:\SALMANFX&gt; automate_trading.exe</div>
+        <div style={{ fontSize:11, color:"rgba(0,255,65,0.5)", marginBottom:8 }}>C:\SALMANFX{">"} automate_trading.exe</div>
         <h1 style={{ fontSize:"clamp(22px,7vw,32px)", fontWeight:700, lineHeight:1.2, marginBottom:8, textShadow:`0 0 20px ${G}` }}>
           AUTOMATE YOUR<br/>FOREX
         </h1>
-        <div style={{ fontSize:11, color:"rgba(0,255,65,0.6)", marginBottom:20 }}>&gt; Parabolic SAR · MM FLIP CODEPRO · License Keys · MT4/MT5</div>
+        <div style={{ fontSize:11, color:"rgba(0,255,65,0.6)", marginBottom:20 }}>{"> "}Parabolic SAR · MM FLIP CODEPRO · License Keys · MT4/MT5</div>
         <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:8, marginBottom:20 }}>
           {[["67%","AVG WIN RATE"],["18.4%","BEST MONTH"],["2,400+","TOTAL TRADES"]].map(([v,l]) => (
             <div key={l} style={{ background:"rgba(0,255,65,0.04)", border:"1px solid #003010", padding:"12px 8px", textAlign:"center" }}>
@@ -1081,7 +1081,7 @@ function SiteWebBuilder({ onBack }) {
           <h1 style={{ fontSize:"clamp(32px,9vw,52px)", fontWeight:900, lineHeight:1.0, letterSpacing:"-2px", marginBottom:16 }}>
             YOUR NEXT<br/><span style={{ color:G }}>WEBSITE.</span>
           </h1>
-          <p style={{ fontSize:14, color:"rgba(255,255,255,0.5)", marginBottom:24, lineHeight:1.7 }}>I build custom tourism, restaurant, real estate websites using React & Next.js. Dubai-based, WhatsApp-first.</p>
+          <p style={{ fontSize:14, color:"rgba(255,255,255,0.5)", marginBottom:24, lineHeight:1.7 }}>I build custom tourism, restaurant, real estate websites using React and Next.js. Dubai-based, WhatsApp-first.</p>
           <div style={{ display:"flex", gap:10 }}>
             <a href="https://wa.me/971544735060?text=Hi Salman! I want a website for my business" target="_blank" rel="noopener noreferrer"
               style={{ flex:1, padding:"14px", background:G, border:"none", borderRadius:2, color:"#000", fontWeight:800, fontSize:14, textDecoration:"none", textAlign:"center" }}>💬 Get a Quote</a>
@@ -1247,7 +1247,7 @@ function SiteAlNoor({ onBack }) {
         <div style={{ fontSize:12, color:G, letterSpacing:"2px", marginBottom:8 }}>❖ ✦ ❖</div>
         <div style={{ fontFamily:"'Amiri',serif", fontSize:32, color:G, direction:"rtl", marginBottom:4, lineHeight:1.4 }}>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
         <div style={{ fontSize:11, fontStyle:"italic", color:"rgba(255,255,255,0.35)", marginBottom:16 }}>Bismillahir Rahmanir Raheem</div>
-        <p style={{ fontSize:13, color:"rgba(255,255,255,0.5)", lineHeight:1.6 }}>Your complete Islamic companion — Prayer times, Quran, Dhikr & Duas</p>
+        <p style={{ fontSize:13, color:"rgba(255,255,255,0.5)", lineHeight:1.6 }}>Your complete Islamic companion — Prayer times, Quran, Dhikr and Duas</p>
       </div>
 
       {/* BOTTOM TABS */}
