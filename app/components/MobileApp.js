@@ -85,15 +85,29 @@ function WABtn({ msg = "Hi! I found your website and want to know more." }) {
   );
 }
 
+function SecHead({label, color="#c9a84c"}) {
+  const rgb = color === "#c9a84c" ? "201,168,76" : color === "#ff6b35" ? "255,107,53" : "201,168,76";
+  return (
+    <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:18}}>
+      <div style={{flex:1,height:1,background:`linear-gradient(90deg,rgba(${rgb},.3),transparent)`}}/>
+      <div style={{fontSize:8,letterSpacing:3,fontWeight:700,color,whiteSpace:"nowrap"}}>{label}</div>
+      <div style={{flex:1,height:1,background:`linear-gradient(90deg,transparent,rgba(${rgb},.3))`}}/>
+    </div>
+  );
+}
+
 // ══════════════════════════════════════════════════════════════════
 // SITE 1: DUBAIROVERS
 // ══════════════════════════════════════════════════════════════════
 function SiteDubaiRovers({ onBack }) {
   const [tab, setTab] = useState("ALL TOURS");
+  const [shown, setShown] = useState(6);
   const [openTour, setOpenTour] = useState(null);
   const [tourTab, setTourTab] = useState("OVERVIEW");
+  const [menuOpen, setMenuOpen] = useState(false);
   const [guests, setGuests] = useState(2);
   const [selTour, setSelTour] = useState(TOURS[0]);
+  const [occ, setOcc] = useState("NONE");
   const [showBook, setShowBook] = useState(false);
   const [booked, setBooked] = useState(false);
   const cats = ["ALL TOURS","DESERT","CRUISE","CITY","ADVENTURE","ABU DHABI","NIGHT","VIP"];
@@ -111,6 +125,19 @@ function SiteDubaiRovers({ onBack }) {
         .rv-tab.act { border-bottom:2px solid ${G}; color:${G}; }
       `}</style>
 
+      {/* HAMBURGER MENU OVERLAY */}
+      {menuOpen && (
+        <div onClick={()=>setMenuOpen(false)} style={{position:"fixed",inset:0,zIndex:500,background:"rgba(13,8,4,.97)",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:4,animation:"fadeIn .3s ease"}}>
+          <span onClick={e=>{e.stopPropagation();setMenuOpen(false);}} style={{position:"absolute",top:18,right:20,fontSize:22,color:"#8a7040",cursor:"pointer"}}>✕</span>
+          {[["Tours","tours"],["Book Now","book"],["Blog","blog"],["Contact","contact"]].map(([l,h])=>(
+            <a key={l} href={"#rv-"+h} onClick={()=>setMenuOpen(false)}
+              style={{fontSize:20,fontWeight:700,textDecoration:"none",padding:"10px 26px",color:"#8a7040",fontFamily:"'Playfair Display',serif",fontStyle:"italic",letterSpacing:2,display:"block"}}>
+              {l}
+            </a>
+          ))}
+        </div>
+      )}
+
       {/* NAV */}
       <nav style={{ position:"sticky", top:0, zIndex:100, background:"rgba(13,8,4,0.97)", backdropFilter:"blur(20px)", borderBottom:`1px solid rgba(201,168,76,0.15)`, padding:"14px 18px", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
         <div>
@@ -118,7 +145,12 @@ function SiteDubaiRovers({ onBack }) {
           <div className="rv-serif" style={{ fontSize:20, fontStyle:"italic", color:G, lineHeight:1 }}>DubaiRovers</div>
         </div>
         <div style={{ display:"flex", gap:10, alignItems:"center" }}>
-          <button onClick={onBack} style={{ padding:"6px 14px", background:"transparent", border:`1px solid rgba(201,168,76,0.3)`, borderRadius:20, color:"rgba(201,168,76,0.7)", fontSize:11, cursor:"pointer", fontFamily:"inherit" }}>← Back</button>
+          <button onClick={onBack} style={{ padding:"6px 10px", background:"transparent", border:`1px solid rgba(201,168,76,0.2)`, borderRadius:4, color:"#8a7040", fontSize:9, cursor:"pointer", fontFamily:"inherit", fontWeight:700, letterSpacing:2 }}>← BACK</button>
+          <div onClick={()=>setMenuOpen(true)} style={{width:34,height:34,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:5,cursor:"pointer"}}>
+            <span style={{display:"block",width:20,height:1,background:"#c9a84c"}}/>
+            <span style={{display:"block",width:20,height:1,background:"#c9a84c"}}/>
+            <span style={{display:"block",width:20,height:1,background:"#c9a84c"}}/>
+          </div>
         </div>
       </nav>
 
@@ -154,7 +186,8 @@ function SiteDubaiRovers({ onBack }) {
       </div>
 
       {/* TOURS */}
-      <div style={{ padding:"20px 16px", display:"flex", flexDirection:"column", gap:14 }}>
+      <div style={{ padding:"20px 16px", display:"flex", flexDirection:"column", gap:14 }} id="rv-tours">
+        <SecHead label="THIS SEASON&apos;S TOURS" />
         {/* Featured first */}
         {filtered.slice(0,1).map(t => (
           <div key={t.id} className="rv-card" onClick={() => { setOpenTour(t); setTourTab("OVERVIEW"); }}
@@ -197,11 +230,19 @@ function SiteDubaiRovers({ onBack }) {
             </div>
           ))}
         </div>
+        {shown < TOURS.length && (
+          <div style={{textAlign:"center",marginTop:16}}>
+            <button onClick={()=>setShown(s=>s+6)}
+              style={{background:"transparent",border:"1px solid rgba(201,168,76,.2)",color:"#c9a84c",padding:"12px 28px",fontSize:9,fontWeight:700,letterSpacing:3,cursor:"pointer",fontFamily:"'Playfair Display',serif",fontStyle:"italic"}}>
+              Load More Tours
+            </button>
+          </div>
+        )}
       </div>
 
       {/* WHY US */}
       <div style={{ padding:"20px 16px" }}>
-        <h2 className="rv-serif" style={{ fontSize:22, marginBottom:16, textAlign:"center" }}>Why <em style={{ color:G }}>Dubai Rovers?</em></h2>
+        <SecHead label="WHY CHOOSE US" />
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
           {[["🛡️","Licensed & Insured"],["💰","Best Price Match"],["🚗","Hotel Pickup"],["✅","Free Cancellation"],["💬","24/7 WhatsApp"],["🌍","10 Languages"]].map(([ic,txt]) => (
             <div key={txt} style={{ background:CARD, border:`1px solid rgba(201,168,76,0.12)`, borderRadius:10, padding:"14px 12px", textAlign:"center" }}>
@@ -212,9 +253,29 @@ function SiteDubaiRovers({ onBack }) {
         </div>
       </div>
 
+      {/* BLOG */}
+      <div style={{ padding:"20px 16px" }} id="rv-blog">
+        <SecHead label="FROM THE BLOG" />
+        {[
+          {e:"🏜️",cat:"DESERT SAFARI",t:"Evening Desert Safari Dubai — The Complete Guide (2026)",d:"Mar 2026",m:9},
+          {e:"🚁",cat:"HELICOPTER",t:"Helicopter Tour Dubai — Prices, Views & Best Time",d:"Mar 2026",m:7},
+          {e:"⛵",cat:"DHOW CRUISE",t:"Dhow Cruise Dubai Marina vs Creek — Which Should You Choose?",d:"Mar 2026",m:6},
+          {e:"🎟️",cat:"ATTRACTIONS",t:"Burj Khalifa At The Top — Ticket Prices & Insider Tips 2026",d:"Feb 2026",m:5},
+        ].map((b,i)=>(
+          <a key={i} href="/blog" style={{display:"flex",gap:12,alignItems:"flex-start",padding:"14px 0",borderBottom:"1px solid rgba(255,255,255,.05)",textDecoration:"none",color:"inherit"}}>
+            <div style={{width:44,height:44,background:"rgba(201,168,76,.08)",border:"1px solid rgba(201,168,76,.12)",borderRadius:5,display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,flexShrink:0}}>{b.e}</div>
+            <div>
+              <div style={{fontSize:7,letterSpacing:2,fontWeight:700,color:"#c9a84c",marginBottom:4}}>{b.cat}</div>
+              <div style={{fontFamily:"'Playfair Display',serif",fontSize:13,fontWeight:700,color:"#f5edd8",lineHeight:1.3,marginBottom:4}}>{b.t}</div>
+              <div style={{fontSize:10,color:"#8a7040"}}>{b.d} · ⏱ {b.m} min read</div>
+            </div>
+          </a>
+        ))}
+      </div>
+
       {/* REVIEWS */}
       <div style={{ padding:"20px 16px" }}>
-        <h2 className="rv-serif" style={{ fontSize:22, marginBottom:16, textAlign:"center" }}>Guest <em style={{ color:G }}>Stories</em></h2>
+        <SecHead label="GUEST STORIES" />
         {[
           { name:"Sarah J.", country:"🇬🇧", text:"Absolutely breathtaking! The desert safari was unlike anything I have ever experienced. Professional guides and magical evening.", stars:5 },
           { name:"Ahmed M.", country:"🇦🇪", text:"تجربة لا تُنسى! السفاري كانت رائعة والموظفون محترفون جداً. أنصح بها بشدة لكل زائر.", stars:5 },
@@ -237,7 +298,7 @@ function SiteDubaiRovers({ onBack }) {
 
       {/* CONTACT */}
       <div style={{ padding:"20px 16px" }}>
-        <h2 className="rv-serif" style={{ fontSize:22, marginBottom:16, textAlign:"center" }}>Get In <em style={{ color:G }}>Touch</em></h2>
+        <SecHead label="GET IN TOUCH" />
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
           {[["💬","WhatsApp","Chat instantly"],["📧","Email","info@dubairovers.com"],["📍","Location","Dubai, UAE 🇦🇪"],["⏰","Hours","Daily 8AM–10PM"]].map(([ic,title,sub]) => (
             <div key={title} style={{ background:CARD, border:`1px solid rgba(201,168,76,0.12)`, borderRadius:10, padding:"14px 12px", textAlign:"center" }}>
@@ -350,6 +411,17 @@ function SiteDubaiRovers({ onBack }) {
               <input placeholder="Your Full Name" style={{ width:"100%", padding:"12px", background:CARD, border:`1px solid rgba(201,168,76,0.2)`, borderRadius:8, color:"#fff", fontSize:13 }}/>
               <input placeholder="WhatsApp Number" style={{ width:"100%", padding:"12px", background:CARD, border:`1px solid rgba(201,168,76,0.2)`, borderRadius:8, color:"#fff", fontSize:13 }}/>
               <input placeholder="Hotel / Pickup Location" style={{ width:"100%", padding:"12px", background:CARD, border:`1px solid rgba(201,168,76,0.2)`, borderRadius:8, color:"#fff", fontSize:13 }}/>
+              <div>
+                <div style={{fontSize:8,fontWeight:700,letterSpacing:2,color:"#8a7040",marginBottom:8}}>OCCASION</div>
+                <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
+                  {["NONE","🎂 BIRTHDAY","💍 ANNIVERSARY","🍯 HONEYMOON"].map(o=>(
+                    <div key={o} onClick={()=>setOcc(o)}
+                      style={{padding:"6px 12px",border:`1px solid ${occ===o?"rgba(201,168,76,.4)":"rgba(201,168,76,.15)"}`,fontSize:9,fontWeight:700,color:occ===o?"#c9a84c":"#8a7040",cursor:"pointer",letterSpacing:1,background:occ===o?"rgba(201,168,76,.1)":"transparent",fontStyle:"italic"}}>
+                      {o}
+                    </div>
+                  ))}
+                </div>
+              </div>
               <div style={{ background:`rgba(201,168,76,0.08)`, border:`1px solid rgba(201,168,76,0.25)`, borderRadius:8, padding:"14px 16px", display:"flex", justifyContent:"space-between", alignItems:"center" }}>
                 <span style={{ fontSize:13, color:"rgba(255,255,255,0.6)" }}>Total ({guests} guests)</span>
                 <span className="rv-serif" style={{ fontSize:24, color:G }}>AED {selTour.price * guests}</span>
@@ -960,6 +1032,7 @@ function SiteSalmanFX({ onBack }) {
 // ══════════════════════════════════════════════════════════════════
 function SiteWebBuilder({ onBack }) {
   const [sent, setSent] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const G = "#ff6b35"; BG = "#0a0006";
   const PORTFOLIO = [
     { em:"🏜️", cat:"TOURISM", name:"DubaiRovers.com",    desc:"Full platform with booking, blog, admin panel", link:"/tours" },
@@ -976,10 +1049,26 @@ function SiteWebBuilder({ onBack }) {
 
   return (
     <div style={{ minHeight:"100vh", background:BG, color:"#fff", fontFamily:"'Inter',sans-serif", overflowX:"hidden", paddingBottom:80 }}>
+      {menuOpen && (
+        <div onClick={()=>setMenuOpen(false)} style={{position:"fixed",inset:0,zIndex:500,background:"rgba(10,0,6,.97)",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:4}}>
+          <span onClick={e=>{e.stopPropagation();setMenuOpen(false);}} style={{position:"absolute",top:18,right:20,fontSize:22,color:"#555",cursor:"pointer"}}>✕</span>
+          {["PORTFOLIO","SERVICES","PRICING","CONTACT"].map(l=>(
+            <a key={l} href={"#wb-"+l.toLowerCase()} onClick={()=>setMenuOpen(false)}
+              style={{fontSize:28,fontWeight:900,textDecoration:"none",padding:"10px 26px",color:"#555",letterSpacing:-1,display:"block"}}>{l}</a>
+          ))}
+        </div>
+      )}
       {/* NAV */}
       <nav style={{ position:"sticky", top:0, zIndex:100, background:"rgba(10,0,6,0.97)", backdropFilter:"blur(20px)", borderBottom:`1px solid rgba(255,107,53,0.15)`, padding:"14px 18px", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
         <div style={{ fontSize:18, fontWeight:900, letterSpacing:"-0.5px" }}><span>WEB</span><span style={{ color:G }}>BUILDER</span></div>
-        <button onClick={onBack} style={{ padding:"6px 14px", background:"transparent", border:`1px solid rgba(255,107,53,0.3)`, borderRadius:2, color:"rgba(255,107,53,0.7)", fontSize:11, cursor:"pointer", fontFamily:"inherit", fontWeight:700 }}>← Back</button>
+        <div style={{display:"flex",alignItems:"center",gap:8}}>
+          <button onClick={onBack} style={{ padding:"6px 10px", background:"transparent", border:`1px solid rgba(255,107,53,0.3)`, borderRadius:2, color:"rgba(255,107,53,0.7)", fontSize:9, cursor:"pointer", fontFamily:"inherit", fontWeight:700, letterSpacing:1.5 }}>← BACK</button>
+          <div onClick={()=>setMenuOpen(true)} style={{width:34,height:34,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:5,cursor:"pointer"}}>
+            <span style={{display:"block",width:18,height:1.5,background:"#ff6b35"}}/>
+            <span style={{display:"block",width:18,height:1.5,background:"#ff6b35"}}/>
+            <span style={{display:"block",width:18,height:1.5,background:"#ff6b35"}}/>
+          </div>
+        </div>
       </nav>
 
       {/* HERO */}
@@ -1306,7 +1395,7 @@ function Launcher({ onGo }) {
     <div style={{ minHeight:"100vh", background:"#08070d", color:"#fff", fontFamily:"'Inter',sans-serif", paddingBottom:40 }}>
       <style suppressHydrationWarning>{`
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&display=swap');
-        @keyframes gpulse{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,0.4)}70%{box-shadow:0 0 0 10px rgba(37,211,102,0)}}
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}} @keyframes gpulse{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,0.4)}70%{box-shadow:0 0 0 10px rgba(37,211,102,0)}}
       `}</style>
 
       {/* NAV */}
