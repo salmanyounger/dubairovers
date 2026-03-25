@@ -2,6 +2,8 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+const MobileApp = dynamic(() => import("./components/MobileApp"), { ssr: false });
 
 export default function LandingPage() {
   const [mounted, setMounted]   = useState(false);
@@ -17,7 +19,6 @@ export default function LandingPage() {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
     checkMobile();
     window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
     const tick = () => {
       const d = new Date();
       const offset = d.getTime() + (4 * 60 + d.getTimezoneOffset()) * 60000;
@@ -26,7 +27,7 @@ export default function LandingPage() {
     };
     tick();
     const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
+    return () => { clearInterval(id); window.removeEventListener("resize", checkMobile); };
   }, []);
 
   // Starfield canvas
@@ -187,6 +188,9 @@ export default function LandingPage() {
       size: "small",
     },
   ];
+
+  if (!mounted) return null;
+  if (isMobile) return <MobileApp />;
 
   const large = CARDS.filter(c => c.size === "large");
   const small = CARDS.filter(c => c.size === "small");
