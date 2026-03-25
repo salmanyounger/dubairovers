@@ -526,7 +526,7 @@ function HomeTab({onTabChange,onOpen}){
   return(
     <div>
       <div style={{background:"linear-gradient(135deg,rgba(59,130,246,0.1) 0%,rgba(99,102,241,0.07) 60%,transparent 100%)",borderBottom:`1px solid ${T.border}`,padding:"48px 24px 40px"}}>
-        <div style={{maxWidth:1200,margin:"0 auto",display:"grid",gridTemplateColumns:"minmax(0,1fr) minmax(0,340px)",gap:32,alignItems:"center"}}>
+        <div className="prop-hero-grid" style={{maxWidth:1200,margin:"0 auto",display:"grid",gridTemplateColumns:"minmax(0,1fr) minmax(0,340px)",gap:32,alignItems:"center"}}>
           <div>
             <div style={{display:"flex",gap:7,marginBottom:20,flexWrap:"wrap"}}>
               {[["DUBAI","Dubai"],["ABU DHABI","Abu Dhabi"],["SHARJAH","Sharjah"],["RAK","Ras Al Khaimah"]].map(([label,val])=>(
@@ -575,7 +575,7 @@ function HomeTab({onTabChange,onOpen}){
           <div style={{fontSize:17,fontWeight:800,color:"#fff"}}>🔥 Hot Picks</div>
           <button onClick={()=>onTabChange("search")} style={{background:"none",border:"none",color:T.blue2,fontSize:12,fontWeight:700,cursor:"pointer"}}>View all →</button>
         </div>
-        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(min(260px,100%),1fr))",gap:12,marginBottom:28}}>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(250px,1fr))",gap:12,marginBottom:28}}>
           {hot.map(p=>(
             <div key={p.id} className="pc" onClick={()=>onOpen(p)} style={{background:T.bg2,border:`1px solid ${T.border}`,borderRadius:14,overflow:"hidden",cursor:"pointer"}}>
               <div style={{position:"relative",height:148}}>
@@ -697,11 +697,13 @@ export default function PropComparePage(){
       <div suppressHydrationWarning style={{minHeight:"100vh", overflowX:"hidden", maxWidth:"100vw",background:T.bg,color:T.text,fontFamily:"'Plus Jakarta Sans',sans-serif"}}>
         <style suppressHydrationWarning>{`
         @media(max-width:768px){
-          .prop-hero-grid{grid-template-columns:1fr!important;gap:20px!important;}
+          .prop-hero-grid{grid-template-columns:1fr!important;gap:16px!important;}
+          .prop-tabs{overflow-x:auto!important;-webkit-overflow-scrolling:touch!important;}
+          .prop-tabs button{white-space:nowrap!important;flex-shrink:0!important;padding:5px 7px!important;font-size:10px!important;}
           .tab-label{display:none!important;}
-          .tab-icon{font-size:16px!important;}
-          .tb{padding:6px 8px!important;}
           select,input{max-width:100%!important;box-sizing:border-box!important;}
+          .prop-compare-table{overflow-x:auto!important;}
+          .prop-map-container{height:60vh!important;}
         }
         
           *{box-sizing:border-box}
@@ -725,7 +727,7 @@ export default function PropComparePage(){
             <div style={{display:"flex",gap:2,background:"rgba(255,255,255,0.04)",borderRadius:10,padding:3,flexShrink:0}}>
               {TABS.map(t=>(
                 <button key={t.id} className="tb" onClick={()=>setTab(t.id)}
-                  style={{padding:"5px 10px",borderRadius:8,border:tab===t.id?"1.5px solid rgba(59,130,246,0.8)":"1.5px solid transparent",background:tab===t.id?"#3B82F6":"transparent",color:tab===t.id?"#fff":T.sub,fontSize:11,fontWeight:tab===t.id?700:400,cursor:"pointer",fontFamily:"inherit",whiteSpace:"nowrap",transition:"all 0.15s"}}>
+                  style={{padding:"5px 10px",borderRadius:8,border:"none",background:tab===t.id?"#3B82F6":"transparent",color:tab===t.id?"#fff":T.sub,fontSize:11,fontWeight:tab===t.id?700:400,cursor:"pointer",fontFamily:"inherit",whiteSpace:"nowrap",transition:"all 0.15s"}}>
                   <span className="tab-icon">{t.icon}</span><span className="tab-label"> {t.label}</span>
                 </button>
               ))}

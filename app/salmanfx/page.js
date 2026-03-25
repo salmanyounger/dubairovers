@@ -98,9 +98,14 @@ export default function SalmanFXPage() {
             .sfx-nav-inner{flex-wrap:wrap;height:auto!important;padding:10px 0!important;gap:8px!important}
             .sfx-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch}
         @media(max-width:768px){
-          .sfx-main{padding:20px 14px!important;}
-          .sfx-pricing-grid{grid-template-columns:1fr!important;gap:16px!important;}
+          .sfx-hero { grid-template-columns:1fr !important; gap:20px !important; }
+          .sfx-tabs { overflow-x:auto !important; -webkit-overflow-scrolling:touch !important; }
+          .sfx-tabs button { flex-shrink:0 !important; white-space:nowrap !important; padding:6px 10px !important; font-size:11px !important; }
+          .sfx-pricing { grid-template-columns:1fr !important; }
+          .sfx-main { padding:20px 14px !important; }
+          .sfx-hero-hide { display:none !important; }
         }
+
             .sfx-hero{grid-template-columns:1fr!important;gap:24px!important}
             .sfx-terminal{display:none!important}
             .sfx-stat{font-size:22px!important}
@@ -122,7 +127,7 @@ export default function SalmanFXPage() {
               <div className="sfx-tabs" style={{ display:"flex", gap:3, background:"rgba(255,255,255,0.04)", borderRadius:9, padding:3, overflowX:"auto" }}>
                 {TABS.map(t => (
                   <button key={t} onClick={() => setTab(t)}
-                    style={{ padding:"6px 13px", borderRadius:7, border:"none", background:tab===t?"linear-gradient(135deg,#10B981,#059669)":"rgba(255,255,255,0.04)", color:tab===t?"#fff":T.sub, border:tab===t?"1px solid #10B981":"1px solid transparent", fontSize:12, fontWeight:tab===t?700:400, cursor:"pointer", fontFamily:"'Plus Jakarta Sans',sans-serif", textTransform:"capitalize", transition:"all 0.18s" }}>
+                    style={{ padding:"6px 13px", borderRadius:7, border:"none", background:tab===t?"linear-gradient(135deg,#10B981,#059669)":"rgba(255,255,255,0.04)", color:tab===t?"#fff":T.sub, border:tab===t?"1.5px solid #10B981":"1.5px solid transparent", fontSize:12, fontWeight:tab===t?700:400, cursor:"pointer", fontFamily:"'Plus Jakarta Sans',sans-serif", textTransform:"capitalize", transition:"all 0.18s" }}>
                     {t}
                   </button>
                 ))}
@@ -139,8 +144,8 @@ export default function SalmanFXPage() {
           </div>
         </nav>
 
-        {/* HERO */}
-        <div style={{ background:"linear-gradient(135deg,rgba(16,185,129,0.08) 0%,transparent 60%)", borderBottom:`1px solid ${T.border}`, padding:"52px 24px 44px", display: tab !== "overview" ? "none" : "block" }}>
+        {/* HERO - hide on mobile when not overview */}
+        <div style={{ display: tab !== "overview" ? "none" : "block", background:"linear-gradient(135deg,rgba(16,185,129,0.08) 0%,transparent 60%)", borderBottom:`1px solid ${T.border}`, padding:"52px 24px 44px" }}>
           <div className="sfx-hero" style={{ maxWidth:1200, margin:"0 auto", display:"grid", gridTemplateColumns:"1fr 1fr", gap:40, alignItems:"center" }}>
             <div>
               <div style={{ display:"inline-flex", alignItems:"center", gap:6, background:"rgba(16,185,129,0.1)", border:"1px solid rgba(16,185,129,0.22)", borderRadius:20, padding:"4px 12px", marginBottom:18 }}>
@@ -241,7 +246,7 @@ export default function SalmanFXPage() {
             <div className="fade">
               <div style={{ fontSize:16, fontWeight:800, marginBottom:6 }}>📊 Live Trading Results</div>
               <p style={{ fontSize:13, color:T.sub, marginBottom:22 }}>Real backtest + forward-test results. All figures verified on demo then live accounts. Jan–Mar 2026.</p>
-              <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(min(260px,100%),1fr))", gap:14 }}>
+              <div style={{ style={{display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(min(260px,100%),1fr))", gap:14 }}>
                 {RESULTS.map(r => (
                   <div key={r.pair} className="pc" style={{ background:T.card, border:`1px solid ${r.color}22`, borderRadius:13, padding:"18px 20px" }}>
                     <div style={{ display:"flex", justifyContent:"space-between", marginBottom:12 }}>
