@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -121,7 +121,6 @@ export default function LandingPage() {
   const [hovered, setHovered]   = useState(null);
   const [time,    setTime]      = useState("--:--");
   const [active,  setActive]    = useState(null); // expanded card on mobile
-  const canvasRef = useRef(null);
   const router    = useRouter();
 
   useEffect(() => {
@@ -137,58 +136,7 @@ export default function LandingPage() {
     return () => clearInterval(id);
   }, []);
 
-  // Starfield canvas
-  useEffect(() => {
-    if (!mounted) return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    let alive = true;
-    let raf   = null;
-    const ctx = canvas.getContext("2d");
-
-    const resize = () => {
-      if (!alive) return;
-      canvas.width  = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    const stars = Array.from({ length: 120 }, () => ({
-      x: Math.random(), y: Math.random(),
-      r: Math.random() * 1.5 + 0.3,
-      op: Math.random() * 0.5 + 0.05,
-      twinkle: Math.random() * Math.PI * 2,
-      speed: Math.random() * 0.008 + 0.002,
-      color: Math.random() > 0.85 ? "#C8A96E" : Math.random() > 0.7 ? "#818CF8" : "#ffffff",
-    }));
-
-    const loop = () => {
-      if (!alive) return;
-      const W = canvas.width, H = canvas.height;
-      ctx.clearRect(0, 0, W, H);
-      stars.forEach(s => {
-        s.twinkle += s.speed;
-        const op = s.op * (0.6 + 0.4 * Math.sin(s.twinkle));
-        ctx.beginPath();
-        ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = s.color.replace(")", `,${op})`).replace("rgb(","rgba(").replace(/^#/, "rgba(").replace("rgba(", "rgba(");
-        // simpler opacity approach
-        ctx.globalAlpha = op;
-        ctx.fillStyle   = s.color;
-        ctx.fill();
-        ctx.globalAlpha = 1;
-      });
-      raf = requestAnimationFrame(loop);
-    };
-    loop();
-
-    return () => {
-      alive = false;
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
-    };
-  }, [mounted]);
+  // Starfield removed for navigation stability
 
   const CARDS = [
     {
@@ -299,28 +247,30 @@ export default function LandingPage() {
   const large = CARDS.filter(c => c.size === "large");
   const small = CARDS.filter(c => c.size === "small");
 
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
   if (!mounted) return null;
-  if (isMobile) return <MobileLanding />;
 
   return (
     <>
+      <style suppressHydrationWarning>{`
+        .dr-desktop{display:block;}
+        .dr-mobile{display:none;}
+        @media(max-width:768px){
+          .dr-desktop{display:none!important;}
+          .dr-mobile{display:block!important;}
+        }
+      `}</style>
       <link rel="preconnect" href="https://fonts.googleapis.com"/>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&display=swap"/>
-      <div suppressHydrationWarning style={{ position:"relative", minHeight:"100vh", background:"#06070d", fontFamily:"'Plus Jakarta Sans',sans-serif", overflowX:"hidden" }}>
+      <div className="dr-desktop">
+      <div suppressHydrationWarning style={{ position:"relative", minHeight:"100vh", background:"#06070d", isolation:"isolate", fontFamily:"'Plus Jakarta Sans',sans-serif", overflowX:"hidden" }}>
         <style suppressHydrationWarning>{`
           *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
           nav,[class*="navbar"],[id*="navbar"],header { display:none !important; }
           ::-webkit-scrollbar { width:4px; } ::-webkit-scrollbar-thumb { background:rgba(200,169,110,0.3); border-radius:10px; }
           @keyframes fadeUp   { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
           @keyframes shimmer  { 0%{background-position:200% center} 100%{background-position:-200% center} }
+          @keyframes twinkle  { 0%,100%{opacity:0.2} 50%{opacity:1} }
+          .star { position:fixed; border-radius:50%; background:#fff; animation:twinkle var(--d,3s) ease-in-out infinite; pointer-events:none; z-index:0; }
           @keyframes blink    { 0%,100%{opacity:1} 50%{opacity:0.3} }
           @keyframes float    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
           @keyframes scanline { 0%{transform:translateY(-100%)} 100%{transform:translateY(200vh)} }
@@ -343,11 +293,20 @@ export default function LandingPage() {
         `}</style>
 
         {/* Canvas starfield */}
-        {mounted && <canvas ref={canvasRef} style={{ position:"fixed", inset:0, zIndex:0, pointerEvents:"none" }}/>}
+        {/* starfield removed - replaced with CSS gradient for stability */}
 
         {/* Ambient gradients */}
         <div style={{ position:"fixed", inset:0, zIndex:1, pointerEvents:"none",
           background:"radial-gradient(ellipse 50% 60% at 20% 50%, rgba(249,115,22,0.05) 0%, transparent 70%), radial-gradient(ellipse 50% 60% at 50% 30%, rgba(99,102,241,0.04) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 80% 60%, rgba(200,169,110,0.05) 0%, transparent 70%)" }}/>
+        {/* CSS Stars - no DOM manipulation */}
+        {mounted && [
+          {t:"12%",l:"8%",s:1.5,d:"2.1s"},{t:"23%",l:"92%",s:1,d:"3.4s"},{t:"45%",l:"15%",s:2,d:"2.8s"},
+          {t:"67%",l:"78%",s:1.2,d:"4.1s"},{t:"34%",l:"55%",s:0.8,d:"1.9s"},{t:"78%",l:"32%",s:1.8,d:"3.2s"},
+          {t:"89%",l:"68%",s:1,d:"2.5s"},{t:"15%",l:"45%",s:1.5,d:"4.8s"},{t:"56%",l:"88%",s:0.9,d:"2.2s"},
+          {t:"91%",l:"12%",s:1.3,d:"3.7s"},{t:"38%",l:"71%",s:2,d:"1.6s"},{t:"72%",l:"48%",s:0.8,d:"4.3s"},
+        ].map((s,i) => (
+          <div key={i} className="star" style={{top:s.t,left:s.l,width:s.s,height:s.s,"--d":s.d,animationDelay:`${i*0.3}s`,opacity:0.3}}/>
+        ))}
 
         {/* Top bar */}
         <div style={{ position:"fixed", top:0, left:0, right:0, zIndex:30, display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 28px",
@@ -792,6 +751,10 @@ export default function LandingPage() {
             textDecoration:"none", boxShadow:"0 6px 20px rgba(37,211,102,0.45)", animation:"float 3s ease-in-out infinite" }}>
           💬
         </a>
+      </div>
+      </div>{/* end dr-desktop */}
+      <div className="dr-mobile">
+        <MobileLanding />
       </div>
     </>
   );
