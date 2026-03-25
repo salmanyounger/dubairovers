@@ -246,7 +246,7 @@ export default function SalmanFXPage() {
             <div className="fade">
               <div style={{ fontSize:16, fontWeight:800, marginBottom:6 }}>📊 Live Trading Results</div>
               <p style={{ fontSize:13, color:T.sub, marginBottom:22 }}>Real backtest + forward-test results. All figures verified on demo then live accounts. Jan–Mar 2026.</p>
-              <div style={{ style={{display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(min(260px,100%),1fr))", gap:14 }}>
+              <div style={{display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(min(260px,100%),1fr))", gap:14 }}>
                 {RESULTS.map(r => (
                   <div key={r.pair} className="pc" style={{ background:T.card, border:`1px solid ${r.color}22`, borderRadius:13, padding:"18px 20px" }}>
                     <div style={{ display:"flex", justifyContent:"space-between", marginBottom:12 }}>
