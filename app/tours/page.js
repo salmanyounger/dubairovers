@@ -146,42 +146,57 @@ export default function HomePage() {
 
         {/* ── FLOATING QUICK-ACCESS CARDS (Attractions + Flights) ── */}
         {(pageVis.attractions || pageVis.flights) && (
-          <div style={{ position:"absolute", bottom:88, left:24, zIndex:10, display:"flex", flexDirection:"column", gap:10 }}>
-            {pageVis.attractions && (
-              <a href="/attractions"
-                style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 16px", background:"rgba(249,115,22,0.15)", backdropFilter:"blur(16px)", border:"1px solid rgba(249,115,22,0.35)", borderRadius:14, textDecoration:"none", color:"#fff", animation:"float 3s ease-in-out infinite", boxShadow:"0 8px 24px rgba(249,115,22,0.2)", transition:"transform 0.25s, background 0.25s" }}
-                onMouseEnter={e=>{e.currentTarget.style.background="rgba(249,115,22,0.28)";e.currentTarget.style.transform="scale(1.05)"}}
-                onMouseLeave={e=>{e.currentTarget.style.background="rgba(249,115,22,0.15)";e.currentTarget.style.transform="scale(1)"}}
-              >
-                <span style={{fontSize:22, display:"inline-block", animation:"bounce-gentle 2s ease-in-out infinite"}}>🎟️</span>
-                <div>
-                  <div style={{fontSize:13, fontWeight:700}}>Attraction Tickets</div>
-                  <div style={{fontSize:11, color:"rgba(255,255,255,0.55)"}}>Burj Khalifa · Dubai Frame · More</div>
-                </div>
-                <span style={{fontSize:13, color:"rgba(249,115,22,0.85)", marginLeft:4}}>→</span>
-              </a>
-            )}
-            {pageVis.flights && (
-              <a href="/flights"
-                style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 16px", background:"rgba(99,153,232,0.15)", backdropFilter:"blur(16px)", border:"1px solid rgba(99,153,232,0.35)", borderRadius:14, textDecoration:"none", color:"#fff", animation:"float 3.5s ease-in-out infinite reverse", boxShadow:"0 8px 24px rgba(99,153,232,0.15)", transition:"transform 0.25s, background 0.25s" }}
-                onMouseEnter={e=>{e.currentTarget.style.background="rgba(99,153,232,0.28)";e.currentTarget.style.transform="scale(1.05)"}}
-                onMouseLeave={e=>{e.currentTarget.style.background="rgba(99,153,232,0.15)";e.currentTarget.style.transform="scale(1)"}}
-              >
-                <span style={{fontSize:22, display:"inline-block", animation:"slide-right 1.8s ease-in-out infinite"}}>✈️</span>
-                <div>
-                  <div style={{fontSize:13, fontWeight:700}}>Airline Tickets</div>
-                  <div style={{fontSize:11, color:"rgba(255,255,255,0.55)"}}>Emirates · Flydubai · Air Arabia</div>
-                </div>
-                <span style={{fontSize:13, color:"rgba(99,153,232,0.85)", marginLeft:4}}>→</span>
-              </a>
-            )}
-          </div>
+          <>
+            {/* Desktop: absolute positioned left side */}
+            <div className="hidden md:flex" style={{ position:"absolute", bottom:88, left:24, zIndex:10, flexDirection:"column", gap:10 }}>
+              {pageVis.attractions && (
+                <a href="/attractions"
+                  style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 16px", background:"rgba(249,115,22,0.15)", backdropFilter:"blur(16px)", border:"1px solid rgba(249,115,22,0.35)", borderRadius:14, textDecoration:"none", color:"#fff", animation:"float 3s ease-in-out infinite", boxShadow:"0 8px 24px rgba(249,115,22,0.2)" }}>
+                  <span style={{fontSize:22}}>🎟️</span>
+                  <div>
+                    <div style={{fontSize:13, fontWeight:700}}>Attraction Tickets</div>
+                    <div style={{fontSize:11, color:"rgba(255,255,255,0.55)"}}>Burj Khalifa · Dubai Frame · More</div>
+                  </div>
+                  <span style={{fontSize:13, color:"rgba(249,115,22,0.85)", marginLeft:4}}>→</span>
+                </a>
+              )}
+              {pageVis.flights && (
+                <a href="/flights"
+                  style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 16px", background:"rgba(99,153,232,0.15)", backdropFilter:"blur(16px)", border:"1px solid rgba(99,153,232,0.35)", borderRadius:14, textDecoration:"none", color:"#fff", animation:"float 3.5s ease-in-out infinite reverse", boxShadow:"0 8px 24px rgba(99,153,232,0.15)" }}>
+                  <span style={{fontSize:22}}>✈️</span>
+                  <div>
+                    <div style={{fontSize:13, fontWeight:700}}>Airline Tickets</div>
+                    <div style={{fontSize:11, color:"rgba(255,255,255,0.55)"}}>Emirates · Flydubai · Air Arabia</div>
+                  </div>
+                  <span style={{fontSize:13, color:"rgba(99,153,232,0.85)", marginLeft:4}}>→</span>
+                </a>
+              )}
+            </div>
+
+            {/* Mobile: 2 visible square badges at bottom of hero */}
+            <div className="flex md:hidden" style={{ position:"absolute", bottom:60, left:0, right:0, zIndex:10, padding:"0 16px", gap:10, justifyContent:"center" }}>
+              {pageVis.attractions && (
+                <a href="/attractions" style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:4, padding:"12px 8px", background:"rgba(249,115,22,0.25)", backdropFilter:"blur(16px)", border:"2px solid rgba(249,115,22,0.6)", borderRadius:16, textDecoration:"none", color:"#fff", boxShadow:"0 8px 24px rgba(249,115,22,0.4)", animation:"float 3s ease-in-out infinite" }}>
+                  <span style={{fontSize:28}}>🎟️</span>
+                  <div style={{fontSize:12, fontWeight:800, textAlign:"center"}}>Attraction Tickets</div>
+                  <div style={{fontSize:10, color:"rgba(255,255,255,0.7)", textAlign:"center"}}>Burj Khalifa & More</div>
+                </a>
+              )}
+              {pageVis.flights && (
+                <a href="/flights" style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:4, padding:"12px 8px", background:"rgba(99,153,232,0.25)", backdropFilter:"blur(16px)", border:"2px solid rgba(99,153,232,0.6)", borderRadius:16, textDecoration:"none", color:"#fff", boxShadow:"0 8px 24px rgba(99,153,232,0.4)", animation:"float 3.5s ease-in-out infinite reverse" }}>
+                  <span style={{fontSize:28}}>✈️</span>
+                  <div style={{fontSize:12, fontWeight:800, textAlign:"center"}}>Airline Tickets</div>
+                  <div style={{fontSize:10, color:"rgba(255,255,255,0.7)", textAlign:"center"}}>Emirates & More</div>
+                </a>
+              )}
+            </div>
+          </>
         )}
       </section>
 
       {/* STATS with animated icons */}
-      <section className="stats-section bg-gradient-to-r from-orange-500/10 via-pink-500/10 to-purple-500/10 border-y border-white/10 py-10">
-        <div className="stats-grid max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <section className="bg-gradient-to-r from-orange-500/10 via-pink-500/10 to-purple-500/10 border-y border-white/10 py-10 hidden md:block">
+        <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
             {iconClass:"stat-icon-1", icon:"🏆", value:"10,000+", label:"Happy Guests"},
             {iconClass:"stat-icon-2", icon:"⭐", value:"4.9/5",   label:"Average Rating"},
@@ -203,7 +218,7 @@ export default function HomePage() {
           <h2 className="text-4xl md:text-5xl font-black mb-3">Our <span className="bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">Adventures</span></h2>
           <p className="text-gray-400">{filtered.length} experience{filtered.length !== 1 ? "s" : ""} available</p>
         </div>
-        <div className="filter-scroll flex flex-wrap gap-3 justify-center mb-10">
+        <div className="flex flex-wrap gap-3 justify-center mb-10">
           {categories.map(cat => (
             <button key={cat} onClick={() => setActiveFilter(cat)}
               className={`px-5 py-2 rounded-full text-sm font-semibold border transition-all ${activeFilter === cat ? "bg-gradient-to-r from-orange-500 to-pink-500 border-transparent text-white" : "border-white/20 text-gray-300 hover:border-white/40 bg-white/5"}`}>
@@ -218,7 +233,7 @@ export default function HomePage() {
               <Link key={tour.id} href={`/${tour.slug}`} className="group block">
                 <div className="bg-[#111] border border-white/10 rounded-3xl overflow-hidden hover:border-white/30 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 h-full flex flex-col">
                   <div className="relative h-52 overflow-hidden">
-                    <img src={tour.cardImage} alt={tour.title} loading="eager" className="card-image-wrap w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <img src={tour.cardImage} alt={tour.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                     <div className={`absolute top-3 left-3 bg-gradient-to-r ${tour.color} text-black text-xs font-bold px-3 py-1 rounded-full`}>{tour.category}</div>
                     <div className="absolute top-3 right-3 text-2xl drop-shadow-lg" style={{animation:"icon-orbit 3s ease-in-out infinite"}}>{tour.emoji}</div>

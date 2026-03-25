@@ -72,6 +72,11 @@ export default function WebBuilderPage() {
           @media(max-width:768px){
             .wb-nav-inner{height:auto!important;flex-wrap:wrap;padding:10px 0!important;gap:8px!important}
             .wb-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch}
+        @media(max-width:768px){
+          .wb-hero{display:block!important;}
+          .wb-main{padding:16px 12px!important;}
+          .wb-tabs button{padding:5px 8px!important;font-size:10px!important;}
+        }
             .wb-hero h1{font-size:clamp(28px,8vw,52px)!important}
             .wb-cats{grid-template-columns:repeat(2,1fr)!important}
             .wb-pricing{grid-template-columns:1fr!important}
@@ -102,7 +107,7 @@ export default function WebBuilderPage() {
               <div className="wb-tabs" style={{ display:"flex", gap:3, background:"rgba(255,255,255,0.04)", borderRadius:9, padding:3, overflowX:"auto" }}>
                 {TABS.map(t => (
                   <button key={t} onClick={() => setTab(t)}
-                    style={{ padding:"6px 13px", borderRadius:7, border:"none", background:tab===t?"linear-gradient(135deg,#EC4899,#8B5CF6)":"rgba(255,255,255,0.05)", color:tab===t?"#fff":T.sub, border:tab===t?"1.5px solid #EC4899":"1.5px solid transparent", fontSize:12, fontWeight:tab===t?700:400, cursor:"pointer", fontFamily:"'Plus Jakarta Sans',sans-serif", textTransform:"capitalize", transition:"all 0.18s" }}>
+                    style={{ padding:"6px 13px", borderRadius:7, border:"none", background:tab===t?"linear-gradient(135deg,#EC4899,#8B5CF6)":"rgba(255,255,255,0.04)", color:tab===t?"#fff":T.sub, fontSize:12, fontWeight:tab===t?700:400, cursor:"pointer", fontFamily:"'Plus Jakarta Sans',sans-serif", textTransform:"capitalize", transition:"all 0.2s", border:tab===t?"1px solid #EC4899":"1px solid transparent", whiteSpace:"nowrap" }}>
                     {t}
                   </button>
                 ))}
@@ -120,7 +125,7 @@ export default function WebBuilderPage() {
         </nav>
 
         {/* HERO */}
-        <div style={{ background:"linear-gradient(135deg,rgba(236,72,153,0.08) 0%,rgba(139,92,246,0.06) 50%,transparent 80%)", borderBottom:`1px solid ${T.border}`, padding:"56px 24px 48px" }}>
+        <div style={{ background:"linear-gradient(135deg,rgba(236,72,153,0.08) 0%,rgba(139,92,246,0.06) 50%,transparent 80%)", borderBottom:`1px solid ${T.border}`, padding:"56px 24px 48px", display: tab !== "work" ? "none" : "block" }} className="wb-hero">
           <div style={{ maxWidth:1200, margin:"0 auto", textAlign:"center" }}>
             <div style={{ display:"inline-flex", alignItems:"center", gap:6, background:"rgba(236,72,153,0.1)", border:"1px solid rgba(236,72,153,0.22)", borderRadius:20, padding:"4px 14px", marginBottom:20 }}>
               <div style={{ width:5, height:5, borderRadius:"50%", background:T.pink }}/>
@@ -157,7 +162,7 @@ export default function WebBuilderPage() {
         </div>
 
         {/* MAIN */}
-        <div style={{ maxWidth:1200, margin:"0 auto", padding:"32px 24px" }}>
+        <div className="wb-main" style={{ maxWidth:1200, margin:"0 auto", padding:"32px 24px" }}>
 
           {/* WORK TAB */}
           {tab === "work" && (
@@ -248,7 +253,7 @@ export default function WebBuilderPage() {
           )}
 
           {/* PRICING TAB */}
-          {tab === "pricing" && (
+          {tab === "pricing" && (<div className="wb-main">
             <div className="fade">
               <div style={{ fontFamily:"'Syne',sans-serif", fontSize:16, fontWeight:800, marginBottom:4 }}>💰 Pricing</div>
               <p style={{ fontSize:13, color:T.sub, marginBottom:24 }}>All prices are in AED. Payment in installments available. Custom quotes on WhatsApp.</p>

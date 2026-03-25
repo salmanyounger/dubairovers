@@ -38,6 +38,17 @@ export default function BlogPage() {
         *{box-sizing:border-box}
         ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:rgba(245,158,11,0.3);border-radius:10px}
         .bcard:hover{border-color:rgba(245,158,11,0.35)!important;transform:translateY(-2px)}
+        @media(max-width:768px){
+          .blog-featured-grid{grid-template-columns:1fr!important;}
+          .blog-all-grid{grid-template-columns:1fr!important;gap:12px!important;}
+          .blog-cats{overflow-x:auto!important;flex-wrap:nowrap!important;justify-content:flex-start!important;padding:0 4px 8px!important;scrollbar-width:none!important;}
+          .blog-cats::-webkit-scrollbar{display:none!important;}
+          .blog-cats button{flex-shrink:0!important;white-space:nowrap!important;padding:6px 14px!important;font-size:12px!important;}
+          .blog-featured-side{flex-direction:row!important;gap:12px!important;}
+          .blog-featured-side .thumb{width:80px!important;height:65px!important;flex-shrink:0!important;}
+          .blog-main-title{font-size:18px!important;}
+          .blog-wrap{padding:20px 14px!important;}
+        }
         .bcard{transition:all 0.2s}
         .cat-btn:hover{background:rgba(245,158,11,0.08)!important;color:#F59E0B!important}
       `}</style>
@@ -58,10 +69,10 @@ export default function BlogPage() {
         </div>
       </div>
 
-      <div style={{ maxWidth:1200, margin:"0 auto", padding:"40px 24px" }}>
+      <div className="blog-wrap" style={{ maxWidth:1200, margin:"0 auto", padding:"40px 24px" }}>
 
         {/* Category filters */}
-        <div style={{ display:"flex", gap:8, flexWrap:"wrap", marginBottom:40, justifyContent:"center" }}>
+        <div className="blog-cats" style={{ display:"flex", gap:8, flexWrap:"wrap", marginBottom:32, justifyContent:"center" }}>
           {BLOG_CATEGORIES.map(cat=>(
             <button key={cat} className="cat-btn" onClick={()=>setCategory(cat)}
               style={{ padding:"8px 18px", background: category===cat?"rgba(245,158,11,0.15)":"rgba(255,255,255,0.04)", border:`1px solid ${category===cat?"rgba(245,158,11,0.4)":"rgba(255,255,255,0.08)"}`, borderRadius:20, color: category===cat?"#F59E0B":"rgba(255,255,255,0.5)", fontSize:13, cursor:"pointer", fontFamily:"'Outfit',sans-serif", fontWeight: category===cat?600:400 }}>
@@ -75,7 +86,7 @@ export default function BlogPage() {
         {category==="All" && !search && featured.length>0 && (
           <div style={{ marginBottom:52 }}>
             <div style={{ fontFamily:"'Playfair Display',serif", fontSize:22, fontWeight:700, marginBottom:20, borderLeft:"3px solid #F59E0B", paddingLeft:14 }}>Featured Stories</div>
-            <div style={{ display:"grid", gridTemplateColumns:"2fr 1fr", gap:20 }}>
+            <div className="blog-featured-grid" style={{ display:"grid", gridTemplateColumns:"2fr 1fr", gap:20 }}>
               {/* Main featured */}
               {featured[0] && (
                 <Link href={`/blog/${featured[0].slug}`} className="bcard" style={{ textDecoration:"none", color:"inherit", background:"rgba(255,255,255,0.02)", border:"1px solid rgba(255,255,255,0.07)", borderRadius:20, overflow:"hidden", display:"block" }}>
@@ -123,7 +134,7 @@ export default function BlogPage() {
           </div>
         )}
 
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(300px,1fr))", gap:20 }}>
+        <div className="blog-all-grid" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(300px,1fr))", gap:20 }}>
           {filtered.map((post,i)=>(
             <Link key={i} href={`/blog/${post.slug}`} className="bcard"
               style={{ textDecoration:"none", color:"inherit", background:"rgba(255,255,255,0.02)", border:"1px solid rgba(255,255,255,0.07)", borderRadius:18, overflow:"hidden", display:"block" }}>
