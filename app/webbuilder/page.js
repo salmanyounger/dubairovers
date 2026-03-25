@@ -101,8 +101,8 @@ export default function WebBuilderPage() {
             <div style={{ display:"flex", alignItems:"center", gap:8 }}>
               <div className="wb-tabs" style={{ display:"flex", gap:3, background:"rgba(255,255,255,0.04)", borderRadius:9, padding:3, overflowX:"auto" }}>
                 {TABS.map(t => (
-                  <button key={t} onClick={() => setTab(t)}
-                    style={{ padding:"6px 13px", borderRadius:7, border:"none", background:tab===t?"linear-gradient(135deg,#EC4899,#8B5CF6)":"transparent", color:tab===t?"#fff":T.sub, fontSize:12, fontWeight:tab===t?700:400, cursor:"pointer", fontFamily:"'Plus Jakarta Sans',sans-serif", textTransform:"capitalize", transition:"all 0.18s" }}>
+                  <button key={t} onClick={() => { setTab(t); }}
+                    style={{ padding:"6px 14px", borderRadius:7, border:tab===t?"2px solid #EC4899":"2px solid transparent", background:tab===t?"linear-gradient(135deg,#EC4899,#8B5CF6)":"rgba(255,255,255,0.04)", color:tab===t?"#fff":T.sub, fontSize:12, fontWeight:tab===t?700:400, cursor:"pointer", fontFamily:"'Plus Jakarta Sans',sans-serif", textTransform:"capitalize", transition:"all 0.2s", whiteSpace:"nowrap" }}>
                     {t}
                   </button>
                 ))}

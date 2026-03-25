@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -196,6 +196,12 @@ export default function LandingPage() {
         <style suppressHydrationWarning>{`
           *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
           nav,[class*="navbar"],[id*="navbar"],header { display:none !important; }
+          .dr-desk { display:block; }
+          .dr-mob  { display:none; }
+          @media(max-width:768px){
+            .dr-desk { display:none !important; }
+            .dr-mob  { display:block !important; }
+          }
           ::-webkit-scrollbar { width:4px; } ::-webkit-scrollbar-thumb { background:rgba(200,169,110,0.3); border-radius:10px; }
           @keyframes fadeUp   { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
           @keyframes shimmer  { 0%{background-position:200% center} 100%{background-position:-200% center} }
@@ -218,31 +224,11 @@ export default function LandingPage() {
           .alnoor-card:hover .alnoor-cta { transform:scale(1.05) translateY(-2px); box-shadow:0 8px 24px rgba(46,204,113,0.6) !important; }
           .alnoor-card { transition:box-shadow 0.4s, border-color 0.4s; }
           .alnoor-card:hover { border-color:rgba(212,168,67,0.5) !important; box-shadow:0 20px 60px rgba(212,168,67,0.2) !important; }
-
-          /* ── MOBILE & TABLET ── */
-          @media (max-width: 900px) {
-            .card-grid-large { grid-template-columns: 1fr !important; }
-            .card-grid-small { grid-template-columns: 1fr 1fr !important; }
-            .card-wrap { height: 280px !important; }
-            .hero-title { font-size: clamp(28px,8vw,48px) !important; }
-            .hero-sub { font-size: 11px !important; gap:6px !important; }
-            .hero-btns { flex-direction: column !important; align-items: center !important; }
-            .hero-btns a, .hero-btns button { width: 100% !important; max-width: 300px !important; justify-content: center !important; }
-            .tag-chips-row { gap: 6px !important; justify-content: center !important; }
-            .tag-chip { font-size: 10px !important; padding: 5px 10px !important; }
-            .topbar-time { display: none !important; }
-          }
-          @media (max-width: 600px) {
-            .card-grid-large { grid-template-columns: 1fr !important; gap: 12px !important; }
-            .card-grid-small { grid-template-columns: 1fr !important; gap: 12px !important; }
-            .card-wrap { height: 260px !important; }
-            .alnoor-card { min-height: 220px !important; }
-            .stats-row { grid-template-columns: repeat(2,1fr) !important; }
-          }
         `}</style>
 
+        <div className="dr-desk">
         {/* Canvas starfield */}
-        {mounted && <canvas key="starfield" ref={canvasRef} suppressHydrationWarning style={{ position:"fixed", inset:0, zIndex:0, pointerEvents:"none" }}/>}
+        {mounted && <canvas ref={canvasRef} style={{ position:"fixed", inset:0, zIndex:0, pointerEvents:"none" }}/>}
 
         {/* Ambient gradients */}
         <div style={{ position:"fixed", inset:0, zIndex:1, pointerEvents:"none",
@@ -691,7 +677,120 @@ export default function LandingPage() {
             textDecoration:"none", boxShadow:"0 6px 20px rgba(37,211,102,0.45)", animation:"float 3s ease-in-out infinite" }}>
           💬
         </a>
+        </div>{/* end dr-desk */}
+
+        {/* ── MOBILE DESIGN ── */}
+        <MobileView />
       </div>
     </>
+  );
+}
+
+// ─── MOBILE PLATFORMS DATA ────────────────────────────────────────────────────
+const MOB_PLATFORMS = [
+  { id:"tours",      tag:"TOURS & EXPERIENCES", tagColor:"#F59E0B", title:"Dubai Rovers Adventures",  desc:"Desert safaris, hot air balloons, dhow cruises — hotel pickup on every tour.",   emoji:"🏜️", bg:"linear-gradient(135deg,#1a0800,#2d1500)", stats:[{n:"4.9★",l:"RATING"},{n:"80+",l:"COUNTRIES"},{n:"24",l:"TOURS"}],       href:"/tours" },
+  { id:"properties", tag:"REAL ESTATE · AI",    tagColor:"#60A5FA", title:"Dubai Properties",         desc:"30+ UAE properties, AI scoring, mortgage calculators, market trends & ROI.",    emoji:"🏢", bg:"linear-gradient(135deg,#00102a,#001f4a)", stats:[{n:"30+",l:"PROPS"},{n:"AI",l:"SCORING"},{n:"Live",l:"MAP"}],             href:"/properties" },
+  { id:"archai",     tag:"AI VILLA DESIGN",     tagColor:"#C9A84C", title:"ARCHAI Villa Designer",    desc:"Design your dream villa in 3 minutes — 9 styles, floor plans, cost estimate.",  emoji:"🏛️", bg:"linear-gradient(135deg,#0f0a00,#2a1f00)", stats:[{n:"9",l:"STYLES"},{n:"5",l:"PLANS"},{n:"Free",l:"2026"}],             href:"/archai" },
+  { id:"salmanfx",   tag:"FOREX EA · MT4/MT5",  tagColor:"#10B981", title:"SalmanFX Robot",           desc:"Parabolic SAR strategy, multi-stage money management, live dashboard.",         emoji:"📈", bg:"linear-gradient(135deg,#001a0f,#003322)", stats:[{n:"MT4",l:"PLATFORM"},{n:"MT5",l:"PLATFORM"},{n:"Auto",l:"TRADING"}], href:"/salmanfx" },
+  { id:"webbuilder", tag:"WEB DEV · DUBAI",     tagColor:"#A855F7", title:"Web Builder",              desc:"18+ business categories, 5 tiers, multilingual, booking forms & admin panels.", emoji:"💻", bg:"linear-gradient(135deg,#1a001a,#3d0033)", stats:[{n:"18+",l:"CATS"},{n:"5",l:"TIERS"},{n:"Fast",l:"DELIVERY"}],         href:"/webbuilder" },
+  { id:"alnoor",     tag:"ISLAMIC APP · FREE",  tagColor:"#2ECC71", title:"Al-Noor Islamic App",      desc:"Full Quran offline (114 Surahs), prayer times via GPS, live Qibla compass.",    emoji:"🌙", bg:"linear-gradient(135deg,#001a00,#003300)", stats:[{n:"114",l:"SURAHS"},{n:"GPS",l:"PRAYER"},{n:"Free",l:"ALWAYS"}],    href:"/al-noor" },
+];
+const MOB_CATS = ["All","🏜️ Tours","🏢 Props","🤖 AI","📈 Forex","💻 Web","🌙 Islamic"];
+const MOB_MAP  = {"🏜️ Tours":"tours","🏢 Props":"properties","🤖 AI":"ai","📈 Forex":"forex","💻 Web":"webbuilder","🌙 Islamic":"alnoor"};
+
+function MobileView() {
+  const [cat, setCat] = React.useState("All");
+  const filtered = cat === "All" ? MOB_PLATFORMS : MOB_PLATFORMS.filter(p => p.id === MOB_MAP[cat]);
+  return (
+    <div className="dr-mob" suppressHydrationWarning style={{ maxWidth:430, margin:"0 auto", minHeight:"100vh", background:"#080808", color:"#fff", fontFamily:"'Plus Jakarta Sans',sans-serif", overflowX:"hidden" }}>
+      <style suppressHydrationWarning>{`
+        @keyframes mobPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.4)}}
+        @keyframes mobFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+        @keyframes mobSlide{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+        .mob-card{animation:mobSlide 0.35s ease both;text-decoration:none;}
+        .mob-card:active>div{transform:scale(0.98)!important;}
+        .mob-pill{transition:all 0.15s;}
+      `}</style>
+
+      {/* Header */}
+      <div style={{padding:"18px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+        <div style={{display:"flex",alignItems:"center",gap:10}}>
+          <div style={{width:38,height:38,borderRadius:10,background:"linear-gradient(135deg,#f97316,#ec4899)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:20}}>🏜️</div>
+          <div>
+            <div style={{fontSize:15,fontWeight:800,color:"#fff"}}>Dubai Rovers</div>
+            <div style={{fontSize:9,color:"rgba(255,255,255,0.4)",letterSpacing:"1.5px",textTransform:"uppercase"}}>Platform Hub</div>
+          </div>
+        </div>
+        <div style={{display:"flex",alignItems:"center",gap:5,background:"rgba(16,185,129,0.1)",border:"1px solid rgba(16,185,129,0.25)",borderRadius:20,padding:"4px 10px"}}>
+          <span style={{width:6,height:6,borderRadius:"50%",background:"#10b981",display:"inline-block",animation:"mobPulse 2s ease-in-out infinite"}}/>
+          <span style={{fontSize:10,color:"#10b981",fontWeight:700}}>LIVE</span>
+        </div>
+      </div>
+
+      {/* Hero */}
+      <div style={{padding:"6px 16px 18px",textAlign:"center"}}>
+        <div style={{display:"inline-block",background:"rgba(245,158,11,0.1)",border:"1px solid rgba(245,158,11,0.3)",borderRadius:20,padding:"4px 14px",fontSize:9,fontWeight:700,letterSpacing:"2px",color:"#F59E0B",textTransform:"uppercase",marginBottom:12}}>Welcome to</div>
+        <h1 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(30px,9vw,46px)",fontWeight:900,lineHeight:1.0,letterSpacing:"-1px",marginBottom:10}}>
+          Everything<br/><em style={{color:"#F59E0B"}}>Salman</em><br/>Built in Dubai
+        </h1>
+        <p style={{fontSize:12,color:"rgba(255,255,255,0.45)",marginBottom:16}}>Tours · Properties · AI · Forex · Web Dev</p>
+        <div style={{display:"flex",gap:10,justifyContent:"center"}}>
+          <a href="/tours" style={{flex:1,maxWidth:155,display:"flex",alignItems:"center",justifyContent:"center",padding:"12px",background:"linear-gradient(135deg,#f97316,#ec4899)",borderRadius:12,color:"#fff",fontWeight:700,fontSize:13,textDecoration:"none"}}>Explore All →</a>
+          <a href="https://wa.me/971544735060" target="_blank" rel="noopener noreferrer" style={{padding:"12px 14px",background:"rgba(37,211,102,0.1)",border:"1px solid rgba(37,211,102,0.3)",borderRadius:12,color:"#25d366",fontWeight:700,fontSize:13,textDecoration:"none"}}>💬 WhatsApp</a>
+        </div>
+      </div>
+
+      {/* Category filter */}
+      <div style={{overflowX:"auto",padding:"2px 16px 8px",display:"flex",gap:8,scrollbarWidth:"none"}}>
+        {MOB_CATS.map(c => (
+          <button key={c} className="mob-pill" onClick={() => setCat(c)}
+            style={{flexShrink:0,padding:"7px 14px",borderRadius:20,border:"1px solid",borderColor:cat===c?"rgba(245,158,11,0.35)":"rgba(255,255,255,0.1)",background:cat===c?"rgba(245,158,11,0.12)":"transparent",color:cat===c?"#F59E0B":"rgba(255,255,255,0.55)",fontSize:12,fontWeight:700,cursor:"pointer",fontFamily:"inherit"}}>
+            {c}
+          </button>
+        ))}
+      </div>
+      <div style={{padding:"4px 16px 8px",fontSize:11,color:"rgba(255,255,255,0.3)"}}>Showing {filtered.length} platform{filtered.length!==1?"s":""}</div>
+
+      {/* Cards */}
+      <div style={{padding:"0 16px 20px",display:"flex",flexDirection:"column",gap:12}}>
+        {filtered.map((p,i) => (
+          <a key={p.id} href={p.href} className="mob-card" style={{animationDelay:`${i*55}ms`}}>
+            <div style={{background:"#111",border:"1px solid rgba(255,255,255,0.07)",borderRadius:18,overflow:"hidden",display:"flex",transition:"transform 0.2s"}}>
+              <div style={{width:108,minHeight:128,flexShrink:0,background:p.bg,display:"flex",alignItems:"center",justifyContent:"center",position:"relative"}}>
+                <span style={{fontSize:42,opacity:0.65}}>{p.emoji}</span>
+                <div style={{position:"absolute",inset:0,background:"linear-gradient(to right,transparent 55%,rgba(17,17,17,0.55))"}}/>
+              </div>
+              <div style={{padding:"14px 12px",flex:1,display:"flex",flexDirection:"column",justifyContent:"space-between",minWidth:0}}>
+                <div>
+                  <div style={{fontSize:9,fontWeight:700,letterSpacing:"1.5px",textTransform:"uppercase",color:p.tagColor,marginBottom:4}}>{p.tag}</div>
+                  <div style={{fontSize:14,fontWeight:800,color:"#fff",marginBottom:5,lineHeight:1.25}}>{p.title}</div>
+                  <div style={{fontSize:11,color:"rgba(255,255,255,0.5)",lineHeight:1.5,overflow:"hidden",display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical"}}>{p.desc}</div>
+                </div>
+                <div style={{marginTop:10,display:"flex",alignItems:"flex-end",justifyContent:"space-between"}}>
+                  <div style={{display:"flex",gap:12}}>
+                    {p.stats.map(s=>(
+                      <div key={s.l}>
+                        <div style={{fontSize:12,fontWeight:800,color:"#fff"}}>{s.n}</div>
+                        <div style={{fontSize:8,fontWeight:600,color:"rgba(255,255,255,0.35)",textTransform:"uppercase",marginTop:1}}>{s.l}</div>
+                      </div>
+                    ))}
+                  </div>
+                  <div style={{width:26,height:26,borderRadius:7,background:"rgba(245,158,11,0.12)",border:"1px solid rgba(245,158,11,0.2)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,color:"#F59E0B"}}>→</div>
+                </div>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      {/* Footer */}
+      <div style={{padding:"16px 16px 40px",borderTop:"1px solid rgba(255,255,255,0.06)"}}>
+        <button onClick={()=>window.open("https://wa.me/971544735060")}
+          style={{width:"100%",padding:15,background:"linear-gradient(135deg,#128c7e,#25d366)",borderRadius:14,border:"none",color:"#fff",fontSize:15,fontWeight:800,cursor:"pointer",fontFamily:"inherit",animation:"mobFloat 3s ease-in-out infinite",marginBottom:14}}>
+          💬 Book via WhatsApp
+        </button>
+        <div style={{textAlign:"center",fontSize:10,color:"rgba(255,255,255,0.2)"}}>© 2026 DubaiRovers.com · All Rights Reserved</div>
+      </div>
+    </div>
   );
 }

@@ -48,7 +48,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-[#0a0a0a] text-white" style={{paddingBottom:"env(safe-area-inset-bottom,0px)"}}>
       <style>{`
         @keyframes float { 0%,100%{transform:translateY(0px)} 50%{transform:translateY(-8px)} }
         @keyframes spin-slow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
@@ -180,8 +180,8 @@ export default function HomePage() {
       </section>
 
       {/* STATS with animated icons */}
-      <section className="bg-gradient-to-r from-orange-500/10 via-pink-500/10 to-purple-500/10 border-y border-white/10 py-10">
-        <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <section className="bg-gradient-to-r from-orange-500/10 via-pink-500/10 to-purple-500/10 border-y border-white/10 py-6 md:py-10">
+        <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
           {[
             {iconClass:"stat-icon-1", icon:"🏆", value:"10,000+", label:"Happy Guests"},
             {iconClass:"stat-icon-2", icon:"⭐", value:"4.9/5",   label:"Average Rating"},
@@ -189,9 +189,9 @@ export default function HomePage() {
             {iconClass:"stat-icon-4", icon:"🎯", value:"6",       label:"Tour Types"},
           ].map(s => (
             <div key={s.label} className="group">
-              <div className={`text-4xl mb-2 ${s.iconClass}`}>{s.icon}</div>
-              <div className="text-3xl font-black bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">{s.value}</div>
-              <div className="text-gray-400 text-sm mt-1">{s.label}</div>
+              <div className={`text-3xl md:text-4xl mb-1 md:mb-2 ${s.iconClass}`}>{s.icon}</div>
+              <div className="text-2xl md:text-3xl font-black bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">{s.value}</div>
+              <div className="text-gray-400 text-xs md:text-sm mt-1">{s.label}</div>
             </div>
           ))}
         </div>
@@ -203,10 +203,11 @@ export default function HomePage() {
           <h2 className="text-4xl md:text-5xl font-black mb-3">Our <span className="bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">Adventures</span></h2>
           <p className="text-gray-400">{filtered.length} experience{filtered.length !== 1 ? "s" : ""} available</p>
         </div>
-        <div className="flex flex-wrap gap-3 justify-center mb-10">
+        <div className="flex gap-2 mb-8 md:mb-10 overflow-x-auto pb-2 md:flex-wrap md:justify-center px-4 md:px-0" style={{scrollbarWidth:"none",WebkitOverflowScrolling:"touch"}}>
           {categories.map(cat => (
             <button key={cat} onClick={() => setActiveFilter(cat)}
-              className={`px-5 py-2 rounded-full text-sm font-semibold border transition-all ${activeFilter === cat ? "bg-gradient-to-r from-orange-500 to-pink-500 border-transparent text-white" : "border-white/20 text-gray-300 hover:border-white/40 bg-white/5"}`}>
+              style={{flexShrink:0}}
+              className={`px-4 py-1.5 rounded-full text-sm font-semibold border transition-all whitespace-nowrap ${activeFilter === cat ? "bg-gradient-to-r from-orange-500 to-pink-500 border-transparent text-white" : "border-white/20 text-gray-300 hover:border-white/40 bg-white/5"}`}>
               {cat}
             </button>
           ))}
