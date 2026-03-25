@@ -51,7 +51,7 @@ export default function LandingPage() {
     }));
 
     const loop = () => {
-      if (!alive || !canvas) return;
+      if (!alive || !canvasRef.current) return;
       try {
       const W = canvas.width, H = canvas.height;
       ctx.clearRect(0, 0, W, H);
@@ -74,9 +74,8 @@ export default function LandingPage() {
 
     return () => {
       alive = false;
-      if (raf) cancelAnimationFrame(raf);
+      if (raf) { try { cancelAnimationFrame(raf); } catch(e) {} }
       try { window.removeEventListener("resize", resize); } catch(e) {}
-      try { if (canvas && ctx) ctx.clearRect(0, 0, canvas.width, canvas.height); } catch(e) {}
     };
   }, [mounted]);
 
@@ -219,10 +218,31 @@ export default function LandingPage() {
           .alnoor-card:hover .alnoor-cta { transform:scale(1.05) translateY(-2px); box-shadow:0 8px 24px rgba(46,204,113,0.6) !important; }
           .alnoor-card { transition:box-shadow 0.4s, border-color 0.4s; }
           .alnoor-card:hover { border-color:rgba(212,168,67,0.5) !important; box-shadow:0 20px 60px rgba(212,168,67,0.2) !important; }
+
+          /* ── MOBILE & TABLET ── */
+          @media (max-width: 900px) {
+            .card-grid-large { grid-template-columns: 1fr !important; }
+            .card-grid-small { grid-template-columns: 1fr 1fr !important; }
+            .card-wrap { height: 280px !important; }
+            .hero-title { font-size: clamp(28px,8vw,48px) !important; }
+            .hero-sub { font-size: 11px !important; gap:6px !important; }
+            .hero-btns { flex-direction: column !important; align-items: center !important; }
+            .hero-btns a, .hero-btns button { width: 100% !important; max-width: 300px !important; justify-content: center !important; }
+            .tag-chips-row { gap: 6px !important; justify-content: center !important; }
+            .tag-chip { font-size: 10px !important; padding: 5px 10px !important; }
+            .topbar-time { display: none !important; }
+          }
+          @media (max-width: 600px) {
+            .card-grid-large { grid-template-columns: 1fr !important; gap: 12px !important; }
+            .card-grid-small { grid-template-columns: 1fr !important; gap: 12px !important; }
+            .card-wrap { height: 260px !important; }
+            .alnoor-card { min-height: 220px !important; }
+            .stats-row { grid-template-columns: repeat(2,1fr) !important; }
+          }
         `}</style>
 
         {/* Canvas starfield */}
-        {mounted && <canvas key="dr-starfield" ref={canvasRef} suppressHydrationWarning style={{ position:"fixed", inset:0, zIndex:0, pointerEvents:"none" }}/>}
+        {mounted && <canvas key="starfield" ref={canvasRef} suppressHydrationWarning style={{ position:"fixed", inset:0, zIndex:0, pointerEvents:"none" }}/>}
 
         {/* Ambient gradients */}
         <div style={{ position:"fixed", inset:0, zIndex:1, pointerEvents:"none",
