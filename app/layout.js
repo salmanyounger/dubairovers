@@ -1,5 +1,6 @@
 import "./globals.css";
 import NavbarWrapper from "./components/NavbarWrapper";
+import NavigationCleanup from "./components/NavigationCleanup";
 
 export const metadata = {
   metadataBase: new URL("https://dubairovers.com"),
@@ -36,6 +37,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
+        <NavigationCleanup />
         <NavbarWrapper />
         {children}
       </body>

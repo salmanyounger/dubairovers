@@ -429,7 +429,6 @@ export default function AlNoorPage() {
                         <button onClick={()=>setFontSize(f=>Math.min(88,f+4))} style={{width:22,height:22,borderRadius:"50%",background:`rgba(46,204,113,0.1)`,border:`1px solid ${T.bdr}`,color:T.txt,fontSize:14,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"inherit"}}>+</button>
                       </div>
                       <button onClick={()=>setShowTrans(!showTrans)} style={{padding:"5px 10px",background:showTrans?`rgba(46,204,113,0.15)`:`rgba(255,255,255,0.05)`,border:`1px solid ${showTrans?"rgba(46,204,113,0.4)":T.bdr}`,borderRadius:20,color:showTrans?T.g1:T.txt2,fontSize:11,fontWeight:700,cursor:"pointer",fontFamily:"inherit"}}>🌐 {showTrans?"ON":"OFF"}</button>
-                      <button onClick={()=>setAutoScroll(!autoScroll)} style={{padding:"5px 10px",background:autoScroll?`rgba(212,168,67,0.15)`:`rgba(255,255,255,0.05)`,border:`1px solid ${autoScroll?"rgba(212,168,67,0.4)":T.bdr}`,borderRadius:20,color:autoScroll?T.gold2:T.txt2,fontSize:11,fontWeight:700,cursor:"pointer",fontFamily:"inherit"}}>{autoScroll?"⏸ Stop":"▶ Auto"}</button>
                       {autoScroll&&<><input type="range" min={1} max={10} value={scrollSpeed} onChange={e=>setScrollSpeed(Number(e.target.value))} style={{width:55,accentColor:T.gold}}/><span style={{fontSize:10,color:T.gold2}}>{scrollSpeed}x</span></>}
                     </div>
                     <div style={{display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>
@@ -578,6 +577,35 @@ export default function AlNoorPage() {
       </div>
 
       {/* BOTTOM NAV */}
+      {/* FLOATING AUTO SCROLL BUTTON - only shows when reading Quran */}
+      {selSurah && quranData && (
+        <div style={{position:"fixed",right:12,bottom:90,zIndex:300,display:"flex",flexDirection:"column",alignItems:"center",gap:6}}>
+          <button
+            onClick={()=>setAutoScroll(!autoScroll)}
+            style={{
+              width:48,height:48,borderRadius:"50%",
+              background:autoScroll?"linear-gradient(135deg,#D4A843,#c8961a)":"rgba(30,40,30,0.92)",
+              border:`2px solid ${autoScroll?"#D4A843":"rgba(46,204,113,0.4)"}`,
+              color:autoScroll?"#000":"#2ECC71",
+              fontSize:20,cursor:"pointer",
+              boxShadow:autoScroll?"0 4px 20px rgba(212,168,67,0.5)":"0 4px 16px rgba(0,0,0,0.4)",
+              display:"flex",alignItems:"center",justifyContent:"center",
+              transition:"all 0.2s",
+            }}
+            title={autoScroll?"Pause Auto Scroll":"Start Auto Scroll"}
+          >
+            {autoScroll ? "⏸" : "▶"}
+          </button>
+          {autoScroll && (
+            <div style={{background:"rgba(20,28,20,0.95)",border:"1px solid rgba(46,204,113,0.3)",borderRadius:20,padding:"4px 8px",display:"flex",alignItems:"center",gap:4}}>
+              <button onClick={()=>setScrollSpeed(s=>Math.max(1,s-1))} style={{width:18,height:18,borderRadius:"50%",background:"rgba(46,204,113,0.1)",border:"none",color:"#2ECC71",fontSize:12,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"inherit"}}>−</button>
+              <span style={{fontSize:10,color:"#D4A843",fontWeight:700,minWidth:12,textAlign:"center"}}>{scrollSpeed}</span>
+              <button onClick={()=>setScrollSpeed(s=>Math.min(10,s+1))} style={{width:18,height:18,borderRadius:"50%",background:"rgba(46,204,113,0.1)",border:"none",color:"#2ECC71",fontSize:12,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"inherit"}}>+</button>
+            </div>
+          )}
+        </div>
+      )}
+
       <div suppressHydrationWarning style={{position:"fixed",bottom:0,left:0,right:0,zIndex:200,height:66,background:hdrBg,backdropFilter:"blur(18px)",borderTop:`1px solid ${T.bdr}`,display:"flex"}}>
         {TABS.map(t=>(
           <button key={t.id} onClick={()=>setTab(t.id)} style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:3,background:"none",border:"none",cursor:"pointer",fontFamily:"inherit",position:"relative",padding:"6px 2px"}}>
