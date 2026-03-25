@@ -291,7 +291,7 @@ export default function WebBuilderPage() {
                 <span>💡</span> All prices are estimates. Final price depends on specific requirements. WhatsApp me for a free custom quote. I respond within 1 hour.
               </div>
             </div>
-          )}
+          </div>)}
 
           {/* PROCESS TAB */}
           {tab === "process" && (
