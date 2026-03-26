@@ -186,6 +186,53 @@ export default function LandingPage() {
     return () => clearInterval(id);
   }, []);
 
+  // ── Inject CSS keyframes via useEffect so they clean up on unmount (fixes back-nav crash) ──
+  useEffect(() => {
+    const id = "landing-page-styles";
+    if (document.getElementById(id)) return;
+    const style = document.createElement("style");
+    style.id = id;
+    style.textContent = `
+      *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+      nav,[class*="navbar"],[id*="navbar"],header { display:none !important; }
+      ::-webkit-scrollbar { width:4px; } ::-webkit-scrollbar-thumb { background:rgba(200,169,110,0.3); border-radius:10px; }
+      @keyframes fadeUp   { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+      @keyframes gpulse   { 0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.4)} 70%{box-shadow:0 0 0 8px rgba(37,211,102,0)} }
+      @keyframes sIn      { from{opacity:0;transform:scale(.98)} to{opacity:1;transform:none} }
+      .mob-dash { display:none !important; }
+      .desk-content { display:block; }
+      @media(max-width:768px) {
+        .desk-content { display:none !important; }
+        .mob-dash { display:block !important; animation:sIn .4s ease; }
+      }
+      @keyframes shimmer  { 0%{background-position:200% center} 100%{background-position:-200% center} }
+      @keyframes blink    { 0%,100%{opacity:1} 50%{opacity:0.3} }
+      @keyframes float    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+      @keyframes scanline { 0%{transform:translateY(-100%)} 100%{transform:translateY(200vh)} }
+      .card-wrap { transition:transform 0.5s cubic-bezier(0.23,1,0.32,1),box-shadow 0.5s ease; cursor:pointer; }
+      .card-wrap:hover { transform:translateY(-10px) scale(1.015) !important; }
+      .card-img { transition:transform 0.7s ease; }
+      .card-wrap:hover .card-img { transform:scale(1.07) !important; }
+      .cta-btn  { transition:all 0.22s ease; }
+      .cta-btn:hover  { filter:brightness(1.15); transform:scale(1.05) !important; }
+      .tag-chip { transition:all 0.18s ease; cursor:pointer; }
+      .tag-chip:hover { transform:translateY(-2px) scale(1.08) !important; filter:brightness(1.2); }
+      .alnoor-card:hover .alnoor-door-left { transform:perspective(1200px) rotateY(-28deg) !important; }
+      .alnoor-card:hover .alnoor-door-right { transform:perspective(1200px) rotateY(28deg) !important; }
+      .alnoor-card:hover .centre-door-left { transform:perspective(400px) rotateY(-55deg) !important; }
+      .alnoor-card:hover .centre-door-right { transform:perspective(400px) rotateY(55deg) !important; }
+      .alnoor-card:hover .alnoor-glow { opacity:1 !important; }
+      .alnoor-card:hover .alnoor-cta { transform:scale(1.05) translateY(-2px); box-shadow:0 8px 24px rgba(46,204,113,0.6) !important; }
+      .alnoor-card { transition:box-shadow 0.4s, border-color 0.4s; }
+      .alnoor-card:hover { border-color:rgba(212,168,67,0.5) !important; box-shadow:0 20px 60px rgba(212,168,67,0.2) !important; }
+    `;
+    document.head.appendChild(style);
+    return () => {
+      const el = document.getElementById(id);
+      if (el) el.remove();
+    };
+  }, []);
+
   // Starfield canvas
   useEffect(() => {
     if (!mounted) return;
@@ -353,43 +400,7 @@ export default function LandingPage() {
       {/* MOBILE DASHBOARD */}
       <MobileDashboard router={router} />
 
-      <link rel="preconnect" href="https://fonts.googleapis.com"/>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&display=swap"/>
       <div className="desk-content" suppressHydrationWarning style={{ position:"relative", minHeight:"100vh", background:"#06070d", fontFamily:"'Plus Jakarta Sans',sans-serif", overflowX:"hidden" }}>
-        <style suppressHydrationWarning>{`
-          *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-          nav,[class*="navbar"],[id*="navbar"],header { display:none !important; }
-          ::-webkit-scrollbar { width:4px; } ::-webkit-scrollbar-thumb { background:rgba(200,169,110,0.3); border-radius:10px; }
-          @keyframes fadeUp   { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
-          @keyframes gpulse   { 0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.4)} 70%{box-shadow:0 0 0 8px rgba(37,211,102,0)} }
-          @keyframes sIn      { from{opacity:0;transform:scale(.98)} to{opacity:1;transform:none} }
-          .mob-dash { display:none !important; }
-          .desk-content { display:block; }
-          @media(max-width:768px) {
-            .desk-content { display:none !important; }
-            .mob-dash { display:block !important; animation:sIn .4s ease; }
-          }
-          @keyframes shimmer  { 0%{background-position:200% center} 100%{background-position:-200% center} }
-          @keyframes blink    { 0%,100%{opacity:1} 50%{opacity:0.3} }
-          @keyframes float    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-          @keyframes scanline { 0%{transform:translateY(-100%)} 100%{transform:translateY(200vh)} }
-          .card-wrap { transition:transform 0.5s cubic-bezier(0.23,1,0.32,1),box-shadow 0.5s ease; cursor:pointer; }
-          .card-wrap:hover { transform:translateY(-10px) scale(1.015) !important; }
-          .card-img { transition:transform 0.7s ease; }
-          .card-wrap:hover .card-img { transform:scale(1.07) !important; }
-          .cta-btn  { transition:all 0.22s ease; }
-          .cta-btn:hover  { filter:brightness(1.15); transform:scale(1.05) !important; }
-          .tag-chip { transition:all 0.18s ease; cursor:pointer; }
-          .tag-chip:hover { transform:translateY(-2px) scale(1.08) !important; filter:brightness(1.2); }
-          .alnoor-card:hover .alnoor-door-left { transform:perspective(1200px) rotateY(-28deg) !important; }
-          .alnoor-card:hover .alnoor-door-right { transform:perspective(1200px) rotateY(28deg) !important; }
-          .alnoor-card:hover .centre-door-left { transform:perspective(400px) rotateY(-55deg) !important; }
-          .alnoor-card:hover .centre-door-right { transform:perspective(400px) rotateY(55deg) !important; }
-          .alnoor-card:hover .alnoor-glow { opacity:1 !important; }
-          .alnoor-card:hover .alnoor-cta { transform:scale(1.05) translateY(-2px); box-shadow:0 8px 24px rgba(46,204,113,0.6) !important; }
-          .alnoor-card { transition:box-shadow 0.4s, border-color 0.4s; }
-          .alnoor-card:hover { border-color:rgba(212,168,67,0.5) !important; box-shadow:0 20px 60px rgba(212,168,67,0.2) !important; }
-        `}</style>
 
         {/* Canvas starfield */}
         {mounted && <canvas ref={canvasRef} style={{ position:"fixed", inset:0, zIndex:0, pointerEvents:"none" }}/>}
