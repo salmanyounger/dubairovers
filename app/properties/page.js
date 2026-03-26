@@ -232,7 +232,7 @@ function InvestTab(){
   const cashFlow=price*netYld/100-monthly*12;
   return(
     <div style={{maxWidth:1100,margin:"0 auto",padding:"28px 24px"}}>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20}}>
+      <div className="invest-grid" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20}}>
         <div style={{background:T.bg2,border:`1px solid ${T.border}`,borderRadius:16,padding:"20px 24px"}}>
           <div style={{fontSize:16,fontWeight:800,color:"#fff",marginBottom:18}}>🏦 Mortgage Calculator</div>
           {[[`Property Price: AED ${price.toLocaleString()}`,price,300000,15000000,50000,setPrice],
@@ -305,7 +305,7 @@ function MapTab({onOpen}){
   const filtered=em==="All"?ALL_PROPS:ALL_PROPS.filter(p=>p.emirate===em);
   const src=sel?`https://maps.google.com/maps?q=${encodeURIComponent(sel.mapQ||sel.area+" UAE")}&t=&z=15&ie=UTF8&iwloc=&output=embed`:em!=="All"?`https://maps.google.com/maps?q=${encodeURIComponent(em+" UAE")}&t=&z=11&ie=UTF8&iwloc=&output=embed`:"https://maps.google.com/maps?q=Dubai+UAE&t=&z=11&ie=UTF8&iwloc=&output=embed";
   return(
-    <div style={{display:"grid",gridTemplateColumns:"300px 1fr",height:"calc(100vh - 60px)"}}>
+    <div className="map-grid" style={{display:"grid",gridTemplateColumns:"300px 1fr",height:"calc(100vh - 60px)"}}>
       <div style={{overflowY:"auto",borderRight:`1px solid ${T.border}`,background:T.bg2}}>
         <div style={{padding:"10px 12px",borderBottom:`1px solid ${T.border}`,display:"flex",gap:5,flexWrap:"wrap"}}>
           {["All","Dubai","Abu Dhabi","Sharjah","RAK","Ajman"].map(e=>(
@@ -526,7 +526,7 @@ function HomeTab({onTabChange,onOpen}){
   return(
     <div>
       <div style={{background:"linear-gradient(135deg,rgba(59,130,246,0.1) 0%,rgba(99,102,241,0.07) 60%,transparent 100%)",borderBottom:`1px solid ${T.border}`,padding:"48px 24px 40px"}}>
-        <div className="prop-hero-grid" style={{maxWidth:1200,margin:"0 auto",display:"grid",gridTemplateColumns:"minmax(0,1fr) minmax(0,340px)",gap:32,alignItems:"center"}}>
+        <div style={{maxWidth:1200,margin:"0 auto",display:"grid",gridTemplateColumns:"minmax(0,1fr) minmax(0,340px)",gap:32,alignItems:"center"}}>
           <div>
             <div style={{display:"flex",gap:7,marginBottom:20,flexWrap:"wrap"}}>
               {[["DUBAI","Dubai"],["ABU DHABI","Abu Dhabi"],["SHARJAH","Sharjah"],["RAK","Ras Al Khaimah"]].map(([label,val])=>(
@@ -699,11 +699,14 @@ export default function PropComparePage(){
         @media(max-width:768px){
           .prop-hero-grid{grid-template-columns:1fr!important;gap:16px!important;}
           .prop-tabs{overflow-x:auto!important;-webkit-overflow-scrolling:touch!important;}
-          .prop-tabs button{white-space:nowrap!important;flex-shrink:0!important;padding:5px 7px!important;font-size:10px!important;}
-          .tab-label{display:none!important;}
+          .prop-tabs button{white-space:nowrap!important;flex-shrink:0!important;}
           select,input{max-width:100%!important;box-sizing:border-box!important;}
-          .prop-compare-table{overflow-x:auto!important;}
-          .prop-map-container{height:60vh!important;}
+
+          /* Investment tab — single column */
+          .invest-grid{grid-template-columns:1fr!important;gap:16px!important;}
+
+          /* Map tab — list on top, map below, both full width */
+          .map-grid{grid-template-columns:1fr!important;grid-template-rows:auto 380px!important;height:auto!important;}
         }
         
           *{box-sizing:border-box}
@@ -728,7 +731,7 @@ export default function PropComparePage(){
               {TABS.map(t=>(
                 <button key={t.id} className="tb" onClick={()=>setTab(t.id)}
                   style={{padding:"5px 10px",borderRadius:8,border:"none",background:tab===t.id?"#3B82F6":"transparent",color:tab===t.id?"#fff":T.sub,fontSize:11,fontWeight:tab===t.id?700:400,cursor:"pointer",fontFamily:"inherit",whiteSpace:"nowrap",transition:"all 0.15s"}}>
-                  <span className="tab-icon">{t.icon}</span><span className="tab-label"> {t.label}</span>
+                  {t.icon} {t.label}
                 </button>
               ))}
             </div>
