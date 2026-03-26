@@ -3,6 +3,168 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+
+// ── MOBILE DASHBOARD GRID (shows on ≤768px only) ──
+function MobileDashboard({ router }) {
+  const APPS = [
+    { em:"🏜️", route:"/tours",      name:"DubaiRovers",  tag:"TOURS & EXPERIENCES",  desc:"Desert safaris, hot air balloons, dhow cruises & more — with hotel pickup included.",  color:"#f97316", bg:"linear-gradient(135deg,#1a0800,#3d1500)",  featured:true,  stats:[["4.9★","RATING"],["80+","COUNTRIES"]] },
+    { em:"🏙️", route:"/properties", name:"PropCompare",  tag:"REAL ESTATE",           desc:"30 properties, AI scoring, mortgage calculators & ROI analysis.",                     color:"#3b82f6", bg:"linear-gradient(135deg,#060e1e,#0b1628)",  featured:false, stats:[["30+","PROPERTIES"],["5.2%","AVG ROI"]] },
+    { em:"🏛️", route:"/archai",     name:"ARCHAI",        tag:"AI VILLA DESIGN",       desc:"Design your dream villa — 9 styles, floor plans, cost estimate, AI photo free.",      color:"#c8a96e", bg:"#f5f2ee",                               featured:false, stats:[["9","STYLES"],["5","FLOOR PLANS"]] , light:true },
+    { em:"📈", route:"/salmanfx",   name:"SalmanFX",      tag:"● FOREX EA",            desc:"Expert Advisors MT4/MT5",                                                              color:"#00ff41", bg:"#000",                                   featured:false, stats:[["67%","WIN RATE"],["3","EAs"]] },
+    { em:"⚡", route:"/webbuilder", name:"WebBuilder",    tag:"WEB DEV",               desc:"Custom websites for Dubai businesses",                                                  color:"#ff6b35", bg:"linear-gradient(135deg,#0a0006,#1a0010)", featured:false, stats:[["18","CATEGORIES"],["5","TIERS"]] },
+  ];
+  return (
+    <div className="mob-dash" style={{background:"#08070d",minHeight:"100vh",fontFamily:"'Plus Jakarta Sans',sans-serif",color:"#fff",paddingBottom:30}}>
+      {/* NAV */}
+      <div style={{padding:"14px 16px",display:"flex",justifyContent:"space-between",alignItems:"center",borderBottom:"1px solid rgba(255,255,255,.05)"}}>
+        <div style={{fontSize:13,fontWeight:900,letterSpacing:2,background:"linear-gradient(135deg,#c9a84c,#a855f7)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>SALMAN.DEV</div>
+        <div style={{display:"flex",alignItems:"center",gap:10}}>
+          <div style={{fontSize:8,color:"#10b981",background:"rgba(16,185,129,.1)",border:"1px solid rgba(16,185,129,.2)",padding:"4px 10px",borderRadius:20,fontWeight:700}}>● LIVE</div>
+          <a href="https://wa.me/971544735060" target="_blank" rel="noopener noreferrer" style={{width:32,height:32,background:"linear-gradient(135deg,#25d366,#128c7e)",borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,textDecoration:"none"}}>💬</a>
+        </div>
+      </div>
+      {/* HERO TEXT */}
+      <div style={{padding:"16px 16px 10px",textAlign:"center"}}>
+        <div style={{fontSize:11,color:"#555",letterSpacing:3,marginBottom:6,fontWeight:600}}>WELCOME TO</div>
+        <h1 style={{fontSize:22,fontWeight:900,lineHeight:1.2,marginBottom:4}}>Everything <span style={{color:"#f97316"}}>Salman</span><br/>Built in Dubai</h1>
+        <p style={{fontSize:9,color:"#444",letterSpacing:2}}>TOURS · PROPERTIES · AI DESIGN · FOREX · WEB DEV</p>
+      </div>
+      {/* STATS */}
+      <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:6,padding:"10px 14px 14px"}}>
+        {[["6","#c9a84c","APPS"],["3","#00ff41","EAs"],["30","#3b82f6","PROPS"],["114","#a855f7","SURAHS"]].map(([n,color,label])=>(
+          <div key={label} style={{background:"rgba(255,255,255,.03)",border:"1px solid rgba(255,255,255,.06)",borderRadius:10,padding:"8px 4px",textAlign:"center"}}>
+            <div style={{fontSize:16,fontWeight:900,color}}>{n}</div>
+            <div style={{fontSize:6,color:"#333",letterSpacing:1.5,marginTop:2,fontWeight:700}}>{label}</div>
+          </div>
+        ))}
+      </div>
+      {/* GRID */}
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,padding:"0 14px 16px"}}>
+        {/* DUBAIROVERS — double height featured */}
+        <div onClick={()=>router.push("/tours")} style={{gridColumn:"span 2",borderRadius:20,overflow:"hidden",position:"relative",minHeight:220,cursor:"pointer",background:"linear-gradient(135deg,#1a0800,#3d1500)"}}>
+          <div style={{position:"absolute",inset:0,backgroundImage:"radial-gradient(rgba(249,115,22,.1) 1px,transparent 1px)",backgroundSize:"22px 22px"}}/>
+          <div style={{position:"absolute",bottom:0,left:0,right:0,height:"55%",background:"linear-gradient(to top,rgba(0,0,0,.7),transparent)"}}/>
+          <div style={{position:"absolute",right:-10,bottom:-20,fontSize:130,opacity:.08,userSelect:"none",pointerEvents:"none"}}>🏜️</div>
+          <div style={{position:"relative",zIndex:2,padding:"20px 18px",height:"100%",display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
+            <div>
+              <div style={{fontSize:8,color:"#f97316",fontWeight:700,letterSpacing:2,marginBottom:8,display:"flex",alignItems:"center",gap:6}}>
+                <span style={{width:14,height:1,background:"#f97316",display:"inline-block"}}/>TOURS & EXPERIENCES
+              </div>
+              <div style={{fontSize:30,fontWeight:900,lineHeight:1.1,marginBottom:8}}>Dubai Rovers</div>
+              <div style={{fontSize:11,color:"rgba(255,255,255,.6)",lineHeight:1.6,maxWidth:220}}>Desert safaris, hot air balloons, dhow cruises & more — with hotel pickup included on every tour.</div>
+            </div>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-end",marginTop:16}}>
+              <div style={{display:"flex",gap:14}}>
+                <div><div style={{fontSize:16,fontWeight:900,color:"#f97316"}}>4.9★</div><div style={{fontSize:7,color:"#666",letterSpacing:1}}>RATING</div></div>
+                <div><div style={{fontSize:16,fontWeight:900,color:"#f97316"}}>80+</div><div style={{fontSize:7,color:"#666",letterSpacing:1}}>COUNTRIES</div></div>
+              </div>
+              <div style={{background:"linear-gradient(135deg,#f97316,#ec4899)",padding:"10px 16px",borderRadius:25,fontSize:11,fontWeight:800,color:"#fff",boxShadow:"0 6px 20px rgba(249,115,22,.4)"}}>Explore Adventures →</div>
+            </div>
+          </div>
+        </div>
+        {/* PROPCOMPARE */}
+        <div onClick={()=>router.push("/properties")} style={{borderRadius:20,overflow:"hidden",position:"relative",minHeight:195,cursor:"pointer",background:"linear-gradient(135deg,#060e1e,#0b1628)"}}>
+          <div style={{position:"absolute",inset:0,backgroundImage:"radial-gradient(rgba(59,130,246,.07) 1px,transparent 1px)",backgroundSize:"18px 18px"}}/>
+          <div style={{position:"relative",zIndex:1,padding:"16px 13px",height:"100%",display:"flex",flexDirection:"column"}}>
+            <div style={{fontSize:26,marginBottom:6}}>🏙️</div>
+            <div style={{fontSize:7,color:"#3b82f6",fontWeight:700,letterSpacing:1.5,marginBottom:4}}>REAL ESTATE</div>
+            <div style={{fontSize:14,fontWeight:900,lineHeight:1.1,marginBottom:6}}>Dubai Properties</div>
+            <div style={{fontSize:9,color:"rgba(255,255,255,.4)",flex:1,lineHeight:1.5}}>30 properties, AI scoring, mortgage calculators & ROI analysis.</div>
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:5,marginTop:8}}>
+              <div style={{background:"rgba(59,130,246,.1)",border:"1px solid rgba(59,130,246,.2)",borderRadius:7,padding:"5px",textAlign:"center"}}>
+                <div style={{fontSize:12,fontWeight:900,color:"#3b82f6"}}>30+</div>
+                <div style={{fontSize:6,color:"#3b82f6",letterSpacing:.5}}>PROPERTIES</div>
+              </div>
+              <div style={{background:"rgba(59,130,246,.1)",border:"1px solid rgba(59,130,246,.2)",borderRadius:7,padding:"5px",textAlign:"center"}}>
+                <div style={{fontSize:12,fontWeight:900,color:"#3b82f6"}}>5.2%</div>
+                <div style={{fontSize:6,color:"#3b82f6",letterSpacing:.5}}>AVG ROI</div>
+              </div>
+            </div>
+            <div style={{marginTop:8,padding:"8px",background:"linear-gradient(135deg,#3b82f6,#1d4ed8)",borderRadius:10,textAlign:"center",fontSize:10,fontWeight:700}}>Explore Properties →</div>
+          </div>
+        </div>
+        {/* ARCHAI */}
+        <div onClick={()=>router.push("/archai")} style={{borderRadius:20,overflow:"hidden",position:"relative",minHeight:195,cursor:"pointer",background:"#f5f2ee"}}>
+          <div style={{position:"relative",zIndex:1,padding:"16px 13px",height:"100%",display:"flex",flexDirection:"column"}}>
+            <div style={{fontSize:26,marginBottom:6}}>🏛️</div>
+            <div style={{fontSize:7,color:"#c8a96e",fontWeight:700,letterSpacing:1.5,marginBottom:4}}>AI VILLA DESIGN</div>
+            <div style={{fontSize:14,fontWeight:900,color:"#1a1510",lineHeight:1.1,marginBottom:6}}>ARCHAI</div>
+            <div style={{fontSize:9,color:"#888",flex:1,lineHeight:1.5}}>Design your dream villa — 9 styles, floor plans, cost estimate, AI photo free.</div>
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:5,marginTop:8}}>
+              <div style={{background:"rgba(200,169,110,.15)",border:"1px solid rgba(200,169,110,.3)",borderRadius:7,padding:"5px",textAlign:"center"}}>
+                <div style={{fontSize:12,fontWeight:900,color:"#c8a96e"}}>9</div>
+                <div style={{fontSize:6,color:"#c8a96e",letterSpacing:.5}}>STYLES</div>
+              </div>
+              <div style={{background:"rgba(200,169,110,.15)",border:"1px solid rgba(200,169,110,.3)",borderRadius:7,padding:"5px",textAlign:"center"}}>
+                <div style={{fontSize:12,fontWeight:900,color:"#c8a96e"}}>Free</div>
+                <div style={{fontSize:6,color:"#c8a96e",letterSpacing:.5}}>Until 2026</div>
+              </div>
+            </div>
+            <div style={{marginTop:8,padding:"8px",background:"linear-gradient(135deg,#c8a96e,#a07030)",borderRadius:10,textAlign:"center",fontSize:10,fontWeight:700,color:"#1a1510"}}>Design My Villa →</div>
+          </div>
+        </div>
+        {/* SALMANFX */}
+        <div onClick={()=>router.push("/salmanfx")} style={{borderRadius:20,overflow:"hidden",position:"relative",minHeight:170,cursor:"pointer",background:"#000",border:"1px solid #003010"}}>
+          <div style={{position:"absolute",inset:0,opacity:.05,backgroundImage:"repeating-linear-gradient(0deg,#00ff41 0,#00ff41 1px,transparent 1px,transparent 20px)"}}/>
+          <div style={{position:"relative",zIndex:1,padding:"14px 13px",height:"100%",display:"flex",flexDirection:"column"}}>
+            <div style={{fontSize:24,marginBottom:6}}>📈</div>
+            <div style={{fontSize:7,color:"#00ff41",fontWeight:700,letterSpacing:1.5,marginBottom:4,fontFamily:"monospace"}}>● FOREX EA</div>
+            <div style={{fontSize:14,fontWeight:900,color:"#00ff41",fontFamily:"monospace",marginBottom:4}}>SalmanFX</div>
+            <div style={{fontSize:9,color:"#003010",flex:1,lineHeight:1.5}}>Expert Advisors MT4/MT5</div>
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:5,marginTop:8}}>
+              <div style={{background:"rgba(0,255,65,.06)",border:"1px solid #003010",borderRadius:6,padding:"5px",textAlign:"center"}}>
+                <div style={{fontSize:11,fontWeight:900,color:"#00ff41"}}>67%</div>
+                <div style={{fontSize:6,color:"#003010",letterSpacing:.5}}>WIN RATE</div>
+              </div>
+              <div style={{background:"rgba(0,255,65,.06)",border:"1px solid #003010",borderRadius:6,padding:"5px",textAlign:"center"}}>
+                <div style={{fontSize:11,fontWeight:900,color:"#00ff41"}}>3</div>
+                <div style={{fontSize:6,color:"#003010",letterSpacing:.5}}>EAs</div>
+              </div>
+            </div>
+            <div style={{marginTop:8,padding:"7px",background:"#00ff41",borderRadius:8,textAlign:"center",fontSize:10,fontWeight:900,color:"#000"}}>Buy EA →</div>
+          </div>
+        </div>
+        {/* WEBBUILDER */}
+        <div onClick={()=>router.push("/webbuilder")} style={{borderRadius:20,overflow:"hidden",position:"relative",minHeight:170,cursor:"pointer",background:"linear-gradient(135deg,#0a0006,#1a0010)"}}>
+          <div style={{position:"absolute",inset:0,backgroundImage:"radial-gradient(rgba(255,107,53,.07) 1px,transparent 1px)",backgroundSize:"16px 16px"}}/>
+          <div style={{position:"relative",zIndex:1,padding:"14px 13px",height:"100%",display:"flex",flexDirection:"column"}}>
+            <div style={{fontSize:24,marginBottom:6}}>⚡</div>
+            <div style={{fontSize:7,color:"#ff6b35",fontWeight:700,letterSpacing:1.5,marginBottom:4}}>WEB DEV</div>
+            <div style={{fontSize:14,fontWeight:900,marginBottom:4}}>Web Builder</div>
+            <div style={{fontSize:9,color:"rgba(255,255,255,.35)",flex:1,lineHeight:1.5}}>Custom websites Dubai</div>
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:5,marginTop:8}}>
+              <div style={{background:"rgba(255,107,53,.08)",border:"1px solid rgba(255,107,53,.2)",borderRadius:6,padding:"5px",textAlign:"center"}}>
+                <div style={{fontSize:11,fontWeight:900,color:"#ff6b35"}}>18</div>
+                <div style={{fontSize:6,color:"#ff6b35",letterSpacing:.5}}>CATEGORIES</div>
+              </div>
+              <div style={{background:"rgba(255,107,53,.08)",border:"1px solid rgba(255,107,53,.2)",borderRadius:6,padding:"5px",textAlign:"center"}}>
+                <div style={{fontSize:11,fontWeight:900,color:"#ff6b35"}}>5★</div>
+                <div style={{fontSize:6,color:"#ff6b35",letterSpacing:.5}}>QUALITY</div>
+              </div>
+            </div>
+            <div style={{marginTop:8,padding:"7px",background:"linear-gradient(135deg,#ff6b35,#ec4899)",borderRadius:8,textAlign:"center",fontSize:10,fontWeight:900,color:"#000"}}>Get a Quote →</div>
+          </div>
+        </div>
+        {/* AL-NOOR — full width bottom */}
+        <div onClick={()=>router.push("/al-noor")} style={{gridColumn:"span 2",borderRadius:20,overflow:"hidden",position:"relative",minHeight:100,cursor:"pointer",background:"linear-gradient(135deg,#03091a,#060e28)",border:"1px solid rgba(201,168,76,.15)"}}>
+          <div style={{position:"absolute",inset:0,opacity:.04}}>
+            <svg width="100%" height="100%"><defs><pattern id="hx" x="0" y="0" width="40" height="35" patternUnits="userSpaceOnUse"><polygon points="20,2 38,11 38,24 20,33 2,24 2,11" fill="none" stroke="#c9a84c" strokeWidth="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#hx)"/></svg>
+          </div>
+          <div style={{position:"relative",zIndex:1,padding:"16px 18px",display:"flex",alignItems:"center",gap:16}}>
+            <div style={{fontSize:32,flexShrink:0}}>🕌</div>
+            <div style={{flex:1}}>
+              <div style={{fontSize:7,color:"#c9a84c",fontWeight:700,letterSpacing:2,marginBottom:3}}>ISLAMIC APP</div>
+              <div style={{fontSize:15,fontWeight:900,marginBottom:2}}>Al-Noor</div>
+              <div style={{fontSize:9,color:"rgba(255,255,255,.4)"}}>Prayer times · Quran · Tasbeeh · Duas</div>
+            </div>
+            <div style={{padding:"8px 14px",background:"linear-gradient(135deg,#8a6a20,#c9a84c)",borderRadius:20,fontSize:10,fontWeight:700,color:"#03091a",flexShrink:0}}>Open →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function LandingPage() {
   const [mounted, setMounted]   = useState(false);
   const [hovered, setHovered]   = useState(null);
@@ -188,14 +350,25 @@ export default function LandingPage() {
 
   return (
     <>
+      {/* MOBILE DASHBOARD */}
+      <MobileDashboard router={router} />
+
       <link rel="preconnect" href="https://fonts.googleapis.com"/>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&display=swap"/>
-      <div suppressHydrationWarning style={{ position:"relative", minHeight:"100vh", background:"#06070d", fontFamily:"'Plus Jakarta Sans',sans-serif", overflowX:"hidden" }}>
+      <div className="desk-content" suppressHydrationWarning style={{ position:"relative", minHeight:"100vh", background:"#06070d", fontFamily:"'Plus Jakarta Sans',sans-serif", overflowX:"hidden" }}>
         <style suppressHydrationWarning>{`
           *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
           nav,[class*="navbar"],[id*="navbar"],header { display:none !important; }
           ::-webkit-scrollbar { width:4px; } ::-webkit-scrollbar-thumb { background:rgba(200,169,110,0.3); border-radius:10px; }
           @keyframes fadeUp   { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+          @keyframes gpulse   { 0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.4)} 70%{box-shadow:0 0 0 8px rgba(37,211,102,0)} }
+          @keyframes sIn      { from{opacity:0;transform:scale(.98)} to{opacity:1;transform:none} }
+          .mob-dash { display:none !important; }
+          .desk-content { display:block; }
+          @media(max-width:768px) {
+            .desk-content { display:none !important; }
+            .mob-dash { display:block !important; animation:sIn .4s ease; }
+          }
           @keyframes shimmer  { 0%{background-position:200% center} 100%{background-position:-200% center} }
           @keyframes blink    { 0%,100%{opacity:1} 50%{opacity:0.3} }
           @keyframes float    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
