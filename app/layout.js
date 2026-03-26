@@ -2,7 +2,6 @@ import "./globals.css";
 import NavbarWrapper from "./components/NavbarWrapper";
 import MobileAppNav from "./components/MobileAppNav";
 import ErrorBoundary from "./components/ErrorBoundary";
-import DOMPatch from "./components/DOMPatch";
 
 export const metadata = {
   metadataBase: new URL("https://dubairovers.com"),
@@ -39,7 +38,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <DOMPatch />
         <NavbarWrapper />
         <ErrorBoundary>
           {children}
