@@ -400,16 +400,14 @@ export default function LandingPage() {
       {/* MOBILE DASHBOARD */}
       <MobileDashboard router={router} />
 
+      {/* ── Fixed elements OUTSIDE desk-content so React never tries to removeChild them from the wrong parent ── */}
+      {mounted && <canvas ref={canvasRef} style={{ position:"fixed", inset:0, zIndex:0, pointerEvents:"none" }}/>}
+      <div style={{ position:"fixed", inset:0, zIndex:1, pointerEvents:"none",
+        background:"radial-gradient(ellipse 50% 60% at 20% 50%, rgba(249,115,22,0.05) 0%, transparent 70%), radial-gradient(ellipse 50% 60% at 50% 30%, rgba(99,102,241,0.04) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 80% 60%, rgba(200,169,110,0.05) 0%, transparent 70%)" }}/>
+
       <div className="desk-content" suppressHydrationWarning style={{ position:"relative", minHeight:"100vh", background:"#06070d", fontFamily:"'Plus Jakarta Sans',sans-serif", overflowX:"hidden" }}>
 
-        {/* Canvas starfield */}
-        {mounted && <canvas ref={canvasRef} style={{ position:"fixed", inset:0, zIndex:0, pointerEvents:"none" }}/>}
-
-        {/* Ambient gradients */}
-        <div style={{ position:"fixed", inset:0, zIndex:1, pointerEvents:"none",
-          background:"radial-gradient(ellipse 50% 60% at 20% 50%, rgba(249,115,22,0.05) 0%, transparent 70%), radial-gradient(ellipse 50% 60% at 50% 30%, rgba(99,102,241,0.04) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 80% 60%, rgba(200,169,110,0.05) 0%, transparent 70%)" }}/>
-
-        {/* Top bar */}
+        {/* Top bar — rendered inside desk-content div for CSS show/hide, but visually fixed */}
         <div style={{ position:"fixed", top:0, left:0, right:0, zIndex:30, display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 28px",
           background:"linear-gradient(to bottom, rgba(6,7,13,0.95) 0%, transparent 100%)",
           opacity: mounted ? 1 : 0, transition:"opacity 0.6s ease" }}>
@@ -844,15 +842,15 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-
-        {/* WhatsApp */}
-        <a href="https://wa.me/971544735060" target="_blank" rel="noopener noreferrer"
-          style={{ position:"fixed", bottom:22, right:22, zIndex:50, width:50, height:50, borderRadius:"50%",
-            background:"#25D366", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22,
-            textDecoration:"none", boxShadow:"0 6px 20px rgba(37,211,102,0.45)", animation:"float 3s ease-in-out infinite" }}>
-          💬
-        </a>
       </div>
+
+      {/* WhatsApp — outside desk-content so React doesn't crash on unmount */}
+      <a href="https://wa.me/971544735060" target="_blank" rel="noopener noreferrer"
+        style={{ position:"fixed", bottom:22, right:22, zIndex:50, width:50, height:50, borderRadius:"50%",
+          background:"#25D366", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22,
+          textDecoration:"none", boxShadow:"0 6px 20px rgba(37,211,102,0.45)", animation:"float 3s ease-in-out infinite" }}>
+        💬
+      </a>
     </>
   );
 }
