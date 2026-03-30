@@ -52,7 +52,7 @@ export default function AttractionDetailClient({ attraction: a }) {
           <div className="flex-1 min-w-0">
             {/* Hero image */}
             <div className="relative rounded-3xl overflow-hidden mb-6" style={{ height:'380px' }}>
-              <Image src={a.image} alt={a.name} fill className="object-cover" priority />
+              <Image src={a.image} alt={a.name} fill className="object-cover" priority sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
               <div className="absolute inset-0" style={{ background:'linear-gradient(180deg,transparent 50%,rgba(10,22,40,0.8) 100%)' }} />
               <div className="absolute top-4 left-4"><span className="badge-gold">{a.tag}</span></div>
               <div className="absolute bottom-4 left-5 right-5">

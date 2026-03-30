@@ -77,7 +77,7 @@ export default function BlogPage() {
                       className="rounded-2xl overflow-hidden group block"
                       style={{ boxShadow:'0 4px 20px rgba(10,22,40,0.1)', border:'1px solid #e2e8f0' }}>
                       <div className="relative h-56 overflow-hidden">
-                        <Image src={post.image || 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800'} alt={post.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <Image src={post.image || 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800'} alt={post.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
                         <div className="absolute inset-0" style={{ background:'linear-gradient(180deg,transparent 30%,rgba(10,22,40,0.9) 100%)' }} />
                         <div className="absolute top-4 left-4"><span className="badge-gold text-xs">{post.category?.replace(/-/g,' ')}</span></div>
                         <div className="absolute bottom-0 left-0 right-0 p-5">
@@ -104,7 +104,7 @@ export default function BlogPage() {
                   className="rounded-2xl overflow-hidden group block bg-white transition-all hover:-translate-y-1"
                   style={{ boxShadow:'0 2px 12px rgba(10,22,40,0.06)', border:'1px solid #e2e8f0' }}>
                   <div className="relative h-44 overflow-hidden">
-                    <Image src={post.image || 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800'} alt={post.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <Image src={post.image || 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800'} alt={post.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
                     <div className="absolute top-3 left-3">
                       <span className="px-2 py-1 rounded-full text-[10px] font-bold bg-brand-navy/80 text-white backdrop-blur-sm">
                         {post.category?.replace(/-/g,' ')}

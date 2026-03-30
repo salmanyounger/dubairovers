@@ -1,10 +1,11 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import Image from 'next/image';
 import TourCard from '../../components/TourCard';
 import { TOURS as STATIC_TOURS, TOUR_CATEGORIES, BLOG_POSTS as STATIC_BLOGS, TESTIMONIALS, STATS, WORLD_DESTINATIONS, ATTRACTIONS } from '../../data/tours';
-import { WORLD_COUNTRIES } from '../../data/worldwide-tours';
+import { WORLD_COUNTRIES } from '../../data/worldwide-tours-index';
 import { useData } from '../../context/DataContext';
 
 /* ── Search Bar ─────────────────────────────────────────────── */
@@ -203,7 +204,7 @@ function WorldwideSection() {
             <Image
               src={`https://images.unsplash.com/photo-${country.img}?w=300&q=75`}
               alt={`${country.name} tours from Dubai`}
-              fill className="object-cover transition-transform duration-500 group-hover:scale-110" />
+              fill className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
             <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg,transparent 35%,rgba(10,22,40,0.92) 100%)' }} />
             <div className="absolute bottom-0 left-0 right-0 p-2.5">
               <div className="text-xl mb-0.5">{country.flag}</div>
@@ -243,7 +244,7 @@ export default function HomePage() {
           <Image
             src="https://images.unsplash.com/photo-1512632578888-169bbbc64f33?w=1920&q=85"
             alt="Dubai Desert Safari aerial view — DubaiRovers"
-            fill className="object-cover" priority />
+            fill className="object-cover" priority sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(10,22,40,0.65) 0%, rgba(10,22,40,0.3) 45%, rgba(10,22,40,0.85) 100%)' }} />
         </div>
 
@@ -319,7 +320,7 @@ export default function HomePage() {
               <Link key={cat.id} href={`/tours/${cat.slug}`}
                 className="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer">
                 <Image src={cat.image} alt={cat.name} fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110" />
+                  className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
                 <div className="absolute inset-0" style={{ background:'linear-gradient(180deg,transparent 30%,rgba(10,22,40,0.85) 100%)' }} />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <div className="text-2xl mb-1">{cat.emoji}</div>
@@ -495,7 +496,7 @@ export default function HomePage() {
               <Link key={a.id} href={`/attractions/${a.slug}`}
                 className="group relative overflow-hidden rounded-2xl cursor-pointer"
                 style={{ height:'280px' }}>
-                <Image src={a.image} alt={a.name} fill className="object-cover transition-transform duration-500 group-hover:scale-110" />
+                <Image src={a.image} alt={a.name} fill className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
                 <div className="absolute inset-0" style={{ background:'linear-gradient(180deg,transparent 30%,rgba(10,22,40,0.9) 100%)' }} />
                 <div className="absolute top-3 left-3">
                   <span className="badge-gold text-xs">{a.tag}</span>
@@ -533,7 +534,7 @@ export default function HomePage() {
             {BLOG_POSTS.map(post => (
               <Link key={post.id} href={`/blog/${post.slug}`} className="blog-card">
                 <div className="relative h-48 overflow-hidden">
-                  <Image src={post.image} alt={post.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <Image src={post.image} alt={post.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
                   <div className="absolute top-3 left-3">
                     <span className="badge-navy text-xs">{post.category}</span>
                   </div>

@@ -19,7 +19,7 @@ function AttractionCard({ a }) {
     <div className="rounded-2xl overflow-hidden bg-white"
       style={{ boxShadow:'0 4px 24px rgba(10,22,40,0.08)', border:'1px solid rgba(212,175,55,0.1)' }}>
       <div className="relative" style={{ height:'220px' }}>
-        <Image src={a.image} alt={a.name} fill className="object-cover" />
+        <Image src={a.image} alt={a.name} fill className="object-cover" sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
         <div className="absolute inset-0" style={{ background:'linear-gradient(180deg,transparent 40%,rgba(10,22,40,0.8) 100%)' }} />
         <div className="absolute top-3 left-3"><span className="badge-gold">{a.tag}</span></div>
         <div className="absolute bottom-3 left-3">

@@ -2,7 +2,7 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { WORLD_COUNTRIES, WORLD_TOURS } from '../../../../data/worldwide-tours';
+import { WORLD_COUNTRIES } from '../../../../data/worldwide-tours-index';
 
 const REGIONS = ['All', 'Middle East', 'Europe', 'Asia', 'Africa', 'Americas', 'Oceania', 'Europe/Asia', 'Caucasus'];
 
@@ -17,7 +17,7 @@ export default function WorldwidePage() {
     return list;
   }, [activeRegion, search]);
 
-  const toursCount = (cid) => WORLD_TOURS.filter(t => t.countrySlug === cid).length;
+  const toursCount = () => 20; // each country has exactly 20 tours
 
   return (
     <>
@@ -32,7 +32,7 @@ export default function WorldwidePage() {
             Explore the World
           </h1>
           <p className="text-white/70 text-lg max-w-2xl mx-auto mb-6">
-            From desert kingdoms to tropical islands — {WORLD_COUNTRIES.length} countries, {WORLD_TOURS.length} handpicked tours. Book from Dubai with confidence.
+            From desert kingdoms to tropical islands — {WORLD_COUNTRIES.length} countries, 1,000 handpicked tours. Book from Dubai with confidence.
           </p>
           <div className="relative max-w-md mx-auto">
             <input
@@ -73,7 +73,7 @@ export default function WorldwidePage() {
               <div className="relative h-28 overflow-hidden">
                 <Image
                   src={`https://images.unsplash.com/photo-${c.img}?w=400&q=75`}
-                  alt={c.name} fill className="object-cover transition-transform duration-500 group-hover:scale-110" />
+                  alt={c.name} fill className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg,transparent 30%,rgba(10,22,40,0.85) 100%)' }} />
                 <div className="absolute bottom-2 left-3 right-3">
                   <div className="flex items-center gap-1">

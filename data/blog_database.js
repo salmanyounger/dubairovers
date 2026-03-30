@@ -634,4 +634,10 @@ export function applyAutoLinks(content, tours=[]) {
   return r;
 }
 
+
+// ─── Lightweight blog list (no content) — use for listing pages ──
+// ~40% smaller than ALL_BLOGS
+export const BLOG_META = ALL_BLOGS.map(({ content: _c, ...rest }) => rest);
+
 export default ALL_BLOGS;
+

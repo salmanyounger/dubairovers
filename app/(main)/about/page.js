@@ -14,7 +14,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="relative py-24 text-white overflow-hidden">
         <Image src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=1600&q=85"
-          alt="Dubai skyline — About DubaiRovers" fill className="object-cover" />
+          alt="Dubai skyline — About DubaiRovers" fill className="object-cover" sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
         <div className="absolute inset-0" style={{ background:'linear-gradient(135deg,rgba(10,22,40,0.85),rgba(30,58,95,0.8))' }} />
         <div className="container-main relative z-10 text-center">
           <span className="badge-gold mb-4">ℹ️ Our Story</span>
@@ -62,7 +62,7 @@ export default function AboutPage() {
             </div>
             <div className="relative h-80 rounded-3xl overflow-hidden">
               <Image src="https://images.unsplash.com/photo-1512632578888-169bbbc64f33?w=800&q=85"
-                alt="Dubai desert — DubaiRovers story" fill className="object-cover" />
+                alt="Dubai desert — DubaiRovers story" fill className="object-cover" sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
               <div className="absolute bottom-4 left-4 right-4 rounded-2xl p-4"
                 style={{ background:'rgba(10,22,40,0.85)', backdropFilter:'blur(8px)' }}>
                 <div className="text-brand-gold font-bold text-sm">🏆 Award-Winning Service</div>

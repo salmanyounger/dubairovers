@@ -25,7 +25,7 @@ export default function CategoryPage({ params }) {
     <>
       {/* Hero */}
       <section className="relative py-20 text-white text-center overflow-hidden">
-        <Image src={cat.image} alt={cat.name} fill className="object-cover" />
+        <Image src={cat.image} alt={cat.name} fill className="object-cover" sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
         <div className="absolute inset-0" style={{ background:'linear-gradient(180deg,rgba(10,22,40,0.75) 0%,rgba(10,22,40,0.6) 100%)' }} />
         <div className="container-main relative z-10">
           <div className="text-5xl mb-4">{cat.emoji}</div>

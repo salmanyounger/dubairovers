@@ -202,7 +202,7 @@ Our team responds within 30 minutes — day or night.`;
 
       {/* Hero */}
       <section className="relative py-28 text-white overflow-hidden">
-        <Image src={post.image || 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=1200'} alt={post.title} fill className="object-cover" priority />
+        <Image src={post.image || 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=1200'} alt={post.title} fill className="object-cover" priority sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
         <div className="absolute inset-0" style={{ background:'linear-gradient(180deg,rgba(10,22,40,0.55) 0%,rgba(10,22,40,0.92) 100%)' }} />
         <div className="container-main relative z-10 max-w-4xl">
           <div className="flex gap-2 mb-5 flex-wrap">
@@ -359,7 +359,7 @@ Our team responds within 30 minutes — day or night.`;
                   <Link key={r.id} href={`/blog/${r.slug}`}
                     className="flex gap-3 mb-4 last:mb-0 group">
                     <div className="relative w-16 h-16 rounded-xl overflow-hidden shrink-0">
-                      <Image src={r.image || 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=200'} alt={r.title} fill className="object-cover" />
+                      <Image src={r.image || 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=200'} alt={r.title} fill className="object-cover" sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-semibold text-brand-navy line-clamp-2 group-hover:text-brand-gold transition-colors">

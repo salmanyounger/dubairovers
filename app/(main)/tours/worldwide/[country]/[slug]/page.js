@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
-import { WORLD_COUNTRIES, WORLD_TOURS, getToursByCountry, getWorldTour } from '../../../../../../data/worldwide-tours';
+import { WORLD_COUNTRIES, loadCountryTours, getCountry } from '../../../../../../data/worldwide-tours-index';
 
 export default function WorldTourDetailPage() {
   const { country: cid, slug } = useParams();
@@ -11,9 +11,27 @@ export default function WorldTourDetailPage() {
   const [guests, setGuests] = useState(2);
   const [booked, setBooked] = useState(false);
 
-  const tour = getWorldTour(slug);
+  const [tour, setTour] = useState(null);
+  const [relatedTours, setRelatedTours] = useState([]);
+  const [loading, setLoading] = useState(true);
   const country = WORLD_COUNTRIES.find(c => c.id === cid);
-  const relatedTours = getToursByCountry(cid).filter(t => t.slug !== slug).slice(0, 3);
+
+  useEffect(() => {
+    loadCountryTours(cid).then(tours => {
+      setTour(tours.find(t => t.slug === slug) || null);
+      setRelatedTours(tours.filter(t => t.slug !== slug).slice(0, 3));
+      setLoading(false);
+    });
+  }, [cid, slug]);
+
+  if (loading) return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-center">
+        <div className="text-4xl mb-3 animate-pulse">✈️</div>
+        <p className="text-gray-500 font-medium">Loading tour...</p>
+      </div>
+    </div>
+  );
 
   if (!tour || !country) return (
     <div className="min-h-screen flex items-center justify-center text-center p-8">
@@ -82,7 +100,7 @@ export default function WorldTourDetailPage() {
 
       {/* Hero */}
       <section className="relative py-28 text-white overflow-hidden">
-        <Image src={tour.image} alt={tour.name} fill className="object-cover" priority />
+        <Image src={tour.image} alt={tour.name} fill className="object-cover" priority sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg,rgba(10,22,40,0.35) 0%,rgba(10,22,40,0.92) 100%)' }} />
         <div className="container-main relative z-10 max-w-5xl">
           <div className="flex items-center gap-2 mb-4 text-sm text-white/60 flex-wrap">
@@ -203,7 +221,7 @@ export default function WorldTourDetailPage() {
                     <Link key={t.id} href={`/tours/worldwide/${cid}/${t.slug}`}
                       className="group rounded-xl overflow-hidden border border-gray-100 hover:border-brand-gold transition-all bg-white">
                       <div className="relative h-32 overflow-hidden">
-                        <Image src={t.image} alt={t.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <Image src={t.image} alt={t.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
                       </div>
                       <div className="p-3">
                         <p className="text-xs font-bold text-brand-navy line-clamp-2 group-hover:text-brand-gold transition-colors">{t.name}</p>

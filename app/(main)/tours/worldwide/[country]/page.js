@@ -1,9 +1,9 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
-import { WORLD_COUNTRIES, getToursByCountry } from '../../../../../data/worldwide-tours';
+import { WORLD_COUNTRIES, loadCountryTours } from '../../../../../data/worldwide-tours-index';
 
 const CATEGORY_LABELS = {
   cultural: '🏛️ Cultural', city: '🏙️ City', food: '🍜 Food', adventure: '🧗 Adventure',
@@ -46,7 +46,7 @@ export default function CountryToursPage() {
       <section className="relative py-28 text-white overflow-hidden">
         <Image
           src={`https://images.unsplash.com/photo-${countryData.img}?w=1200&q=80`}
-          alt={countryData.name} fill className="object-cover" priority />
+          alt={countryData.name} fill className="object-cover" priority sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg,rgba(10,22,40,0.4) 0%,rgba(10,22,40,0.9) 100%)' }} />
         <div className="container-main relative z-10 max-w-4xl">
           <div className="flex gap-2 mb-4 flex-wrap">
@@ -95,7 +95,7 @@ export default function CountryToursPage() {
               className="group rounded-2xl overflow-hidden bg-white border border-gray-100 hover:border-brand-gold transition-all hover:-translate-y-1"
               style={{ boxShadow: '0 2px 12px rgba(10,22,40,0.06)' }}>
               <div className="relative h-44 overflow-hidden">
-                <Image src={tour.image} alt={tour.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                <Image src={tour.image} alt={tour.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
                 <div className="absolute top-3 left-3">
                   <span className="px-2 py-1 rounded-full text-[10px] font-bold bg-brand-navy/80 text-white backdrop-blur-sm">
                     {CATEGORY_LABELS[tour.category] || tour.category}

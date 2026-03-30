@@ -49,6 +49,11 @@ export default function RootLayout({ children }) {
             }),
           }}
         />
+      {/* Preconnect to external domains for faster loading */}
+      <link rel="preconnect" href="https://images.unsplash.com" />
+      <link rel="dns-prefetch" href="https://images.unsplash.com" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body suppressHydrationWarning>
         {children}

@@ -1,7 +1,7 @@
 'use client';
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { TOURS as STATIC_TOURS, TOUR_CATEGORIES } from '../data/tours';
-import { ALL_BLOGS } from '../data/blog_database';
+import { BLOG_META as ALL_BLOGS } from '../data/blog_database';
 
 const DataContext = createContext(null);
 

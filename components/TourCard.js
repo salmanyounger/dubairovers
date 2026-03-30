@@ -50,7 +50,9 @@ export default function TourCard({ tour, variant = 'default' }) {
           {/* Clickable image area → tour detail */}
           <Link href={href} className="relative w-full sm:w-52 h-48 sm:h-auto shrink-0 overflow-hidden block">
             <Image src={tour.images?.[0] || 'https://images.unsplash.com/photo-1512632578888-169bbbc64f33?w=600&q=80'}
-              alt={tour.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+              alt={tour.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
+              loading="lazy" />
             {tour.tag && <span className="absolute top-3 left-3 badge-gold text-xs">{tour.tag}</span>}
           </Link>
           <div className="flex flex-col justify-between p-5 flex-1">
