@@ -299,6 +299,7 @@ export default function TourDetailClient({ tour }) {
           </div>
 
           {/* Sticky Booking Sidebar */}
+         {/* Sticky Booking Sidebar */}
           <div className="lg:w-80 shrink-0">
             <div className="sticky top-6">
               <BookingSidebar tour={tour} />
@@ -306,10 +307,9 @@ export default function TourDetailClient({ tour }) {
           </div>
         </div>
       </div>
-      </div>
-      </div>
 
       <FAQSection faqs={tourFaqs} title={`${tour.name} — FAQ`} />
     </>
   );
+}
 }
