@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
@@ -13,7 +13,8 @@ const CATEGORY_LABELS = {
 export default function CountryToursPage() {
   const { country: cid } = useParams();
   const countryData = WORLD_COUNTRIES.find(c => c.id === cid);
-  const allTours = getToursByCountry(cid);
+  const [allTours, setAllTours] = useState([]);
+  useEffect(() => { loadCountryTours(cid).then(t => setAllTours(t)); }, [cid]);
   const [activecat, setActivecat] = useState('All');
 
   if (!countryData) return (
