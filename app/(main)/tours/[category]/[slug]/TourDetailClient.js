@@ -307,6 +307,7 @@ export default function TourDetailClient({ tour }) {
         </div>
       </div>
       </div>
+      </div>
 
       <FAQSection faqs={tourFaqs} title={`${tour.name} — FAQ`} />
     </>
