@@ -1,10 +1,9 @@
 'use client';
 import { useState } from 'react';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
-const BookingSidebar = dynamic(() => import('../../../../../components/BookingSidebar'), { ssr: false });
-const FAQSection = dynamic(() => import('../../../../../components/FAQSection'), { ssr: false });
+import BookingSidebar from '../../../../../components/BookingSidebar';
+import FAQSection from '../../../../../components/FAQSection';
 import { useCurrency } from '../../../../../context/CurrencyContext';
 
 function Stars({ rating, size = 'sm' }) {
@@ -30,12 +29,12 @@ function Gallery({ images, name }) {
       <div className="grid grid-cols-4 gap-2 rounded-2xl overflow-hidden" style={{ height:'420px' }}>
         <div className="col-span-2 relative cursor-pointer overflow-hidden group" style={{ gridRow:'span 2' }}
           onClick={() => { setActive(0); setLightbox(true); }}>
-          <Image src={safeImages[0]} alt={name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" priority sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
+          <Image src={safeImages[0]} alt={name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" priority />
         </div>
         {safeImages.slice(1, 5).map((img, i) => (
           <div key={i} className="relative cursor-pointer overflow-hidden group"
             onClick={() => { setActive(i+1); setLightbox(true); }}>
-            <Image src={img} alt={`${name} ${i+2}`} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
+            <Image src={img} alt={`${name} ${i+2}`} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
             {i === 3 && safeImages.length > 5 && (
               <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                 <span className="text-white font-bold text-lg">+{safeImages.length-5}</span>
@@ -52,7 +51,7 @@ function Gallery({ images, name }) {
           <button className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-4xl"
             onClick={e => { e.stopPropagation(); setActive(a => (a-1+safeImages.length)%safeImages.length); }}>‹</button>
           <div className="relative w-full max-w-4xl" style={{ aspectRatio:'16/9' }} onClick={e => e.stopPropagation()}>
-            <Image src={safeImages[active]} alt={name} fill className="object-contain" sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
+            <Image src={safeImages[active]} alt={name} fill className="object-contain" />
           </div>
           <button className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-4xl"
             onClick={e => { e.stopPropagation(); setActive(a => (a+1)%safeImages.length); }}>›</button>
