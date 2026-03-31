@@ -1,315 +1,167 @@
 'use client';
-import { useState } from 'react';
-import Image from 'next/image';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import BookingSidebar from '../../../../../components/BookingSidebar';
-import FAQSection from '../../../../../components/FAQSection';
-import { useCurrency } from '../../../../../context/CurrencyContext';
+import Image from 'next/image';
+import { useParams } from 'next/navigation';
+import { WORLD_COUNTRIES, loadCountryTours } from '../../../../../data/worldwide-tours-index';
 
-function Stars({ rating, size = 'sm' }) {
-  const s = size === 'lg' ? 'w-5 h-5' : 'w-3.5 h-3.5';
-  return (
-    <div className="flex items-center gap-0.5">
-      {[1,2,3,4,5].map(i => (
-        <svg key={i} className={`${s} ${i<=Math.round(rating)?'text-amber-400':'text-gray-300'}`} fill="currentColor" viewBox="0 0 20 20">
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-      ))}
+const CATEGORY_LABELS = {
+  cultural: '🏛️ Cultural', city: '🏙️ City', food: '🍜 Food', adventure: '🧗 Adventure',
+  nature: '🌿 Nature', water: '⛵ Water', desert: '🏜️ Desert'
+};
+
+export default function CountryToursPage() {
+  const { country: cid } = useParams();
+  const countryData = WORLD_COUNTRIES.find(c => c.id === cid);
+  const [allTours, setAllTours] = useState([]);
+  const [toursLoaded, setToursLoaded] = useState(false);
+  const [activecat, setActivecat] = useState('All');
+
+  useEffect(() => {
+    loadCountryTours(cid).then(t => { setAllTours(t); setToursLoaded(true); });
+  }, [cid]);
+
+  if (!toursLoaded && countryData) return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-center">
+        <div className="text-5xl mb-3 animate-pulse">{countryData.flag}</div>
+        <p className="text-gray-500 font-semibold">Loading tours for {countryData.name}...</p>
+      </div>
     </div>
   );
-}
 
-function Gallery({ images, name }) {
-  const [active,   setActive]   = useState(0);
-  const [lightbox, setLightbox] = useState(false);
-  const safeImages = images?.length ? images : ['https://images.unsplash.com/photo-1512632578888-169bbbc64f33?w=1200&q=85'];
-
-  return (
-    <>
-      <div className="grid grid-cols-4 gap-2 rounded-2xl overflow-hidden" style={{ height:'420px' }}>
-        <div className="col-span-2 relative cursor-pointer overflow-hidden group" style={{ gridRow:'span 2' }}
-          onClick={() => { setActive(0); setLightbox(true); }}>
-          <Image src={safeImages[0]} alt={name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" priority />
-        </div>
-        {safeImages.slice(1, 5).map((img, i) => (
-          <div key={i} className="relative cursor-pointer overflow-hidden group"
-            onClick={() => { setActive(i+1); setLightbox(true); }}>
-            <Image src={img} alt={`${name} ${i+2}`} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-            {i === 3 && safeImages.length > 5 && (
-              <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                <span className="text-white font-bold text-lg">+{safeImages.length-5}</span>
-              </div>
-            )}
-          </div>
-        ))}
+  if (!countryData) return (
+    <div className="min-h-screen flex items-center justify-center text-center p-8">
+      <div>
+        <div className="text-6xl mb-4">🌍</div>
+        <h2 className="text-2xl font-bold text-brand-navy mb-2" style={{ fontFamily: "'Playfair Display',serif" }}>Country Not Found</h2>
+        <Link href="/tours/worldwide" className="btn-gold mt-4">← All Countries</Link>
       </div>
-
-      {lightbox && (
-        <div className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4"
-          onClick={() => setLightbox(false)}>
-          <button className="absolute top-4 right-4 text-white text-3xl w-10 h-10 flex items-center justify-center">✕</button>
-          <button className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-4xl"
-            onClick={e => { e.stopPropagation(); setActive(a => (a-1+safeImages.length)%safeImages.length); }}>‹</button>
-          <div className="relative w-full max-w-4xl" style={{ aspectRatio:'16/9' }} onClick={e => e.stopPropagation()}>
-            <Image src={safeImages[active]} alt={name} fill className="object-contain" />
-          </div>
-          <button className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-4xl"
-            onClick={e => { e.stopPropagation(); setActive(a => (a+1)%safeImages.length); }}>›</button>
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-            {safeImages.map((_, i) => (
-              <button key={i} onClick={e => { e.stopPropagation(); setActive(i); }}
-                className={`h-2 rounded-full transition-all ${i===active?'bg-brand-gold w-5':'bg-white/50 w-2'}`} />
-            ))}
-          </div>
-        </div>
-      )}
-    </>
+    </div>
   );
-}
 
-const TABS = ['overview', 'itinerary', 'inclusions', 'reviews', 'location'];
+  const cats = ['All', ...Array.from(new Set(allTours.map(t => t.category)))];
+  const filtered = activecat === 'All' ? allTours : allTours.filter(t => t.category === activecat);
 
-export default function TourDetailClient({ tour }) {
-  const [itinOpen,    setItinOpen]    = useState(null);
-  const [activeTab,   setActiveTab]   = useState('overview');
-  const { convert, currency } = useCurrency();
-
-  const tourFaqs = [
-    { q:`❓ What is included in the ${tour.name}?`, a: tour.inclusions?.map(i=>i.replace('✅ ','')).join(', ') + '.' },
-    { q:'📍 Where does the tour depart from?',     a: tour.meetingPoint || 'Hotel pickup included.' },
-    { q:'👦 What is the minimum age?',             a: `Minimum age is ${tour.minAge} years old.` },
-    { q:'🔄 What is the cancellation policy?',     a: tour.cancellation },
-    { q:'🌍 What languages is this tour in?',      a: tour.languages?.join(', ') || 'English, Arabic' },
-    { q:'👥 How large are the groups?',            a: `Groups range from ${tour.groupSize?.min} to ${tour.groupSize?.max} people.` },
-  ];
-
-  const reviews = [
-    { name:'Sarah M.', country:'🇬🇧', rating:5, text:'Absolutely incredible experience! Everything was perfectly organised and our guide was fantastic.', date:'2 weeks ago' },
-    { name:'Ahmed R.', country:'🇸🇦', rating:5, text:'Best tour in Dubai without a doubt. Value for money is excellent and the service was 5 star.', date:'1 month ago' },
-    { name:'Elena V.', country:'🇷🇺', rating:4, text:'Amazing experience overall. The pickup was on time and the activities were exciting. Highly recommended!', date:'3 weeks ago' },
-  ];
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "TouristDestination",
+    "name": countryData.name,
+    "description": `Explore ${countryData.name} with DubaiRovers. ${filtered.length} tours available — cultural, adventure, food and nature experiences for all travellers.`,
+    "url": `https://dubairovers.com/tours/worldwide/${cid}`,
+    "touristType": ["Cultural tourists", "Adventure seekers", "Nature lovers", "Foodies"],
+  };
 
   return (
     <>
-      {/* Breadcrumb */}
-      <div className="bg-brand-cream border-b border-gray-100">
-        <div className="container-main py-3 text-sm text-gray-500 flex items-center gap-2 flex-wrap">
-          <Link href="/" className="hover:text-brand-gold">Home</Link> /
-          <Link href="/tours" className="hover:text-brand-gold">Tours</Link> /
-          <Link href={`/tours/${tour.category}`} className="hover:text-brand-gold capitalize">{tour.category.replace(/-/g,' ')}</Link> /
-          <span className="text-brand-navy font-semibold truncate max-w-[200px]">{tour.name}</span>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+
+      {/* Hero */}
+      <section className="relative py-28 text-white overflow-hidden">
+        <Image
+          src={`https://images.unsplash.com/photo-${countryData.img}?w=1200&q=80`}
+          alt={countryData.name} fill className="object-cover" priority sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg,rgba(10,22,40,0.4) 0%,rgba(10,22,40,0.9) 100%)' }} />
+        <div className="container-main relative z-10 max-w-4xl">
+          <div className="flex gap-2 mb-4 flex-wrap">
+            <Link href="/tours/worldwide" className="text-white/60 text-sm hover:text-white transition-colors">← All Countries</Link>
+          </div>
+          <div className="flex items-center gap-3 mb-3">
+            <span className="text-4xl">{countryData.flag}</span>
+            <h1 className="text-4xl md:text-5xl font-black" style={{ fontFamily: "'Playfair Display',serif" }}>
+              {countryData.name} Tours
+            </h1>
+          </div>
+          <div className="flex flex-wrap gap-4 text-white/70 text-sm mt-4">
+            <span>🏛️ Capital: {countryData.capital}</span>
+            <span>💱 Currency: {countryData.currency}</span>
+            <span>📅 Best time: {countryData.bestTime}</span>
+            <span>🗣️ Language: {countryData.language}</span>
+          </div>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <span className="px-3 py-1 rounded-full text-xs font-bold bg-brand-gold text-brand-navy">{allTours.length} tours available</span>
+            <span className="px-3 py-1 rounded-full text-xs font-bold bg-white/10 text-white">From AED {countryData.fromAED?.toLocaleString('en-US')}</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Category Filter */}
+      <div className="bg-white border-b border-gray-100 sticky top-0 z-10">
+        <div className="container-main py-3 flex gap-2 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+          {cats.map(cat => (
+            <button key={cat} onClick={() => setActivecat(cat)}
+              className={`shrink-0 px-4 py-1.5 rounded-full text-xs font-bold transition-all border ${
+                activecat === cat
+                  ? 'border-transparent text-brand-navy'
+                  : 'border-gray-200 text-gray-600 bg-white'
+              }`}
+              style={activecat === cat ? { background: 'linear-gradient(135deg,#D4AF37,#F0D060)' } : {}}>
+              {cat === 'All' ? `All (${allTours.length})` : (CATEGORY_LABELS[cat] || cat)}
+            </button>
+          ))}
         </div>
       </div>
 
-      <div className="container-main py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
-
-          {/* Main content */}
-          <div className="flex-1 min-w-0">
-            {/* Title */}
-            <div className="mb-6">
-              <div className="flex flex-wrap gap-2 mb-3">
-                {tour.tag && <span className="badge-gold">{tour.tag}</span>}
-                {tour.instantConfirmation && <span className="badge-green">⚡ Instant Confirmation</span>}
-                {tour.mobileVoucher && <span className="badge-navy">📱 Mobile Voucher</span>}
-              </div>
-              <h1 className="text-3xl md:text-4xl font-black text-brand-navy mb-4" style={{ fontFamily:"'Playfair Display',serif" }}>
-                {tour.name}
-              </h1>
-              <div className="flex items-center gap-5 flex-wrap text-sm">
-                <div className="flex items-center gap-1.5">
-                  <Stars rating={tour.rating} />
-                  <span className="font-bold text-amber-500">{tour.rating}</span>
-                  <span className="text-gray-400">({tour.reviewCount?.toLocaleString('en-US')} reviews)</span>
+      <div className="container-main py-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filtered.map(tour => (
+            <Link key={tour.id} href={`/tours/worldwide/${cid}/${tour.slug}`}
+              className="group rounded-2xl overflow-hidden bg-white border border-gray-100 hover:border-brand-gold transition-all hover:-translate-y-1"
+              style={{ boxShadow: '0 2px 12px rgba(10,22,40,0.06)' }}>
+              <div className="relative h-44 overflow-hidden">
+                <Image src={tour.image} alt={tour.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" />
+                <div className="absolute top-3 left-3">
+                  <span className="px-2 py-1 rounded-full text-[10px] font-bold bg-brand-navy/80 text-white backdrop-blur-sm">
+                    {CATEGORY_LABELS[tour.category] || tour.category}
+                  </span>
                 </div>
-                <span className="text-gray-300">|</span>
-                <span className="text-gray-500">📅 {tour.bookingCount?.toLocaleString('en-US')} bookings</span>
-                <span className="text-gray-300">|</span>
-                <span className="text-gray-500">⏱️ {tour.duration}</span>
-                <span className="text-gray-300">|</span>
-                <span className="text-gray-500">👥 Max {tour.groupSize?.max}</span>
-              </div>
-            </div>
-
-            {/* Gallery */}
-            <div className="mb-8">
-              <Gallery images={tour.images} name={tour.name} />
-            </div>
-
-            {/* Tabs */}
-            <div className="flex gap-1 overflow-x-auto mb-6 pb-1" style={{ scrollbarWidth:'none' }}>
-              {TABS.map(tab => (
-                <button key={tab} onClick={() => setActiveTab(tab)}
-                  className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all whitespace-nowrap ${
-                    activeTab===tab ? 'text-brand-navy' : 'text-gray-500 hover:text-brand-navy hover:bg-gray-100'
-                  }`}
-                  style={activeTab===tab ? { background:'linear-gradient(135deg,#D4AF37,#F0D060)' } : {}}>
-                  {tab.charAt(0).toUpperCase()+tab.slice(1)}
-                </button>
-              ))}
-            </div>
-
-            {/* Tab: Overview */}
-            {activeTab === 'overview' && (
-              <div className="animate-fade-in">
-                <p className="text-gray-600 leading-relaxed mb-8 text-base">{tour.description}</p>
-                <div className="mb-8">
-                  <h2 className="text-xl font-bold text-brand-navy mb-4" style={{ fontFamily:"'Playfair Display',serif" }}>🌟 Tour Highlights</h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {tour.highlights?.map((h, i) => (
-                      <div key={i} className="flex items-start gap-2.5 p-3 rounded-xl bg-amber-50">
-                        <span className="text-lg shrink-0">{h.split(' ')[0]}</span>
-                        <span className="text-brand-navy text-sm font-medium">{h.split(' ').slice(1).join(' ')}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="mb-8">
-                  <h2 className="text-xl font-bold text-brand-navy mb-4" style={{ fontFamily:"'Playfair Display',serif" }}>💰 Pricing</h2>
-                  <div className="rounded-2xl overflow-hidden border border-gray-100">
-                    {[
-                      { label:'👤 Adult (12+ years)', price: tour.pricing?.adult },
-                      { label:'👦 Child (3–11 years)', price: tour.pricing?.child },
-                      { label:'👶 Infant (0–2 years)', price: 0 },
-                    ].map((row, i) => (
-                      <div key={i} className={`flex items-center justify-between px-5 py-4 ${i%2===0?'bg-white':'bg-gray-50'}`}>
-                        <span className="font-semibold text-brand-navy text-sm">{row.label}</span>
-                        <span className="font-black text-brand-navy text-lg">{row.price === 0 ? 'FREE' : `AED ${row.price}`}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Tab: Itinerary */}
-            {activeTab === 'itinerary' && (
-              <div className="animate-fade-in">
-                <h2 className="text-xl font-bold text-brand-navy mb-6" style={{ fontFamily:"'Playfair Display',serif" }}>📅 Itinerary</h2>
-                {tour.itinerary?.length > 0 ? (
-                  <div className="space-y-3">
-                    {tour.itinerary.map((item, i) => (
-                      <div key={i} className="rounded-2xl overflow-hidden border border-gray-100">
-                        <button className="w-full flex items-center gap-4 px-5 py-4 text-left hover:bg-amber-50 transition-colors"
-                          onClick={() => setItinOpen(itinOpen===i ? null : i)}>
-                          <span className="text-xs font-black text-brand-gold bg-amber-50 px-2 py-1 rounded-lg w-16 text-center shrink-0">{item.time}</span>
-                          <span className="font-bold text-brand-navy text-sm flex-1">{item.title}</span>
-                          <span className={`text-gray-400 transition-transform ${itinOpen===i?'rotate-180':''}`}>▼</span>
-                        </button>
-                        {itinOpen===i && (
-                          <div className="px-5 pb-4 pl-24 text-sm text-gray-600 animate-slide-up">{item.desc}</div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-12 text-gray-400">
-                    <p>Detailed itinerary available on request. <a href="https://wa.me/971544735060" className="text-brand-gold font-semibold">WhatsApp us</a></p>
+                {tour.featured && (
+                  <div className="absolute top-3 right-3">
+                    <span className="px-2 py-1 rounded-full text-[10px] font-bold bg-brand-gold text-brand-navy">⭐ Featured</span>
                   </div>
                 )}
               </div>
-            )}
-
-            {/* Tab: Inclusions */}
-            {activeTab === 'inclusions' && (
-              <div className="animate-fade-in grid sm:grid-cols-2 gap-8">
-                <div>
-                  <h2 className="text-xl font-bold text-brand-navy mb-4" style={{ fontFamily:"'Playfair Display',serif" }}>✅ Included</h2>
-                  <div className="space-y-2.5">
-                    {tour.inclusions?.map((item, i) => (
-                      <div key={i} className="flex items-start gap-2.5 text-sm text-gray-700">
-                        <span className="text-emerald-500 shrink-0">✅</span>
-                        <span>{item.replace('✅ ','')}</span>
-                      </div>
-                    ))}
+              <div className="p-4">
+                <h3 className="font-bold text-brand-navy mb-1.5 line-clamp-2 group-hover:text-brand-gold transition-colors"
+                  style={{ fontFamily: "'Playfair Display',serif", fontSize: '15px' }}>
+                  {tour.emoji} {tour.name}
+                </h3>
+                <p className="text-gray-500 text-xs line-clamp-2 mb-3">{tour.tagline}</p>
+                <div className="flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-1 text-gray-500">
+                    <span>⏱️ {tour.duration}</span>
+                    <span className="mx-1 text-gray-300">·</span>
+                    <span>⭐ {tour.rating}</span>
                   </div>
-                </div>
-                <div>
-                  <h2 className="text-xl font-bold text-brand-navy mb-4" style={{ fontFamily:"'Playfair Display',serif" }}>❌ Not Included</h2>
-                  <div className="space-y-2.5">
-                    {tour.exclusions?.map((item, i) => (
-                      <div key={i} className="flex items-start gap-2.5 text-sm text-gray-700">
-                        <span className="text-red-400 shrink-0">❌</span>
-                        <span>{item.replace('❌ ','')}</span>
-                      </div>
-                    ))}
-                  </div>
+                  <span className="font-black text-brand-navy">AED {tour.pricing?.adult?.toLocaleString('en-US')}</span>
                 </div>
               </div>
-            )}
+            </Link>
+          ))}
+        </div>
 
-            {/* Tab: Reviews */}
-            {activeTab === 'reviews' && (
-              <div className="animate-fade-in">
-                <div className="flex items-center gap-6 mb-8 p-6 rounded-2xl bg-amber-50">
-                  <div className="text-center">
-                    <div className="text-6xl font-black text-brand-navy">{tour.rating}</div>
-                    <Stars rating={tour.rating} size="lg" />
-                    <div className="text-sm text-gray-500 mt-1">{tour.reviewCount?.toLocaleString('en-US')} reviews</div>
-                  </div>
-                  <div className="flex-1">
-                    {[5,4,3,2,1].map(n => (
-                      <div key={n} className="flex items-center gap-2 mb-1.5">
-                        <span className="text-xs text-gray-500 w-3">{n}</span>
-                        <span className="text-amber-400 text-xs">★</span>
-                        <div className="progress-bar flex-1">
-                          <div className="progress-fill" style={{ width: n===5?'85%':n===4?'12%':n===3?'2%':'1%' }} />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  {reviews.map((r, i) => (
-                    <div key={i} className="rounded-2xl p-5 border border-gray-100">
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center gap-2">
-                          <div className="w-9 h-9 rounded-full flex items-center justify-center font-bold text-brand-navy text-sm"
-                            style={{ background:'linear-gradient(135deg,#D4AF37,#F0D060)' }}>
-                            {r.name[0]}
-                          </div>
-                          <div>
-                            <div className="font-bold text-brand-navy text-sm">{r.name} {r.country}</div>
-                            <Stars rating={r.rating} />
-                          </div>
-                        </div>
-                        <span className="text-xs text-gray-400">{r.date}</span>
-                      </div>
-                      <p className="text-gray-600 text-sm">{r.text}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Tab: Location */}
-            {activeTab === 'location' && (
-              <div className="animate-fade-in">
-                <h2 className="text-xl font-bold text-brand-navy mb-4" style={{ fontFamily:"'Playfair Display',serif" }}>📍 Meeting Point</h2>
-                <div className="rounded-2xl p-4 bg-amber-50 mb-4">
-                  <p className="text-brand-navy font-semibold text-sm">🏨 {tour.meetingPoint}</p>
-                </div>
-                <div className="map-container">
-                  <iframe
-                    src={`https://maps.google.com/maps?q=${tour.location?.lat || 25.2048},${tour.location?.lng || 55.2708}&zoom=12&output=embed`}
-                    title={`Map — ${tour.name}`} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-                </div>
-              </div>
-            )}
+        {filtered.length === 0 && (
+          <div className="text-center py-20">
+            <div className="text-5xl mb-4">🔍</div>
+            <p className="text-gray-500 font-semibold">No tours in this category yet.</p>
           </div>
+        )}
 
-          {/* Sticky Booking Sidebar */}
-         {/* Sticky Booking Sidebar */}
-          <div className="lg:w-80 shrink-0">
-            <div className="sticky top-6">
-              <BookingSidebar tour={tour} />
-            </div>
-          </div>
+        {/* WhatsApp CTA */}
+        <div className="mt-12 rounded-3xl p-8 text-center" style={{ background: 'linear-gradient(135deg,#0A1628,#1E3A5F)' }}>
+          <div className="text-4xl mb-3">{countryData.flag}</div>
+          <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: "'Playfair Display',serif" }}>
+            Ready to Explore {countryData.name}?
+          </h3>
+          <p className="text-white/70 mb-5 text-sm">Our team is online now. Book any tour in under 5 minutes on WhatsApp.</p>
+          <a href={`https://wa.me/971544735060?text=Hi! I want to book a tour to ${countryData.name}.`}
+            target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-3 rounded-full text-white font-bold"
+            style={{ background: '#25D366' }}>
+            💬 Book via WhatsApp
+          </a>
         </div>
       </div>
-
-      <FAQSection faqs={tourFaqs} title={`${tour.name} — FAQ`} />
     </>
   );
-}
 }
