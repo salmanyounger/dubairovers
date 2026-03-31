@@ -5,27 +5,49 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useLang } from '../context/LanguageContext';
 import { useCurrency } from '../context/CurrencyContext';
 
+// Top countries to show in mega menu
+const MEGA_COUNTRIES = [
+  { id:'saudi-arabia',  flag:'🇸🇦', name:'Saudi Arabia',  tours:['Riyadh City Tour','AlUla Ancient City','Edge of the World'] },
+  { id:'jordan',        flag:'🇯🇴', name:'Jordan',         tours:['Petra Day Trip','Wadi Rum Desert','Dead Sea Float'] },
+  { id:'egypt',         flag:'🇪🇬', name:'Egypt',          tours:['Cairo & Pyramids','Nile River Cruise','Luxor & Karnak'] },
+  { id:'turkey',        flag:'🇹🇷', name:'Turkey',         tours:['Istanbul 3 Days','Cappadocia Balloon','Ephesus Ruins'] },
+  { id:'morocco',       flag:'🇲🇦', name:'Morocco',        tours:['Marrakech Medina','Sahara Desert Camp','Fes Medina'] },
+  { id:'oman',          flag:'🇴🇲', name:'Oman',           tours:['Musandam Fjords','Wahiba Sands','Jebel Akhdar'] },
+  { id:'france',        flag:'🇫🇷', name:'France',         tours:['Paris City Tour','Versailles Day Trip','Loire Valley'] },
+  { id:'italy',         flag:'🇮🇹', name:'Italy',          tours:['Rome 3 Days','Amalfi Coast','Tuscany Wine Tour'] },
+  { id:'spain',         flag:'🇪🇸', name:'Spain',          tours:['Barcelona 3 Days','Madrid City Tour','Seville & Flamenco'] },
+  { id:'japan',         flag:'🇯🇵', name:'Japan',          tours:['Tokyo 5 Days','Kyoto Temples','Mount Fuji Day Trip'] },
+  { id:'thailand',      flag:'🇹🇭', name:'Thailand',       tours:['Bangkok 4 Days','Chiang Mai Elephants','Phuket Islands'] },
+  { id:'india',         flag:'🇮🇳', name:'India',          tours:['Taj Mahal Tour','Kerala Backwaters','Rajasthan Circuit'] },
+  { id:'maldives',      flag:'🇲🇻', name:'Maldives',       tours:['Island Hopping','Overwater Villa','Snorkelling Safari'] },
+  { id:'greece',        flag:'🇬🇷', name:'Greece',         tours:['Santorini Tour','Athens Acropolis','Island Hopping'] },
+  { id:'uk',            flag:'🇬🇧', name:'United Kingdom', tours:['London City Tour','Scottish Highlands','Edinburgh Castle'] },
+  { id:'kenya',         flag:'🇰🇪', name:'Kenya',          tours:['Masai Mara Safari','Amboseli Elephants','Nairobi City'] },
+];
+
 export default function Header() {
-  const [scrolled,   setScrolled]   = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeDrop, setActiveDrop] = useState(null);
-  const [langOpen,   setLangOpen]   = useState(false);
-  const [currOpen,   setCurrOpen]   = useState(false);
+  const [scrolled,      setScrolled]      = useState(false);
+  const [mobileOpen,    setMobileOpen]    = useState(false);
+  const [activeDrop,    setActiveDrop]    = useState(null);
+  const [activeCountry, setActiveCountry] = useState(MEGA_COUNTRIES[0]);
+  const [langOpen,      setLangOpen]      = useState(false);
+  const [currOpen,      setCurrOpen]      = useState(false);
   const pathname = usePathname();
   const router   = useRouter();
   const dropRef  = useRef(null);
   const { lang, setLang, tr, langs, currentLang } = useLang();
   const { currency, setCurrency, currencies }      = useCurrency();
 
+  const TOUR_CATS = [
+    { href:'/tours/desert-safari',    label:'🏜️ ' + (lang==='ar'?'سفاري الصحراء':'Desert Safari') },
+    { href:'/tours/city-tours',       label:'🏙️ ' + (lang==='ar'?'جولات المدينة':'City Tours') },
+    { href:'/tours/water-activities', label:'🚤 ' + (lang==='ar'?'أنشطة مائية':'Water Activities') },
+    { href:'/tours/helicopter-tours', label:'🚁 ' + (lang==='ar'?'هليكوبتر':'Helicopter Tours') },
+    { href:'/tours/theme-parks',      label:'🎢 ' + (lang==='ar'?'مدن الملاهي':'Theme Parks') },
+  ];
+
   const NAV_LINKS = [
-    { href:'/tours', emoji:'🗺️', label: tr('nav','tours'), sub: [
-      { href:'/tours/desert-safari',    label:'🏜️ ' + (lang==='ar'?'سفاري الصحراء':'Desert Safari') },
-      { href:'/tours/city-tours',       label:'🏙️ ' + (lang==='ar'?'جولات المدينة':'City Tours') },
-      { href:'/tours/water-activities', label:'🚤 ' + (lang==='ar'?'أنشطة مائية':'Water Activities') },
-      { href:'/tours/worldwide',  label:'🌍 ' + (lang==='ar'?'جولات عالمية':'Worldwide Tours') },
-      { href:'/tours/helicopter-tours', label:'🚁 ' + (lang==='ar'?'هليكوبتر':'Helicopter Tours') },
-      { href:'/tours/theme-parks',      label:'🎢 ' + (lang==='ar'?'مدن الملاهي':'Theme Parks') },
-    ]},
+    { href:'/tours',        emoji:'🗺️', label: tr('nav','tours'), hasMega: true },
     { href:'/attractions',  emoji:'🏛️', label: tr('nav','attractions') },
     { href:'/flights',      emoji:'✈️', label: tr('nav','flights') },
     { href:'/blog',         emoji:'📰', label: tr('nav','blog') },
@@ -44,7 +66,7 @@ export default function Header() {
   useEffect(() => {
     const handler = (e) => {
       if (dropRef.current && !dropRef.current.contains(e.target)) {
-        setActiveDrop(null); setLangOpen(false);
+        setActiveDrop(null); setLangOpen(false); setCurrOpen(false);
       }
     };
     document.addEventListener('mousedown', handler);
@@ -82,9 +104,9 @@ export default function Header() {
             {NAV_LINKS.map((link) => (
               <div key={link.href} className="relative">
                 <button
-                  onMouseEnter={() => link.sub && setActiveDrop(link.href)}
-                  onMouseLeave={() => setActiveDrop(null)}
-                  onClick={() => !link.sub && router.push(link.href)}
+                  onMouseEnter={() => link.hasMega && setActiveDrop(link.href)}
+                  onMouseLeave={() => !link.hasMega && setActiveDrop(null)}
+                  onClick={() => !link.hasMega && router.push(link.href)}
                   className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
                     pathname.startsWith(link.href)
                       ? 'text-brand-gold bg-white/15'
@@ -92,25 +114,104 @@ export default function Header() {
                   }`}>
                   <span>{link.emoji}</span>
                   <span>{link.label}</span>
-                  {link.sub && (
+                  {link.hasMega && (
                     <svg className="w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7"/>
                     </svg>
                   )}
                 </button>
 
-                {link.sub && activeDrop === link.href && (
-                  <div className="absolute top-full left-0 pt-2 z-50"
+                {/* MEGA MENU for Tours */}
+                {link.hasMega && activeDrop === link.href && (
+                  <div
+                    className="absolute top-full left-0 pt-2 z-50"
+                    style={{ width: '780px' }}
                     onMouseEnter={() => setActiveDrop(link.href)}
                     onMouseLeave={() => setActiveDrop(null)}>
-                    <div className="rounded-2xl overflow-hidden min-w-[220px]"
-                      style={{ background:'#fff', boxShadow:'0 20px 60px rgba(10,22,40,0.2)', border:'1px solid rgba(212,175,55,0.2)' }}>
-                      {link.sub.map(s => (
-                        <Link key={s.href} href={s.href}
-                          className="flex items-center gap-2.5 px-5 py-3.5 text-sm font-semibold text-brand-navy hover:text-brand-gold hover:bg-amber-50 transition-colors border-b border-gray-50 last:border-0">
-                          {s.label}
-                        </Link>
-                      ))}
+                    <div className="rounded-2xl overflow-hidden flex"
+                      style={{ background:'#fff', boxShadow:'0 20px 60px rgba(10,22,40,0.25)', border:'1px solid rgba(212,175,55,0.2)', minHeight:'380px' }}>
+
+                      {/* Left: UAE Tour Categories */}
+                      <div className="w-52 shrink-0 border-r border-gray-100" style={{ background:'#f8f9fa' }}>
+                        <div className="px-4 py-3 border-b border-gray-100">
+                          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">🇦🇪 UAE Tours</p>
+                        </div>
+                        {TOUR_CATS.map(cat => (
+                          <Link key={cat.href} href={cat.href}
+                            className="flex items-center gap-2 px-4 py-3 text-sm font-semibold text-brand-navy hover:text-brand-gold hover:bg-amber-50 transition-colors border-b border-gray-50 last:border-0">
+                            {cat.label}
+                          </Link>
+                        ))}
+                        <div className="px-4 py-3 border-t border-gray-100 mt-1">
+                          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">🌍 Worldwide</p>
+                          <Link href="/tours/worldwide"
+                            className="flex items-center gap-2 text-xs font-bold text-brand-gold hover:underline">
+                            See All 50 Countries →
+                          </Link>
+                        </div>
+                      </div>
+
+                      {/* Middle: Country list */}
+                      <div className="w-52 shrink-0 border-r border-gray-100 overflow-y-auto" style={{ maxHeight:'380px' }}>
+                        <div className="px-4 py-3 border-b border-gray-100 sticky top-0 bg-white">
+                          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">🌍 Countries</p>
+                        </div>
+                        {MEGA_COUNTRIES.map(country => (
+                          <button key={country.id}
+                            onMouseEnter={() => setActiveCountry(country)}
+                            onClick={() => router.push(`/tours/worldwide/${country.id}`)}
+                            className={`flex items-center gap-2.5 w-full px-4 py-2.5 text-sm font-semibold text-left transition-colors border-b border-gray-50 last:border-0 ${
+                              activeCountry?.id === country.id
+                                ? 'text-brand-gold bg-amber-50'
+                                : 'text-brand-navy hover:text-brand-gold hover:bg-amber-50'
+                            }`}>
+                            <span className="text-lg shrink-0">{country.flag}</span>
+                            <span className="flex-1">{country.name}</span>
+                            <svg className="w-3 h-3 opacity-40 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
+                            </svg>
+                          </button>
+                        ))}
+                      </div>
+
+                      {/* Right: Country tours */}
+                      {activeCountry && (
+                        <div className="flex-1 p-5">
+                          <div className="flex items-center gap-3 mb-4">
+                            <span className="text-3xl">{activeCountry.flag}</span>
+                            <div>
+                              <h3 className="font-black text-brand-navy text-base" style={{ fontFamily:"'Playfair Display',serif" }}>
+                                {activeCountry.name} Tours
+                              </h3>
+                              <p className="text-xs text-gray-400">from Dubai · Book via WhatsApp</p>
+                            </div>
+                          </div>
+                          <div className="space-y-2 mb-4">
+                            {activeCountry.tours.map((tour, i) => (
+                              <Link key={i}
+                                href={`/tours/worldwide/${activeCountry.id}`}
+                                className="flex items-center gap-2.5 p-2.5 rounded-xl text-sm font-semibold text-brand-navy hover:text-brand-gold hover:bg-amber-50 transition-colors group">
+                                <span className="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0" />
+                                <span className="flex-1">{tour}</span>
+                                <svg className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
+                                </svg>
+                              </Link>
+                            ))}
+                          </div>
+                          <Link href={`/tours/worldwide/${activeCountry.id}`}
+                            className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90"
+                            style={{ background:'linear-gradient(135deg,#D4AF37,#F0D060)', color:'#0A1628' }}>
+                            See All {activeCountry.name} Tours →
+                          </Link>
+                          <a href={`https://wa.me/971544735060?text=Hi! I want to book a tour to ${activeCountry.name}`}
+                            target="_blank" rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-bold text-white mt-2 transition-all hover:opacity-90"
+                            style={{ background:'#25D366' }}>
+                            💬 WhatsApp Us
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
