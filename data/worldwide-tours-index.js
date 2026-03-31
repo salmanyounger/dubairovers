@@ -14,7 +14,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+3",
     "language": "Arabic",
     "fromAED": 799,
-    "img": "1586500804-1d3f451b4379"
+    "img": "1512632578888-169bbbc64f33"
   },
   {
     "id": "qatar",
@@ -28,7 +28,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+3",
     "language": "Arabic",
     "fromAED": 499,
-    "img": "1578895202-d12af2616b41"
+    "img": "1499856844547-c59b4a6c3f11"
   },
   {
     "id": "oman",
@@ -42,7 +42,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+4",
     "language": "Arabic",
     "fromAED": 599,
-    "img": "1501854140801-50d01698950b"
+    "img": "1477959858617-67f85cf4f1df"
   },
   {
     "id": "kuwait",
@@ -56,7 +56,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+3",
     "language": "Arabic",
     "fromAED": 399,
-    "img": "1574086741371-d3d02db18a06"
+    "img": "1506905925346-21bda4d32df4"
   },
   {
     "id": "bahrain",
@@ -70,7 +70,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+3",
     "language": "Arabic",
     "fromAED": 349,
-    "img": "1558618666-fcd25c85cd64"
+    "img": "1431274172761-fcdab704f0e7"
   },
   {
     "id": "jordan",
@@ -84,7 +84,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+3",
     "language": "Arabic",
     "fromAED": 899,
-    "img": "1548813831-2344d21af6fb"
+    "img": "1552832230-c0197dd311b5"
   },
   {
     "id": "egypt",
@@ -98,7 +98,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+2",
     "language": "Arabic",
     "fromAED": 999,
-    "img": "1539650116574-75c0c6d73f6e"
+    "img": "1543783207-ec64e4d95325"
   },
   {
     "id": "morocco",
@@ -112,7 +112,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+1",
     "language": "Arabic, French",
     "fromAED": 1099,
-    "img": "1539020140153-e479b8c22e70"
+    "img": "1526481280693-3bfa7568e0f3"
   },
   {
     "id": "turkey",
@@ -126,7 +126,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+3",
     "language": "Turkish",
     "fromAED": 1299,
-    "img": "1524231757912-21f4fe3a7200"
+    "img": "1569058242253-92a9d7f0f6d6"
   },
   {
     "id": "france",
@@ -140,7 +140,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+1",
     "language": "French",
     "fromAED": 3499,
-    "img": "1431274172761-fcdab704f0e7"
+    "img": "1547471080-7cc2caa01a7e"
   },
   {
     "id": "germany",
@@ -154,7 +154,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+1",
     "language": "German",
     "fromAED": 3299,
-    "img": "1467269204165-bdbdd6756c9e"
+    "img": "1528360983277-13d401cdc186"
   },
   {
     "id": "uk",
@@ -168,7 +168,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+0",
     "language": "English",
     "fromAED": 3799,
-    "img": "1513635269975-59663e0ac1ad"
+    "img": "1524492660668-bdbe67920b94"
   },
   {
     "id": "italy",
@@ -182,7 +182,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+1",
     "language": "Italian",
     "fromAED": 3199,
-    "img": "1552832230-c0197dd311b5"
+    "img": "1516912481851-ca9ad2f91f54"
   },
   {
     "id": "spain",
@@ -196,7 +196,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+1",
     "language": "Spanish",
     "fromAED": 2999,
-    "img": "1543783207-ec64e4d95325"
+    "img": "1506812574058-2f088d9b8ff2"
   },
   {
     "id": "netherlands",
@@ -210,7 +210,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+1",
     "language": "Dutch",
     "fromAED": 3099,
-    "img": "1512470810-9e629b4de15e"
+    "img": "1513635269975-59663e0ac1ad"
   },
   {
     "id": "switzerland",
@@ -224,7 +224,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+1",
     "language": "German, French",
     "fromAED": 4299,
-    "img": "1527668752968-14dc70a27c95"
+    "img": "1534430480872-3498386b7ae9"
   },
   {
     "id": "austria",
@@ -238,7 +238,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+1",
     "language": "German",
     "fromAED": 3399,
-    "img": "1516550135131-fe3dcdd6d8a0"
+    "img": "1525625293386-3f8f99389edd"
   },
   {
     "id": "greece",
@@ -252,7 +252,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+2",
     "language": "Greek",
     "fromAED": 2799,
-    "img": "1533105079780-92b9be4f5405"
+    "img": "1507783548227-0073d4044c59"
   },
   {
     "id": "portugal",
@@ -266,7 +266,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+0",
     "language": "Portuguese",
     "fromAED": 2899,
-    "img": "1513735492246-483525079686"
+    "img": "1518684079-3c830dcef090"
   },
   {
     "id": "croatia",
@@ -280,7 +280,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+1",
     "language": "Croatian",
     "fromAED": 2599,
-    "img": "1534430480872-3498386b7ae9"
+    "img": "1580418827493-f2b22c0a76cb"
   },
   {
     "id": "russia",
@@ -294,7 +294,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+3",
     "language": "Russian",
     "fromAED": 2299,
-    "img": "1513326738677-b964603b5900"
+    "img": "1512632578888-169bbbc64f33"
   },
   {
     "id": "georgia",
@@ -308,7 +308,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+4",
     "language": "Georgian",
     "fromAED": 1099,
-    "img": "1565008576549-57569a49371d"
+    "img": "1499856844547-c59b4a6c3f11"
   },
   {
     "id": "armenia",
@@ -322,7 +322,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+4",
     "language": "Armenian",
     "fromAED": 999,
-    "img": "1567474297368-7b6d7ba3cb52"
+    "img": "1477959858617-67f85cf4f1df"
   },
   {
     "id": "azerbaijan",
@@ -336,7 +336,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+4",
     "language": "Azerbaijani",
     "fromAED": 1199,
-    "img": "1598971861-a9e6ced47756"
+    "img": "1506905925346-21bda4d32df4"
   },
   {
     "id": "india",
@@ -350,7 +350,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+5:30",
     "language": "Hindi, English",
     "fromAED": 1299,
-    "img": "1524492412937-b28074a5d7da"
+    "img": "1431274172761-fcdab704f0e7"
   },
   {
     "id": "pakistan",
@@ -364,7 +364,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+5",
     "language": "Urdu, English",
     "fromAED": 1099,
-    "img": "1508739773434-c26b3d09e071"
+    "img": "1552832230-c0197dd311b5"
   },
   {
     "id": "nepal",
@@ -378,7 +378,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+5:45",
     "language": "Nepali",
     "fromAED": 1499,
-    "img": "1544735716-392fe2489ffa"
+    "img": "1543783207-ec64e4d95325"
   },
   {
     "id": "sri-lanka",
@@ -392,7 +392,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+5:30",
     "language": "Sinhala, Tamil",
     "fromAED": 1399,
-    "img": "1540202404-a2f29d0b3c62"
+    "img": "1526481280693-3bfa7568e0f3"
   },
   {
     "id": "maldives",
@@ -406,7 +406,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+5",
     "language": "Dhivehi",
     "fromAED": 2999,
-    "img": "1512100356356-de1b84283e18"
+    "img": "1569058242253-92a9d7f0f6d6"
   },
   {
     "id": "thailand",
@@ -420,7 +420,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+7",
     "language": "Thai",
     "fromAED": 1799,
-    "img": "1528181304800-259b08848526"
+    "img": "1547471080-7cc2caa01a7e"
   },
   {
     "id": "vietnam",
@@ -434,7 +434,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+7",
     "language": "Vietnamese",
     "fromAED": 1599,
-    "img": "1559592413-7cec366b4900"
+    "img": "1528360983277-13d401cdc186"
   },
   {
     "id": "philippines",
@@ -448,7 +448,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+8",
     "language": "Filipino, English",
     "fromAED": 1899,
-    "img": "1518509562399-e927b10cc5f8"
+    "img": "1524492660668-bdbe67920b94"
   },
   {
     "id": "indonesia",
@@ -462,7 +462,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+8",
     "language": "Indonesian",
     "fromAED": 1699,
-    "img": "1537996194471-e657df975ab4"
+    "img": "1516912481851-ca9ad2f91f54"
   },
   {
     "id": "malaysia",
@@ -476,7 +476,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+8",
     "language": "Malay, English",
     "fromAED": 1499,
-    "img": "1573348888983-640f052869e9"
+    "img": "1506812574058-2f088d9b8ff2"
   },
   {
     "id": "singapore",
@@ -490,7 +490,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+8",
     "language": "English, Mandarin",
     "fromAED": 1999,
-    "img": "1525625293386-0f7d6f8b8543"
+    "img": "1513635269975-59663e0ac1ad"
   },
   {
     "id": "cambodia",
@@ -504,7 +504,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+7",
     "language": "Khmer",
     "fromAED": 1499,
-    "img": "1540611025311-01df3cef54b5"
+    "img": "1534430480872-3498386b7ae9"
   },
   {
     "id": "japan",
@@ -518,7 +518,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+9",
     "language": "Japanese",
     "fromAED": 3299,
-    "img": "1540959733332-eab4deabeeaf"
+    "img": "1525625293386-3f8f99389edd"
   },
   {
     "id": "south-korea",
@@ -532,7 +532,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+9",
     "language": "Korean",
     "fromAED": 2999,
-    "img": "1538669159616-a9a8a5f11a6b"
+    "img": "1507783548227-0073d4044c59"
   },
   {
     "id": "china",
@@ -546,7 +546,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+8",
     "language": "Mandarin",
     "fromAED": 2799,
-    "img": "1547298456390-5f7ca7e4d0da"
+    "img": "1518684079-3c830dcef090"
   },
   {
     "id": "usa",
@@ -560,7 +560,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT-5",
     "language": "English",
     "fromAED": 4499,
-    "img": "1485871040775-b5de05ae7fb8"
+    "img": "1580418827493-f2b22c0a76cb"
   },
   {
     "id": "canada",
@@ -574,7 +574,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT-5",
     "language": "English, French",
     "fromAED": 3999,
-    "img": "1502481851512-e9e2529bfea4"
+    "img": "1512632578888-169bbbc64f33"
   },
   {
     "id": "mexico",
@@ -588,7 +588,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT-6",
     "language": "Spanish",
     "fromAED": 2799,
-    "img": "1518638150340-f706e86654de"
+    "img": "1499856844547-c59b4a6c3f11"
   },
   {
     "id": "brazil",
@@ -602,7 +602,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT-3",
     "language": "Portuguese",
     "fromAED": 3299,
-    "img": "1516306580123-e6e138591e44"
+    "img": "1477959858617-67f85cf4f1df"
   },
   {
     "id": "argentina",
@@ -616,7 +616,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT-3",
     "language": "Spanish",
     "fromAED": 3199,
-    "img": "1547462579-7b925c3d0d5d"
+    "img": "1506905925346-21bda4d32df4"
   },
   {
     "id": "peru",
@@ -630,7 +630,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT-5",
     "language": "Spanish, Quechua",
     "fromAED": 3599,
-    "img": "1526392060635-9d6019884377"
+    "img": "1431274172761-fcdab704f0e7"
   },
   {
     "id": "kenya",
@@ -644,7 +644,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+3",
     "language": "Swahili, English",
     "fromAED": 3999,
-    "img": "1547970810-3c0c1b4e2a34"
+    "img": "1552832230-c0197dd311b5"
   },
   {
     "id": "tanzania",
@@ -658,7 +658,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+3",
     "language": "Swahili, English",
     "fromAED": 4299,
-    "img": "1549366021-119426a4b1c6"
+    "img": "1543783207-ec64e4d95325"
   },
   {
     "id": "south-africa",
@@ -672,7 +672,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+2",
     "language": "English, Zulu, Afrikaans",
     "fromAED": 2999,
-    "img": "1580060839134-75a5edca2e99"
+    "img": "1526481280693-3bfa7568e0f3"
   },
   {
     "id": "australia",
@@ -686,7 +686,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+10",
     "language": "English",
     "fromAED": 4799,
-    "img": "1523482580672-791e7a2e0d9a6"
+    "img": "1569058242253-92a9d7f0f6d6"
   },
   {
     "id": "new-zealand",
@@ -700,7 +700,7 @@ export const WORLD_COUNTRIES = [
     "timezone": "GMT+12",
     "language": "English",
     "fromAED": 4999,
-    "img": "1507699522160-2572685fd52e"
+    "img": "1547471080-7cc2caa01a7e"
   }
 ];
 
